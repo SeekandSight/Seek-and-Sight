@@ -1,0 +1,136 @@
+[gd_scene load_steps=9 format=3 uid="uid://dee773t32ybf8"]
+
+[ext_resource type="Texture2D" uid="uid://vwtbtrplan2s" path="res://Images/Mathland BG.png" id="1_i387b"]
+[ext_resource type="Texture2D" uid="uid://cl0jgfcr54c56" path="res://Images/MathNeutral.png" id="2_e7rso"]
+[ext_resource type="PackedScene" uid="uid://dvvmc2dd1esa4" path="res://Scenes/Minigame 3/Scene/number_button.tscn" id="3_202wg"]
+[ext_resource type="Texture2D" uid="uid://cchxxc2ibk0ku" path="res://Images/EllieBubble5.png" id="3_s0dgc"]
+[ext_resource type="FontFile" uid="uid://8dw2ln34u4q6" path="res://Orbitron/static/Orbitron-Bold.ttf" id="5_2i3q2"]
+[ext_resource type="AudioStream" uid="uid://cde1qjtulaymb" path="res://Audio/victory-shouts-demo-310503.mp3" id="6_yitny"]
+
+[sub_resource type="GDScript" id="GDScript_3rqxd"]
+script/source = "extends Node2D
+
+"
+
+[sub_resource type="GDScript" id="GDScript_i387b"]
+script/source = "extends Control
+
+@onready var number_container = $NumberContainer
+@onready var title_label = $TitleLabel
+@onready var victory_sound = $VictorySound
+@onready var tween := create_tween()
+
+@export var number_button_scene: PackedScene
+
+var target_number = 0
+var current_count = 1
+var current_click = 0
+
+func _ready():
+	for child in number_container.get_children():
+			child.queue_free()
+
+	target_number = randi_range(3, 10)
+	title_label.text = \"Count to: %d\" % target_number
+	connect(\"mouse_entered\", Callable(self, \"_on_mouse_entered\"))
+	connect(\"mouse_exited\", Callable(self, \"_on_mouse_exited\"))
+
+	var numbers = []
+	for i in range(1, target_number + 1):
+		numbers.append(i)
+	numbers.shuffle()
+
+	for i in numbers:
+		var button_instance = number_button_scene.instantiate()
+		button_instance.value = i
+		button_instance.get_node(\"Button\").pressed.connect(_on_number_pressed.bind(i, button_instance))
+		number_container.add_child(button_instance)
+		print(\"Button Made\")
+		
+func _on_mouse_entered():
+	tween.kill()
+	tween = create_tween()
+	tween.tween_property(self, \"scale\", Vector2(1.2, 1.2), 0.1)
+
+func _on_mouse_exited():
+	tween.kill()
+	tween = create_tween()
+	tween.tween_property(self, \"scale\", Vector2(1, 1), 0.1)
+
+func _on_number_pressed(value: int, button: Node):
+	if value == current_count:
+		current_click += 1
+		print(\"Clicked:\", value, \"Expected:\", current_click)
+		button.modulate = Color.GREEN
+		current_count += 1
+		
+		if current_click == target_number:
+			level_complete()
+		
+	else:
+		button.modulate = Color.RED
+		await get_tree().create_timer(0.5).timeout
+		button.modulate = Color.WHITE
+		
+func level_complete():
+	title_label.text = \"We did it!\"
+	victory_sound.play()
+	await get_tree().create_timer(3.0).timeout
+	get_tree().quit()
+"
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_3rqxd")
+
+[node name="Images" type="Node" parent="."]
+
+[node name="MathlandBg" type="Sprite2D" parent="Images"]
+position = Vector2(640, 358.5)
+scale = Vector2(2.0609, 1.56681)
+texture = ExtResource("1_i387b")
+
+[node name="MathNeutral" type="Sprite2D" parent="Images"]
+position = Vector2(185, 555.75)
+scale = Vector2(0.302734, 0.292643)
+texture = ExtResource("2_e7rso")
+
+[node name="EllieBubble5" type="Sprite2D" parent="Images"]
+position = Vector2(658, 154.5)
+scale = Vector2(2.52632, 1.33631)
+texture = ExtResource("3_s0dgc")
+
+[node name="Activity" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+script = SubResource("GDScript_i387b")
+number_button_scene = ExtResource("3_202wg")
+
+[node name="TitleLabel" type="Label" parent="Activity"]
+top_level = true
+layout_mode = 0
+offset_left = 243.0
+offset_top = 71.0
+offset_right = 1043.0
+offset_bottom = 241.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_2i3q2")
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumberContainer" type="GridContainer" parent="Activity"]
+top_level = true
+layout_mode = 0
+offset_left = 305.0
+offset_top = 260.0
+offset_right = 1014.0
+offset_bottom = 715.0
+columns = 5
+
+[node name="NumberButtons" type="Button" parent="Activity/NumberContainer"]
+layout_mode = 2
+
+[node name="VictorySound" type="AudioStreamPlayer2D" parent="Activity"]
+stream = ExtResource("6_yitny")

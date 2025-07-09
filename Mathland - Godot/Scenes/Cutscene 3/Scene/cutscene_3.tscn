@@ -1,0 +1,104 @@
+[gd_scene load_steps=11 format=3 uid="uid://csvc5vxgesqw2"]
+
+[ext_resource type="AudioStream" uid="uid://wwxvwwtryt8l" path="res://Scenes/Cutscene 3/Audio/Math Wizard Counting.wav" id="1_cp3yy"]
+[ext_resource type="Script" uid="uid://btfar5f1gdgu4" path="res://Scenes/Cutscene 3/Script/animation_player3.gd" id="2_fxaot"]
+[ext_resource type="Texture2D" uid="uid://vwtbtrplan2s" path="res://Images/Mathland BG.png" id="3_gwto5"]
+[ext_resource type="Texture2D" uid="uid://cl0jgfcr54c56" path="res://Images/MathNeutral.png" id="4_h6ek1"]
+[ext_resource type="Texture2D" uid="uid://cchxxc2ibk0ku" path="res://Images/EllieBubble5.png" id="5_ssyvy"]
+[ext_resource type="PackedScene" uid="uid://d1v5ctwfbp7q2" path="res://Images/Demo_Skip.tscn" id="7_47ouc"]
+[ext_resource type="PackedScene" uid="uid://b7osqe6amtob8" path="res://Scenes/Cutscene 3/Scene/minigame3.1_txt.tscn" id="7_fxaot"]
+
+[sub_resource type="Animation" id="Animation_ru502"]
+resource_name = "Cutscene 3"
+length = 3.8
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/AudioStreamPlayer2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 8.3184,
+"stream": ExtResource("1_cp3yy")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Label:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.73),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_lmqvm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Label:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jx2nd"]
+_data = {
+&"Cutscene 3": SubResource("Animation_ru502"),
+&"RESET": SubResource("Animation_lmqvm")
+}
+
+[node name="Cutscene3" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jx2nd")
+}
+autoplay = "Cutscene 3"
+script = ExtResource("2_fxaot")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationPlayer"]
+
+[node name="MathlandBg" type="Sprite2D" parent="AnimationPlayer"]
+position = Vector2(640.5, 356)
+scale = Vector2(2.06891, 1.57759)
+texture = ExtResource("3_gwto5")
+
+[node name="MathNeutral" type="Sprite2D" parent="AnimationPlayer"]
+position = Vector2(175, 490)
+scale = Vector2(0.378906, 0.349609)
+texture = ExtResource("4_h6ek1")
+
+[node name="EllieBubble5" type="Sprite2D" parent="AnimationPlayer"]
+position = Vector2(439.375, 119.25)
+scale = Vector2(1.2461, 1.11756)
+texture = ExtResource("5_ssyvy")
+
+[node name="Demo3" parent="AnimationPlayer" instance=ExtResource("7_47ouc")]
+offset_left = 945.0
+offset_top = 494.0
+offset_right = 1281.0
+offset_bottom = 701.0
+
+[node name="Label" parent="AnimationPlayer" instance=ExtResource("7_fxaot")]
+offset_left = 251.0
+offset_top = 85.0
+offset_right = 630.0
+offset_bottom = 154.0
+visible_characters = 0
+visible_ratio = 0.0
+
+[connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
+[connection signal="pressed" from="AnimationPlayer/Demo3" to="AnimationPlayer" method="_on_demo_3_pressed"]

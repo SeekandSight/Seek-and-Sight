@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://def3b52bqu3xn"]
+
+[ext_resource type="Script" uid="uid://cmpdhd73bq8jo" path="res://Scenes/Minigame 1/Script/word_slot.gd" id="1_q20ft"]
+[ext_resource type="FontFile" uid="uid://8dw2ln34u4q6" path="res://Orbitron/static/Orbitron-Bold.ttf" id="2_8j2pn"]
+
+[node name="WordSlot" type="Control"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 3
+anchor_left = 0.007
+anchor_top = 0.718
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.04
+offset_top = 0.039978
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_q20ft")
+
+[node name="Word" type="Label" parent="."]
+layout_mode = 2
+anchor_right = 0.987
+anchor_bottom = 0.901
+offset_right = 0.535889
+offset_bottom = 0.0970001
+theme_override_fonts/font = ExtResource("2_8j2pn")
+theme_override_font_sizes/font_size = 54
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CorrectSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="IncorrectSound" type="AudioStreamPlayer2D" parent="."]

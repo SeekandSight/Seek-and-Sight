@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://8mtrjra8doep"]
+
+[ext_resource type="FontFile" uid="uid://dj81ep55ydd46" path="res://Orbitron/Orbitron-VariableFont_wght.ttf" id="1_x5kq6"]
+
+[node name="Mathwizard Intro" type="Label"]
+offset_right = 400.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_x5kq6")
+theme_override_font_sizes/font_size = 40
+text = "Hi, I am Math Wizard, 
+let’s work with our numbers!"
+horizontal_alignment = 1

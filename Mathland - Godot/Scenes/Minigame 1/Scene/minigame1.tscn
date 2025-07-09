@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://6l12v2u350gi"]
+
+[ext_resource type="Texture2D" uid="uid://vwtbtrplan2s" path="res://Images/Mathland BG.png" id="1_ihs45"]
+[ext_resource type="Texture2D" uid="uid://cl0jgfcr54c56" path="res://Images/MathNeutral.png" id="2_jn1xt"]
+[ext_resource type="Script" uid="uid://djisfaltlh8l7" path="res://Scenes/Minigame 1/Script/activity.gd" id="2_sciyd"]
+[ext_resource type="FontFile" uid="uid://8dw2ln34u4q6" path="res://Orbitron/static/Orbitron-Bold.ttf" id="4_sciyd"]
+
+[sub_resource type="GDScript" id="GDScript_yid40"]
+script/source = "extends Node2D
+"
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_yid40")
+
+[node name="Images" type="Node" parent="."]
+
+[node name="MathlandBg" type="Sprite2D" parent="Images"]
+position = Vector2(641, 361)
+scale = Vector2(2.06731, 1.57759)
+texture = ExtResource("1_ihs45")
+
+[node name="MathNeutral" type="Sprite2D" parent="Images"]
+position = Vector2(171, 238)
+scale = Vector2(0.32666, 0.310547)
+texture = ExtResource("2_jn1xt")
+
+[node name="Activity" type="Node" parent="."]
+script = ExtResource("2_sciyd")
+
+[node name="Numbers" type="Control" parent="Activity"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 272.0
+offset_top = 110.0
+offset_right = 388.0
+offset_bottom = 208.0
+
+[node name="NumberSlot" type="TextureButton" parent="Activity/Numbers"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 12.965
+anchor_top = 1.53
+anchor_right = 29.825
+anchor_bottom = 6.95
+offset_left = -17.6
+offset_top = -16.2
+
+[node name="Number" type="Label" parent="Activity/Numbers/NumberSlot"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.973
+anchor_bottom = 0.871
+offset_right = -0.31604
+offset_bottom = 0.0569916
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Words" type="GridContainer" parent="Activity"]
+anchors_preset = -1
+anchor_left = 0.016
+anchor_top = 0.656
+anchor_right = 1.004
+anchor_bottom = 1.0
+offset_left = 0.519999
+offset_top = -0.320007
+offset_right = -0.120117
+offset_bottom = -1.0
+columns = 5
+
+[node name="WordSlot" type="Container" parent="Activity/Words"]
+visible = false
+layout_mode = 2
+
+[node name="Word" type="Label" parent="Activity/Words/WordSlot"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_sciyd")
+theme_override_font_sizes/font_size = 54

@@ -1,0 +1,45 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Mathland"
+run/main_scene="uid://b6qkisn7ajsu3"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+
+[display]
+
+window/size/mode=3
+
+[file_customization]
+
+folder_colors={
+"res://Scenes/Cutscene 1/Audio/": "pink",
+"res://Scenes/Cutscene 1/Scene/": "purple",
+"res://Scenes/Cutscene 1/Script/": "green",
+"res://Scenes/Cutscene 2/Audio/": "pink",
+"res://Scenes/Cutscene 2/Scene/": "purple",
+"res://Scenes/Cutscene 2/Script/": "green",
+"res://Scenes/Cutscene 3/Audio/": "pink",
+"res://Scenes/Cutscene 3/Scene/": "purple",
+"res://Scenes/Cutscene 3/Script/": "green",
+"res://Scenes/MainMenu/Scene/": "purple",
+"res://Scenes/MainMenu/Script/": "green",
+"res://Scenes/Minigame 1/Scene/": "purple",
+"res://Scenes/Minigame 1/Script/": "green",
+"res://Scenes/Minigame 2/Scene/": "purple",
+"res://Scenes/Minigame 2/Script/": "green"
+}
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

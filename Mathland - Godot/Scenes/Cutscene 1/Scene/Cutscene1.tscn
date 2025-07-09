@@ -1,0 +1,139 @@
+[gd_scene load_steps=12 format=3 uid="uid://di4tfuo31gvgu"]
+
+[ext_resource type="AudioStream" uid="uid://cvb68kef5rudk" path="res://Scenes/Cutscene 1/Audio/Mathwizard_Hi.wav" id="1_ek38y"]
+[ext_resource type="AudioStream" uid="uid://dt1ejyy1b788g" path="res://Scenes/Cutscene 1/Audio/Math Wizard Match Number.wav" id="2_ek38y"]
+[ext_resource type="Script" uid="uid://dw3kyrstexlla" path="res://Scenes/Cutscene 1/Script/animation_player.gd" id="2_gv5hw"]
+[ext_resource type="Texture2D" uid="uid://vwtbtrplan2s" path="res://Images/Mathland BG.png" id="3_kfsx2"]
+[ext_resource type="Texture2D" uid="uid://cchxxc2ibk0ku" path="res://Images/EllieBubble5.png" id="5_hdjsx"]
+[ext_resource type="PackedScene" uid="uid://8mtrjra8doep" path="res://Scenes/MainMenu/Scene/mathwizard_intro.tscn" id="6_8xxqb"]
+[ext_resource type="Texture2D" uid="uid://cl0jgfcr54c56" path="res://Images/MathNeutral.png" id="7_nno6u"]
+[ext_resource type="PackedScene" uid="uid://d1v5ctwfbp7q2" path="res://Images/Demo_Skip.tscn" id="8_txg5j"]
+
+[sub_resource type="Animation" id="Animation_r65eu"]
+resource_name = "Cutscene 1"
+length = 8.5
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_ek38y")
+}, {
+"end_offset": 0.0,
+"start_offset": 2.2354,
+"stream": ExtResource("2_ek38y")
+}],
+"times": PackedFloat32Array(0, 5.43333)
+}
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Mathwizard Intro:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.16217, 5.46667, 8.43461),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/Mathwizard Intro:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.25435, 5.36957),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["Hi, I am Math Wizard, 
+let’s work with our numbers!", "Can you match the 
+numbers to their names?"]
+}
+
+[sub_resource type="Animation" id="Animation_0sxtc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Mathwizard Intro:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Mathwizard Intro:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Hi, I am Math Wizard, 
+let’s work with our numbers!"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u1njc"]
+_data = {
+&"Cutscene 1": SubResource("Animation_r65eu"),
+&"RESET": SubResource("Animation_0sxtc")
+}
+
+[node name="Minigame1" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_u1njc")
+}
+autoplay = "Cutscene 1"
+script = ExtResource("2_gv5hw")
+
+[node name="MathlandBg" type="Sprite2D" parent="AnimationPlayer"]
+position = Vector2(640.5, 361.5)
+scale = Vector2(2.0625, 1.5625)
+texture = ExtResource("3_kfsx2")
+
+[node name="EllieBubble5" type="Sprite2D" parent="AnimationPlayer"]
+position = Vector2(649, 148)
+scale = Vector2(1.92495, 1.48512)
+texture = ExtResource("5_hdjsx")
+
+[node name="Mathwizard Intro" parent="AnimationPlayer" instance=ExtResource("6_8xxqb")]
+offset_left = 339.0
+offset_top = 84.0
+offset_right = 963.0
+offset_bottom = 189.0
+visible_characters = 0
+visible_characters_behavior = 3
+visible_ratio = 0.0
+script = null
+metadata/_edit_use_anchors_ = true
+
+[node name="MathNeutral" type="Sprite2D" parent="AnimationPlayer"]
+position = Vector2(648.75, 531.5)
+scale = Vector2(0.373535, 0.347005)
+texture = ExtResource("7_nno6u")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AnimationPlayer"]
+
+[node name="Demo1" parent="AnimationPlayer" instance=ExtResource("8_txg5j")]
+offset_left = 935.0
+offset_top = 496.0
+offset_right = 1268.0
+offset_bottom = 715.0
+
+[connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
+[connection signal="pressed" from="AnimationPlayer/Demo1" to="AnimationPlayer" method="_on_demo_1_pressed"]

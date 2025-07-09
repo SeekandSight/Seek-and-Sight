@@ -1,0 +1,371 @@
+[gd_scene load_steps=16 format=3 uid="uid://b3gwno6ounu42"]
+
+[ext_resource type="Texture2D" uid="uid://3gfvfoy1c7ag" path="res://Assets/EllieBackground.png" id="1_bci5i"]
+[ext_resource type="Script" uid="uid://bqmpldde8cv7q" path="res://Levels/Main Menu/scripts/scene_3_tool_match.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://ds8gg4or0e0up" path="res://Assets/EllieGesture.png" id="2_w3cok"]
+[ext_resource type="FontFile" uid="uid://cj477dq342a0c" path="res://Assets/Chewy-Regular.ttf" id="3_0lrx8"]
+[ext_resource type="Texture2D" uid="uid://cv4oacdxpnsri" path="res://Assets/EllieBubble2.png" id="4_fxfus"]
+[ext_resource type="Texture2D" uid="uid://bw3gkocahpuv7" path="res://Assets/Hammer.png" id="6_c5ldm"]
+[ext_resource type="AudioStream" uid="uid://eoyxv4nf5a2p" path="res://Assets/Audio/Engineer Workshop (Temp)/DRAG THE WORDS TO MATCH THE TOOLS.wav" id="6_hfeje"]
+[ext_resource type="Texture2D" uid="uid://cobwhonrh2cv8" path="res://Assets/Wrench.png" id="7_hfeje"]
+[ext_resource type="Texture2D" uid="uid://3nfxj6awsx32" path="res://Assets/EllieBubble5.png" id="8_8kcsj"]
+[ext_resource type="Texture2D" uid="uid://coah3kid50v6v" path="res://Assets/Screwdriver.png" id="8_a6qls"]
+[ext_resource type="Texture2D" uid="uid://bhbxfdg37n523" path="res://Assets/Saw.png" id="9_lcfmk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back"]
+bg_color = Color(0.8, 0.4, 0.2, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_next"]
+bg_color = Color(0.2, 0.8, 0.3, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tool"]
+size = Vector2(80, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_word"]
+size = Vector2(200, 80)
+
+[node name="Scene3ToolMatch" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="WorkshopBackground" type="Sprite2D" parent="Background"]
+position = Vector2(578.5, 328)
+scale = Vector2(0.745443, 0.634766)
+texture = ExtResource("1_bci5i")
+
+[node name="EllieInstructor" type="Sprite2D" parent="Background"]
+position = Vector2(1083, 494)
+scale = Vector2(0.270605, 0.277279)
+texture = ExtResource("2_w3cok")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameTitle" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 444.0
+offset_top = 13.0
+offset_right = 1122.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_fonts/font = ExtResource("3_0lrx8")
+theme_override_font_sizes/font_size = 80
+text = "MATCH THE TOOLS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InstructionBubble" type="Sprite2D" parent="UI"]
+position = Vector2(911, 185)
+scale = Vector2(1.02796, 0.656)
+texture = ExtResource("4_fxfus")
+flip_h = true
+
+[node name="InstructionText" type="Label" parent="UI/InstructionBubble"]
+offset_left = -97.2804
+offset_top = -32.0122
+offset_right = 142.72
+offset_bottom = 47.9878
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_fonts/font = ExtResource("3_0lrx8")
+theme_override_font_sizes/font_size = 24
+text = "Drag the words to 
+match the tools!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="NavButtons" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 250.0
+offset_top = 550.0
+offset_right = 750.0
+offset_bottom = 630.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BackButton" type="Button" parent="UI/NavButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_0lrx8")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_back")
+text = "← Back"
+
+[node name="Spacer" type="Control" parent="UI/NavButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NextButton" type="Button" parent="UI/NavButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_0lrx8")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_next")
+disabled = true
+text = "Next →"
+
+[node name="DragTheWordsToMatchTheTools" type="AudioStreamPlayer2D" parent="UI/NavButtons"]
+position = Vector2(228, -287)
+stream = ExtResource("6_hfeje")
+autoplay = true
+
+[node name="ToolArea" type="Node2D" parent="."]
+position = Vector2(300, 100)
+scale = Vector2(0.5, 0.5)
+
+[node name="HammerSlot" type="Area2D" parent="ToolArea"]
+position = Vector2(750, 200)
+scale = Vector2(0.7, 0.7)
+
+[node name="HammerImage" type="Sprite2D" parent="ToolArea/HammerSlot"]
+position = Vector2(-4, -1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_c5ldm")
+
+[node name="HammerCollision" type="CollisionShape2D" parent="ToolArea/HammerSlot"]
+shape = SubResource("RectangleShape2D_tool")
+
+[node name="HammerLabel" type="Label" parent="ToolArea/HammerSlot"]
+visible = false
+offset_left = -40.0
+offset_top = 50.0
+offset_right = 40.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.2, 0.8, 0.2, 1)
+theme_override_fonts/font = ExtResource("3_0lrx8")
+theme_override_font_sizes/font_size = 24
+text = "✓ hammer"
+horizontal_alignment = 1
+
+[node name="WrenchSlot" type="Area2D" parent="ToolArea"]
+position = Vector2(750, 400)
+scale = Vector2(0.7, 0.7)
+
+[node name="WrenchImage" type="Sprite2D" parent="ToolArea/WrenchSlot"]
+position = Vector2(-5, -5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_hfeje")
+
+[node name="WrenchCollision" type="CollisionShape2D" parent="ToolArea/WrenchSlot"]
+shape = SubResource("RectangleShape2D_tool")
+
+[node name="WrenchLabel" type="Label" parent="ToolArea/WrenchSlot"]
+visible = false
+offset_left = -40.0
+offset_top = 50.0
+offset_right = 40.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.2, 0.8, 0.2, 1)
+theme_override_fonts/font = ExtResource("3_0lrx8")
+theme_override_font_sizes/font_size = 24
+text = "✓ wrench"
+horizontal_alignment = 1
+
+[node name="ScrewdriverSlot" type="Area2D" parent="ToolArea"]
+position = Vector2(750, 600)
+scale = Vector2(0.7, 0.7)
+
+[node name="ScrewdriverImage" type="Sprite2D" parent="ToolArea/ScrewdriverSlot"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_a6qls")
+
+[node name="ScrewdriverCollision" type="CollisionShape2D" parent="ToolArea/ScrewdriverSlot"]
+shape = SubResource("RectangleShape2D_tool")
+
+[node name="ScrewdriverLabel" type="Label" parent="ToolArea/ScrewdriverSlot"]
+visible = false
+offset_left = -60.0
+offset_top = 50.0
+offset_right = 60.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.2, 0.8, 0.2, 1)
+theme_override_fonts/font = ExtResource("3_0lrx8")
+theme_override_font_sizes/font_size = 20
+text = "✓ screwdriver"
+horizontal_alignment = 1
+
+[node name="SawSlot" type="Area2D" parent="ToolArea"]
+position = Vector2(750, 750)
+scale = Vector2(0.7, 0.7)
+
+[node name="SawImage" type="Sprite2D" parent="ToolArea/SawSlot"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_lcfmk")
+
+[node name="SawCollision" type="CollisionShape2D" parent="ToolArea/SawSlot"]
+shape = SubResource("RectangleShape2D_tool")
+
+[node name="SawLabel" type="Label" parent="ToolArea/SawSlot"]
+visible = false
+offset_left = -25.0
+offset_top = 50.0
+offset_right = 25.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.2, 0.8, 0.2, 1)
+theme_override_fonts/font = ExtResource("3_0lrx8")
+theme_override_font_sizes/font_size = 24
+text = "✓ saw"
+horizontal_alignment = 1
+
+[node name="WordArea" type="Node2D" parent="."]
+position = Vector2(150, 50)
+scale = Vector2(0.8, 0.8)
+
+[node name="WordBlock_Hammer" type="Area2D" parent="WordArea"]
+position = Vector2(150, 200)
+
+[node name="BlockSprite" type="Sprite2D" parent="WordArea/WordBlock_Hammer"]
+position = Vector2(3.75, 1)
+scale = Vector2(1.00227, 0.6)
+texture = ExtResource("8_8kcsj")
+
+[node name="BlockCollision" type="CollisionShape2D" parent="WordArea/WordBlock_Hammer"]
+shape = SubResource("RectangleShape2D_word")
+
+[node name="WordText" type="Label" parent="WordArea/WordBlock_Hammer"]
+offset_left = -80.0
+offset_top = -25.0
+offset_right = 80.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_fonts/font = ExtResource("3_0lrx8")
+theme_override_font_sizes/font_size = 32
+text = "hammer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WordBlock_Wrench" type="Area2D" parent="WordArea"]
+position = Vector2(150, 320)
+
+[node name="BlockSprite" type="Sprite2D" parent="WordArea/WordBlock_Wrench"]
+position = Vector2(6.66668, 0)
+scale = Vector2(1.02989, 0.6)
+texture = ExtResource("8_8kcsj")
+
+[node name="BlockCollision" type="CollisionShape2D" parent="WordArea/WordBlock_Wrench"]
+shape = SubResource("RectangleShape2D_word")
+
+[node name="WordText" type="Label" parent="WordArea/WordBlock_Wrench"]
+offset_left = -80.0
+offset_top = -25.0
+offset_right = 80.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_fonts/font = ExtResource("3_0lrx8")
+theme_override_font_sizes/font_size = 32
+text = "wrench"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WordBlock_Screwdriver" type="Area2D" parent="WordArea"]
+position = Vector2(150, 440)
+
+[node name="BlockSprite" type="Sprite2D" parent="WordArea/WordBlock_Screwdriver"]
+position = Vector2(14.5833, 0)
+scale = Vector2(1.09324, 0.6)
+texture = ExtResource("8_8kcsj")
+
+[node name="BlockCollision" type="CollisionShape2D" parent="WordArea/WordBlock_Screwdriver"]
+shape = SubResource("RectangleShape2D_word")
+
+[node name="WordText" type="Label" parent="WordArea/WordBlock_Screwdriver"]
+offset_left = -100.0
+offset_top = -25.0
+offset_right = 100.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_fonts/font = ExtResource("3_0lrx8")
+theme_override_font_sizes/font_size = 28
+text = "screwdriver"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WordBlock_Saw" type="Area2D" parent="WordArea"]
+position = Vector2(150, 560)
+
+[node name="BlockSprite" type="Sprite2D" parent="WordArea/WordBlock_Saw"]
+position = Vector2(19.5833, -2.5)
+scale = Vector2(1.077, 0.6)
+texture = ExtResource("8_8kcsj")
+
+[node name="BlockCollision" type="CollisionShape2D" parent="WordArea/WordBlock_Saw"]
+shape = SubResource("RectangleShape2D_word")
+
+[node name="WordText" type="Label" parent="WordArea/WordBlock_Saw"]
+offset_left = -87.0
+offset_top = -24.0
+offset_right = 73.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_fonts/font = ExtResource("3_0lrx8")
+theme_override_font_sizes/font_size = 32
+text = "saw"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MatchingSystem" type="Node2D" parent="."]
+
+[node name="GameLogic" type="Node2D" parent="MatchingSystem"]
+
+[node name="SuccessEffects" type="Node2D" parent="MatchingSystem"]
+
+[node name="ConnectionLines" type="Node2D" parent="MatchingSystem"]
+
+[node name="ScoreSystem" type="Node2D" parent="MatchingSystem"]
+visible = false
+
+[node name="ScoreLabel" type="Label" parent="MatchingSystem/ScoreSystem"]
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 208.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_fonts/font = ExtResource("3_0lrx8")
+theme_override_font_sizes/font_size = 24
+text = "Matches: 0/4"
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="WordAudio" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -3.0
+
+[node name="CorrectSound" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -5.0
+
+[node name="WrongSound" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -8.0
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -15.0
+autoplay = true
+
+[connection signal="pressed" from="UI/NavButtons/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="UI/NavButtons/NextButton" to="." method="_on_next_button_pressed"]

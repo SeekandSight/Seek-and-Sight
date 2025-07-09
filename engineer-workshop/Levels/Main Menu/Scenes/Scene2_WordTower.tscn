@@ -1,0 +1,375 @@
+[gd_scene load_steps=10 format=3 uid="uid://bedduwli4hl85"]
+
+[ext_resource type="Script" uid="uid://is0wp7omyx6y" path="res://Levels/Main Menu/scripts/Scene2_WordTower.gd" id="1_c5ldm"]
+[ext_resource type="Texture2D" uid="uid://3gfvfoy1c7ag" path="res://Assets/EllieBackground.png" id="2_p3pni"]
+[ext_resource type="Texture2D" uid="uid://ds8gg4or0e0up" path="res://Assets/EllieGesture.png" id="3_l8e7v"]
+[ext_resource type="AudioStream" uid="uid://bxwiu3vc5exln" path="res://Assets/Audio/Engineer Workshop (Temp)/LISTEN TO THE WORD AND DRAG IT TO BUILD YOUR TOWER.wav" id="5_l8e7v"]
+[ext_resource type="Texture2D" uid="uid://cv4oacdxpnsri" path="res://Assets/EllieBubble2.png" id="5_msv4t"]
+[ext_resource type="Texture2D" uid="uid://b3viiix225dtm" path="res://Assets/EllieBlocks1.png" id="6_l8e7v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back"]
+bg_color = Color(0.8, 0.4, 0.2, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_next"]
+bg_color = Color(0.2, 0.8, 0.3, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_word_block"]
+size = Vector2(180, 60)
+
+[node name="Scene2WordTower" type="Node2D"]
+script = ExtResource("1_c5ldm")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="ConstructionBackground" type="Sprite2D" parent="Background"]
+position = Vector2(578.5, 325.5)
+scale = Vector2(0.745443, 0.629883)
+texture = ExtResource("2_p3pni")
+
+[node name="EllieInstructor" type="Sprite2D" parent="Background"]
+position = Vector2(1078, 418)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("3_l8e7v")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameTitle" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 33.0
+offset_top = 4.0
+offset_right = 718.0
+offset_bottom = 114.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_font_sizes/font_size = 80
+text = "BUILDING TOWER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InstructionBubble" type="Sprite2D" parent="UI"]
+position = Vector2(885, 65.5)
+scale = Vector2(1.09892, 0.690667)
+texture = ExtResource("5_msv4t")
+flip_h = true
+
+[node name="InstructionText" type="Label" parent="UI/InstructionBubble"]
+offset_left = -114.203
+offset_top = -40.4676
+offset_right = 174.797
+offset_bottom = 75.5324
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_font_sizes/font_size = 24
+text = "Listen to the word and
+drag it to build your tower!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AudioPanel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 470.0
+offset_top = 174.0
+offset_right = 700.0
+offset_bottom = 496.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_back")
+
+[node name="AudioLabel" type="Label" parent="UI/AudioPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.5
+offset_top = -127.0
+offset_right = 58.5
+offset_bottom = -86.4483
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "🔊 Listen"
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="UI/AudioPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "▶️"
+
+[node name="CurrentWordLabel" type="Label" parent="UI/AudioPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.5
+offset_top = 65.0
+offset_right = 100.5
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Click Play!"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="UI/AudioPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = 108.0
+offset_right = 75.5
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 22
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="NavButtons" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 300.0
+offset_top = 550.0
+offset_right = 800.0
+offset_bottom = 610.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BackButton" type="Button" parent="UI/NavButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_back")
+text = "← Back"
+
+[node name="Spacer" type="Control" parent="UI/NavButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NextButton" type="Button" parent="UI/NavButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_next")
+disabled = true
+text = "Next →"
+
+[node name="ListenToTheWordAndDragItToBuildYourTower" type="AudioStreamPlayer2D" parent="UI/NavButtons"]
+position = Vector2(507, -373)
+stream = ExtResource("5_l8e7v")
+autoplay = true
+
+[node name="TowerArea" type="Node2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="TowerDropZone" type="Area2D" parent="TowerArea"]
+position = Vector2(864, 460)
+
+[node name="TowerCollision" type="CollisionShape2D" parent="TowerArea/TowerDropZone"]
+position = Vector2(-2, 3)
+shape = SubResource("RectangleShape2D_word_block")
+debug_color = Color(0, 1, 0, 0.2)
+
+[node name="TowerBase" type="ColorRect" parent="TowerArea"]
+offset_left = 742.0
+offset_top = 359.0
+offset_right = 992.0
+offset_bottom = 533.0
+color = Color(0.545098, 0.270588, 0.0745098, 0.611765)
+
+[node name="TowerLabel" type="Label" parent="TowerArea/TowerBase"]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 37.0
+offset_right = 186.0
+offset_bottom = 119.0
+theme_override_font_sizes/font_size = 32
+text = "Drag
+Here"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TowerBlocks" type="Node2D" parent="TowerArea"]
+position = Vector2(858, 459)
+
+[node name="WordBlocksArea" type="Node2D" parent="."]
+position = Vector2(253, 124)
+
+[node name="WordBlock1" type="Area2D" parent="WordBlocksArea"]
+position = Vector2(-139, 44)
+scale = Vector2(0.9, 0.9)
+
+[node name="WordBlockSprite1" type="Sprite2D" parent="WordBlocksArea/WordBlock1"]
+position = Vector2(13.5, -10)
+scale = Vector2(0.514218, 0.460396)
+texture = ExtResource("6_l8e7v")
+
+[node name="WordBlockCollision1" type="CollisionShape2D" parent="WordBlocksArea/WordBlock1"]
+shape = SubResource("RectangleShape2D_word_block")
+
+[node name="WordBlockLabel1" type="Label" parent="WordBlocksArea/WordBlock1"]
+offset_left = -90.0
+offset_top = -30.0
+offset_right = 90.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_font_sizes/font_size = 32
+text = "word1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WordBlock2" type="Area2D" parent="WordBlocksArea"]
+position = Vector2(-145, 183)
+scale = Vector2(0.9, 0.9)
+
+[node name="WordBlockSprite2" type="Sprite2D" parent="WordBlocksArea/WordBlock2"]
+position = Vector2(14, -9)
+scale = Vector2(0.516588, 0.435644)
+texture = ExtResource("6_l8e7v")
+
+[node name="WordBlockCollision2" type="CollisionShape2D" parent="WordBlocksArea/WordBlock2"]
+shape = SubResource("RectangleShape2D_word_block")
+
+[node name="WordBlockLabel2" type="Label" parent="WordBlocksArea/WordBlock2"]
+offset_left = -90.0
+offset_top = -30.0
+offset_right = 90.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_font_sizes/font_size = 32
+text = "word2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WordBlock3" type="Area2D" parent="WordBlocksArea"]
+position = Vector2(-140, 330)
+scale = Vector2(0.9, 0.9)
+
+[node name="WordBlockSprite3" type="Sprite2D" parent="WordBlocksArea/WordBlock3"]
+position = Vector2(13.5, -7.99999)
+scale = Vector2(0.523697, 0.435644)
+texture = ExtResource("6_l8e7v")
+
+[node name="WordBlockCollision3" type="CollisionShape2D" parent="WordBlocksArea/WordBlock3"]
+shape = SubResource("RectangleShape2D_word_block")
+
+[node name="WordBlockLabel3" type="Label" parent="WordBlocksArea/WordBlock3"]
+offset_left = -90.0
+offset_top = -30.0
+offset_right = 90.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_font_sizes/font_size = 32
+text = "word3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WordBlock4" type="Area2D" parent="WordBlocksArea"]
+position = Vector2(50, 113)
+scale = Vector2(0.9, 0.9)
+
+[node name="WordBlockSprite4" type="Sprite2D" parent="WordBlocksArea/WordBlock4"]
+position = Vector2(11, -9)
+scale = Vector2(0.526066, 0.435644)
+texture = ExtResource("6_l8e7v")
+
+[node name="WordBlockCollision4" type="CollisionShape2D" parent="WordBlocksArea/WordBlock4"]
+shape = SubResource("RectangleShape2D_word_block")
+
+[node name="WordBlockLabel4" type="Label" parent="WordBlocksArea/WordBlock4"]
+offset_left = -90.0
+offset_top = -30.0
+offset_right = 90.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_font_sizes/font_size = 32
+text = "word4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WordBlock5" type="Area2D" parent="WordBlocksArea"]
+position = Vector2(37, 254)
+scale = Vector2(0.9, 0.9)
+
+[node name="WordBlockSprite5" type="Sprite2D" parent="WordBlocksArea/WordBlock5"]
+position = Vector2(12, -8.49999)
+scale = Vector2(0.521327, 0.460396)
+texture = ExtResource("6_l8e7v")
+
+[node name="WordBlockCollision5" type="CollisionShape2D" parent="WordBlocksArea/WordBlock5"]
+shape = SubResource("RectangleShape2D_word_block")
+
+[node name="WordBlockLabel5" type="Label" parent="WordBlocksArea/WordBlock5"]
+offset_left = -90.0
+offset_top = -30.0
+offset_right = 90.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_font_sizes/font_size = 32
+text = "word5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Audio" type="Node2D" parent="."]
+position = Vector2(532, 328)
+
+[node name="CorrectSound" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -5.0
+
+[node name="WrongSound" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -5.0
+
+[node name="WordAudio" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -3.0
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -15.0
+
+[connection signal="pressed" from="UI/NavButtons/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="finished" from="UI/NavButtons/ListenToTheWordAndDragItToBuildYourTower" to="." method="_on_listen_to_the_word_and_drag_it_to_build_your_tower_finished"]

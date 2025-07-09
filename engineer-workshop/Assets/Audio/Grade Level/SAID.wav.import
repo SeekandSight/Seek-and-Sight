@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://chyje6yclig3o"
+path="res://.godot/imported/SAID.wav-e7156b0352ac2fd6aba21be2485151b6.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Grade Level/SAID.wav"
+dest_files=["res://.godot/imported/SAID.wav-e7156b0352ac2fd6aba21be2485151b6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

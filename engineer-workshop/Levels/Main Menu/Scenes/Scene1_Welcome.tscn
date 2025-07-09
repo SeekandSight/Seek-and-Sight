@@ -1,0 +1,155 @@
+[gd_scene load_steps=11 format=3 uid="uid://3cb7jl2jr3hb"]
+
+[ext_resource type="Texture2D" uid="uid://3gfvfoy1c7ag" path="res://Assets/EllieBackground.png" id="1_f0s1p"]
+[ext_resource type="Script" uid="uid://ctl67tl8qralc" path="res://Levels/Main Menu/scripts/scene_1_welcome.gd" id="1_vah8u"]
+[ext_resource type="Texture2D" uid="uid://8tbia8g2qa4s" path="res://Assets/EllieWave.png" id="2_nrxl2"]
+[ext_resource type="Texture2D" uid="uid://brqkrvbq4fv1p" path="res://Assets/EllieBubble1.png" id="3_8b2hf"]
+[ext_resource type="FontFile" uid="uid://cj477dq342a0c" path="res://Assets/Chewy-Regular.ttf" id="4_buk4j"]
+[ext_resource type="AudioStream" uid="uid://d2qr7qxlbmt7o" path="res://Assets/Audio/Engineer Workshop (Temp)/HI! I'M ELLIE! WELCOME TO MY CONSTRUCTION SITE! LETS BUILD USING YOUR SIGHT WORDS!.wav" id="6_1wx10"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_buk4j"]
+bg_color = Color(0.2, 0.8, 0.2, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.1, 0.6, 0.2, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qeaw5"]
+bg_color = Color(0.6, 0.4, 0.1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.4, 0.1, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wx10"]
+bg_color = Color(1, 0.6, 0.2, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.8, 0.2, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vah8u"]
+bg_color = Color(0.893785, 0.476644, 0.118473, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.3, 0.1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Scene1Welcome" type="Node2D"]
+script = ExtResource("1_vah8u")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="ConstructionSite" type="Sprite2D" parent="Background"]
+position = Vector2(84.2778, 93.3908)
+scale = Vector2(0.762587, 0.638313)
+texture = ExtResource("1_f0s1p")
+offset = Vector2(640, 360)
+
+[node name="Equipment" type="Node2D" parent="Background"]
+
+[node name="Character" type="Node2D" parent="."]
+
+[node name="EllieWaving" type="Sprite2D" parent="Character"]
+position = Vector2(971, 418)
+scale = Vector2(0.314258, 0.26901)
+texture = ExtResource("2_nrxl2")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpeechBubble" type="Sprite2D" parent="UI"]
+position = Vector2(560, 154)
+scale = Vector2(1.44819, 1.02696)
+texture = ExtResource("3_8b2hf")
+
+[node name="WelcomeText" type="Label" parent="UI/SpeechBubble"]
+offset_left = -95.9818
+offset_top = -74.9787
+offset_right = 105.018
+offset_bottom = 97.0213
+theme_override_colors/font_color = Color(0.4, 0.2, 0, 1)
+theme_override_fonts/font = ExtResource("4_buk4j")
+theme_override_font_sizes/font_size = 24
+text = "Hi! I'm Ellie! 
+Welcome to my
+construction site!
+Let's build using your
+sight words!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 455.0
+offset_top = 545.0
+offset_right = 675.0
+offset_bottom = 595.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BackButton" type="Button" parent="UI/ButtonContainer"]
+visible = false
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.2, 0.8, 0.3, 1)
+theme_override_fonts/font = ExtResource("4_buk4j")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_buk4j")
+text = "Menu"
+
+[node name="Spacer" type="Control" parent="UI/ButtonContainer/BackButton"]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+offset_left = 322.0
+offset_right = 322.0
+offset_bottom = 67.0
+
+[node name="StartButton" type="Button" parent="UI/ButtonContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_buk4j")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_qeaw5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1wx10")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vah8u")
+text = "Let's Build! "
+
+[node name="Hi!I\'mEllie!WelcomeToMyConstructionSite!LetsBuildUsingYourSightWords!" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(727, 425)
+stream = ExtResource("6_1wx10")
+autoplay = true
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="pressed" from="UI/ButtonContainer/StartButton" to="." method="_on_start_button_pressed"]

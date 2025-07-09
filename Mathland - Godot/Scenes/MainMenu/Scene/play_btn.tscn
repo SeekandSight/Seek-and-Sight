@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://m3t66le74ck3"]
+
+[ext_resource type="Texture2D" uid="uid://mmw27hybvnb0" path="res://Images/MathlandPlay.png" id="1_8qham"]
+[ext_resource type="Script" uid="uid://b46oqo4l53o5y" path="res://Scenes/MainMenu/Script/play_btn.gd" id="1_qmbei"]
+
+[node name="Play_btn" type="Button"]
+anchors_preset = -1
+anchor_right = 1.207
+anchor_bottom = 1.435
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 0.0400391
+offset_bottom = -0.200073
+scale = Vector2(0.3, 0.3)
+icon = ExtResource("1_8qham")
+flat = true
+icon_alignment = 1
+script = ExtResource("1_qmbei")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

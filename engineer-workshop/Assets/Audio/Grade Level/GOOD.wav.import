@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmyq4crkttlvi"
+path="res://.godot/imported/GOOD.wav-3073384a161e0ac6fae74e4b9e48b979.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Grade Level/GOOD.wav"
+dest_files=["res://.godot/imported/GOOD.wav-3073384a161e0ac6fae74e4b9e48b979.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
