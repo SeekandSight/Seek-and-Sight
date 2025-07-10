@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dee773t32ybf8"]
+[gd_scene load_steps=8 format=3 uid="uid://dee773t32ybf8"]
 
 [ext_resource type="Texture2D" uid="uid://vwtbtrplan2s" path="res://Images/Mathland BG.png" id="1_i387b"]
 [ext_resource type="Texture2D" uid="uid://cl0jgfcr54c56" path="res://Images/MathNeutral.png" id="2_e7rso"]
@@ -6,11 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cchxxc2ibk0ku" path="res://Images/EllieBubble5.png" id="3_s0dgc"]
 [ext_resource type="FontFile" uid="uid://8dw2ln34u4q6" path="res://Orbitron/static/Orbitron-Bold.ttf" id="5_2i3q2"]
 [ext_resource type="AudioStream" uid="uid://cde1qjtulaymb" path="res://Audio/victory-shouts-demo-310503.mp3" id="6_yitny"]
-
-[sub_resource type="GDScript" id="GDScript_3rqxd"]
-script/source = "extends Node2D
-
-"
 
 [sub_resource type="GDScript" id="GDScript_i387b"]
 script/source = "extends Control
@@ -62,15 +57,21 @@ func _on_number_pressed(value: int, button: Node):
 		current_click += 1
 		print(\"Clicked:\", value, \"Expected:\", current_click)
 		button.modulate = Color.GREEN
+		button.set_correct(true)
 		current_count += 1
 		
 		if current_click == target_number:
 			level_complete()
 		
 	else:
-		button.modulate = Color.RED
-		await get_tree().create_timer(0.5).timeout
-		button.modulate = Color.WHITE
+		if !button.get_correct():
+			button.modulate = Color.RED
+			await get_tree().create_timer(0.5).timeout
+			button.modulate = Color.WHITE
+		else:
+			button.modulate = Color.RED
+			await get_tree().create_timer(0.5).timeout
+			button.modulate = Color.GREEN
 		
 func level_complete():
 	title_label.text = \"We did it!\"
@@ -80,7 +81,6 @@ func level_complete():
 "
 
 [node name="Node2D" type="Node2D"]
-script = SubResource("GDScript_3rqxd")
 
 [node name="Images" type="Node" parent="."]
 

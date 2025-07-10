@@ -13,10 +13,13 @@ config_version=5
 config/name="Mathland"
 run/main_scene="uid://b6qkisn7ajsu3"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/show_image=false
 
 [display]
 
 window/size/mode=3
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
 
 [file_customization]
 
