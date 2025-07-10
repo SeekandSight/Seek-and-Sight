@@ -21,6 +21,7 @@ var word_map = {
 }
 
 
+
 func _ready():
 	$Word.text = word_map.get(correct_number, " ??? ")
 	$Word.add_theme_constant_override("margin_left", 50)
@@ -52,6 +53,9 @@ func play_incorrect_sound():
 func _can_drop_data(_position: Vector2, data: Variant) -> bool:
 	return typeof(data) == TYPE_DICTIONARY and data.has("value")
 
+
+var correct := false
+
 func _drop_data(_position: Vector2, data: Variant) -> void:
 	if data["value"] == correct_number:
 		$Word.text = "✓ " + $Word.text
@@ -61,8 +65,15 @@ func _drop_data(_position: Vector2, data: Variant) -> void:
 		var slot = data["source"]
 		slot.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		slot.position = global_position + Vector2(500, 500)
+		correct = true
 	else:
-		modulate = Color.RED
-		play_incorrect_sound()
-		await get_tree().create_timer(1.0).timeout
-		modulate = Color.WHITE
+		if !correct:
+			modulate = Color.RED
+			play_incorrect_sound()
+			await get_tree().create_timer(1.0).timeout
+			modulate = Color.WHITE
+		else:
+			modulate = Color.RED
+			play_incorrect_sound()
+			await get_tree().create_timer(1.0).timeout
+			modulate = Color.GREEN
