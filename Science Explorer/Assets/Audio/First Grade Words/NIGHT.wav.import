@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bclmcbbrr75fo"
+path="res://.godot/imported/NIGHT.wav-4016906ba1ca066df8f376806e46863b.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/First Grade Words/NIGHT.wav"
+dest_files=["res://.godot/imported/NIGHT.wav-4016906ba1ca066df8f376806e46863b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

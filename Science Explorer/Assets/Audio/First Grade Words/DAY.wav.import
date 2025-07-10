@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cyv6vi3up342y"
+path="res://.godot/imported/DAY.wav-7e0dbeddb8cf7f2a8f182407ee4aecc1.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/First Grade Words/DAY.wav"
+dest_files=["res://.godot/imported/DAY.wav-7e0dbeddb8cf7f2a8f182407ee4aecc1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
