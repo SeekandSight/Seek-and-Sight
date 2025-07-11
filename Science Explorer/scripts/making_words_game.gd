@@ -5,7 +5,7 @@ extends Node2D
 
 # Scene paths
 const MAIN_MENU_SCENE = "res://scenes/Scene1_ScienceMainMenu.tscn"
-const NEXT_CUTSCENE = "res://scenes/Scene4_LabellingPlantsCutscene.tscn"
+const NEXT_CUTSCENE = "res://scenes/Scene3_LabelingPartsCutscene.tscn"
 
 # Audio file paths to check
 var audio_directories = [

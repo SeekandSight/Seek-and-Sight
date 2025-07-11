@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8h3jl2jsahx"]
+[gd_scene load_steps=6 format=3 uid="uid://b8h3jl2jsahx"]
 
 [ext_resource type="Texture2D" uid="uid://d3pk2m8g24na8" path="res://Assets/Images/main_menu_bg.png" id="1_dg8in"]
+[ext_resource type="Script" uid="uid://grw7qypty526" path="res://scripts/ScienceMainMenu.gd" id="1_kbrv0"]
 [ext_resource type="Texture2D" uid="uid://f65jlmr8kv0p" path="res://Assets/Images/SunnyWave.png" id="2_ng7iv"]
 [ext_resource type="FontFile" uid="uid://cvrt0yq7n0qp7" path="res://Assets/Fonts/Chewy-Regular.ttf" id="3_ng7iv"]
 
@@ -17,6 +18,7 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [node name="ScienceMainMenu" type="Node2D"]
+script = ExtResource("1_kbrv0")
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -42,10 +44,10 @@ grow_vertical = 2
 
 [node name="TitleText" type="Label" parent="UI"]
 layout_mode = 0
-offset_left = 139.0
-offset_top = 102.0
-offset_right = 2797.0
-offset_bottom = 744.0
+offset_left = 138.0
+offset_top = 151.0
+offset_right = 2796.0
+offset_bottom = 793.0
 scale = Vector2(0.247514, 0.155934)
 theme_override_colors/font_color = Color(0.687362, 0.262857, 0.191721, 1)
 theme_override_fonts/font = ExtResource("3_ng7iv")

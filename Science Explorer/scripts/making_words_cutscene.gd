@@ -4,7 +4,7 @@ extends Node2D
 # This introduces the player to the potion mixing game
 
 # Scene paths
-const MAKING_WORDS_GAME_SCENE = "res://scenes/Scene3_MakingWordsGame.tscn"
+const MAKING_WORDS_GAME_SCENE = "res://scenes/Scene2_MakingWordsGame.tscn"
 const MAIN_MENU_SCENE = "res://scenes/Scene1_ScienceMainMenu.tscn"
 
 # Dialogue lines with timing

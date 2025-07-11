@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3 uid="uid://cnlc6s3nij2d3"]
+
+[ext_resource type="Texture2D" uid="uid://ku38vdj43utj" path="res://Assets/Images/plants_bg.png" id="1_atj5v"]
+[ext_resource type="Script" uid="uid://ckaujxkh2tt1i" path="res://scripts/LabelingPartsCutscene.gd" id="1_gf5ht"]
+[ext_resource type="Texture2D" uid="uid://dsln7qtavnrs1" path="res://Assets/Images/label_parts_character.png" id="2_go6n4"]
+[ext_resource type="FontFile" uid="uid://cvrt0yq7n0qp7" path="res://Assets/Fonts/Chewy-Regular.ttf" id="3_gf5ht"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
+bg_color = Color(1, 1, 0.8, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.6, 0.4, 0.2, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_go6n4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gf5ht"]
+bg_color = Color(0.872811, 0.487097, 0.136281, 1)
+
+[node name="LabelingPartsCutscene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gf5ht")
+
+[node name="BackgroundSprite" type="Sprite2D" parent="."]
+position = Vector2(576, 321)
+scale = Vector2(0.818182, 0.813131)
+texture = ExtResource("1_atj5v")
+
+[node name="CharacterSprite" type="Sprite2D" parent="."]
+position = Vector2(894, 302)
+scale = Vector2(0.360059, 0.352327)
+texture = ExtResource("2_go6n4")
+
+[node name="SpeechBubble" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -475.0
+offset_top = -225.0
+offset_right = 117.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1")
+
+[node name="SpeechText" type="Label" parent="SpeechBubble"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 18.0
+offset_right = -24.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_gf5ht")
+theme_override_font_sizes/font_size = 24
+text = "Hi there! I'm Sandy, and I love studying plants!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ContinueButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -203.0
+offset_top = -101.0
+offset_right = -34.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_gf5ht")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal_mirrored = SubResource("StyleBoxLine_go6n4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gf5ht")
+text = "Continue"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+volume_db = -25.0
+autoplay = true
+
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]
