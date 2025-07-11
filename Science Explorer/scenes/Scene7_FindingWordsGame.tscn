@@ -1,0 +1,344 @@
+[gd_scene load_steps=16 format=3 uid="uid://df6o48hujo1rc"]
+
+[ext_resource type="Script" uid="uid://dcms7dpdj70r0" path="res://scenes/finding_words_game.gd" id="1_ucru8"]
+[ext_resource type="Texture2D" uid="uid://cmwg15mrnnfwy" path="res://Assets/Images/finding_words_bg.png" id="2_p7ju5"]
+[ext_resource type="Texture2D" uid="uid://f65jlmr8kv0p" path="res://Assets/Images/SunnyWave.png" id="3_83cp3"]
+[ext_resource type="Texture2D" uid="uid://cijxmqxkmek5m" path="res://Assets/Images/chemistry_5815737.png" id="4_nccbf"]
+[ext_resource type="Texture2D" uid="uid://c0hg7i7kt8gel" path="res://Assets/Images/flask_733786.png" id="5_nmvrs"]
+[ext_resource type="Texture2D" uid="uid://dowe5r2msaffd" path="res://Assets/Images/flask_544310.png" id="6_v8r5s"]
+[ext_resource type="Texture2D" uid="uid://cj153rf717ucw" path="res://Assets/Images/beaker_7357113 (1).png" id="7_neuu6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_word_display"]
+bg_color = Color(0.8, 0.5, 0.2, 0.9)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.6, 0.3, 0.1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back_button"]
+bg_color = Color(0.8, 0.4, 0.2, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_next_button"]
+bg_color = Color(0.2, 0.8, 0.3, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucru8"]
+bg_color = Color(0.8, 0.5, 0.2, 0.9)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.6, 0.3, 0.1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_svgvj"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vscb5"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7tg1f"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qva8l"]
+radius = 30.0
+
+[node name="FindingWordsGame" type="Node2D"]
+script = ExtResource("1_ucru8")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="DigBackground" type="Sprite2D" parent="Background"]
+position = Vector2(578.5, 323.5)
+scale = Vector2(0.816051, 0.811869)
+texture = ExtResource("2_p7ju5")
+
+[node name="Character" type="Node2D" parent="."]
+
+[node name="ScientistCharacter" type="Sprite2D" parent="Character"]
+position = Vector2(172, 340)
+scale = Vector2(0.3125, 0.344727)
+texture = ExtResource("3_83cp3")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameTitle" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 59.0
+offset_top = -1.0
+offset_right = 463.0
+offset_bottom = 66.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_font_sizes/font_size = 48
+text = "FINDING WORDS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InstructionBubble" type="Sprite2D" parent="UI"]
+position = Vector2(850, 200)
+scale = Vector2(1, 0.8)
+flip_h = true
+
+[node name="InstructionText" type="Label" parent="UI/InstructionBubble"]
+clip_contents = true
+offset_left = -107.0
+offset_top = -161.25
+offset_right = 133.0
+offset_bottom = -61.25
+theme_override_colors/font_color = Color(0.4, 0.2, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Dig up all the holes that are words!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ScorePanel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 773.0
+offset_top = 21.0
+offset_right = 954.0
+offset_bottom = 71.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_word_display")
+
+[node name="ScoreLabel" type="Label" parent="UI/ScorePanel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="NavButtons" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 700.0
+offset_top = 580.0
+offset_right = 1100.0
+offset_bottom = 630.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BackButton" type="Button" parent="UI/NavButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_back_button")
+text = "← Back"
+
+[node name="Spacer" type="Control" parent="UI/NavButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NextButton" type="Button" parent="UI/NavButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_next_button")
+disabled = true
+text = "Next →"
+
+[node name="CountDisplayPanel" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 499.0
+offset_top = 19.0
+offset_right = 739.0
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ucru8")
+
+[node name="WordsRemaningLabel" type="Label" parent="UI/CountDisplayPanel"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = -12.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "X Words Remaining"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PlayWordButton" type="Button" parent="UI/CountDisplayPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = 55.5
+offset_right = 45.0
+offset_bottom = 97.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "🔊 Play"
+
+[node name="Digging Area" type="Node2D" parent="."]
+position = Vector2(150, 450)
+
+[node name="DigSpot1" type="Area2D" parent="Digging Area"]
+position = Vector2(623, -173)
+
+[node name="Hole1Sprite" type="Sprite2D" parent="Digging Area/DigSpot1"]
+modulate = Color(1, 0.5, 0.5, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_nccbf")
+
+[node name="Hole1Collision" type="CollisionShape2D" parent="Digging Area/DigSpot1"]
+shape = SubResource("CircleShape2D_svgvj")
+
+[node name="Hole1Label" type="Label" parent="Digging Area/DigSpot1"]
+offset_left = -40.0
+offset_top = 70.0
+offset_right = 40.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_font_sizes/font_size = 32
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DigSpot2" type="Area2D" parent="Digging Area"]
+position = Vector2(513, -50)
+
+[node name="Hole2Sprite" type="Sprite2D" parent="Digging Area/DigSpot2"]
+modulate = Color(0.5, 1, 0.5, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_nmvrs")
+
+[node name="Hole2Collision" type="CollisionShape2D" parent="Digging Area/DigSpot2"]
+shape = SubResource("CircleShape2D_vscb5")
+
+[node name="Hole2Label" type="Label" parent="Digging Area/DigSpot2"]
+offset_left = -40.0
+offset_top = 70.0
+offset_right = 40.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_font_sizes/font_size = 32
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DigSpot3" type="Area2D" parent="Digging Area"]
+position = Vector2(363, -6)
+
+[node name="Hole3Sprite" type="Sprite2D" parent="Digging Area/DigSpot3"]
+modulate = Color(0.5, 0.5, 1, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_v8r5s")
+
+[node name="Hole3Collision" type="CollisionShape2D" parent="Digging Area/DigSpot3"]
+shape = SubResource("CircleShape2D_7tg1f")
+
+[node name="Hole3Label" type="Label" parent="Digging Area/DigSpot3"]
+offset_left = -40.0
+offset_top = 70.0
+offset_right = 40.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_font_sizes/font_size = 32
+text = "T"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DigSpot4" type="Area2D" parent="Digging Area"]
+position = Vector2(358, -196)
+
+[node name="Hole4Sprite" type="Sprite2D" parent="Digging Area/DigSpot4"]
+modulate = Color(1, 1, 0.5, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_neuu6")
+
+[node name="Hole4Collision" type="CollisionShape2D" parent="Digging Area/DigSpot4"]
+shape = SubResource("CircleShape2D_qva8l")
+
+[node name="Hole4Label" type="Label" parent="Digging Area/DigSpot4"]
+offset_left = -40.0
+offset_top = 70.0
+offset_right = 40.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_font_sizes/font_size = 32
+text = "C"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="WordAudio" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -3.0
+
+[node name="CorrectSound" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -5.0
+
+[node name="WrongSound" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -5.0
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -15.0
+autoplay = true
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="pressed" from="UI/NavButtons/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="UI/NavButtons/NextButton" to="." method="_on_next_button_pressed"]
