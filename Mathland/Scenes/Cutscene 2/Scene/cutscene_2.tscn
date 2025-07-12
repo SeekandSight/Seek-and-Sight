@@ -70,13 +70,13 @@ autoplay = "Cutscene 2"
 script = ExtResource("2_dbkvj")
 
 [node name="MathlandBg" type="Sprite2D" parent="AnimationPlayer"]
-position = Vector2(637.5, 359)
-scale = Vector2(2.05609, 1.57759)
+position = Vector2(574.5, 320)
+scale = Vector2(1.85417, 1.40948)
 texture = ExtResource("4_352am")
 
 [node name="MathNeutral" type="Sprite2D" parent="AnimationPlayer"]
-position = Vector2(189, 526)
-scale = Vector2(0.395508, 0.348307)
+position = Vector2(155.25, 476.25)
+scale = Vector2(0.32959, 0.283529)
 texture = ExtResource("9_cjxl6")
 
 [node name="EllieBubble5" type="Sprite2D" parent="AnimationPlayer"]
@@ -95,10 +95,10 @@ visible_ratio = 0.0
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AnimationPlayer"]
 
 [node name="Demo2" parent="AnimationPlayer" instance=ExtResource("7_bu2wk")]
-offset_left = 1078.0
-offset_top = 605.0
-offset_right = 1411.0
-offset_bottom = 824.0
+offset_left = 984.0
+offset_top = 546.0
+offset_right = 1317.0
+offset_bottom = 765.0
 scale = Vector2(0.486328, 0.480469)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]

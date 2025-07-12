@@ -102,8 +102,8 @@ autoplay = "Cutscene 1"
 script = ExtResource("2_gv5hw")
 
 [node name="MathlandBg" type="Sprite2D" parent="AnimationPlayer"]
-position = Vector2(640.5, 361.5)
-scale = Vector2(2.0625, 1.5625)
+position = Vector2(584, 323)
+scale = Vector2(1.88141, 1.39224)
 texture = ExtResource("3_kfsx2")
 
 [node name="EllieBubble5" type="Sprite2D" parent="AnimationPlayer"]
@@ -119,21 +119,21 @@ offset_bottom = 189.0
 visible_characters = 0
 visible_characters_behavior = 3
 visible_ratio = 0.0
-script = null
 metadata/_edit_use_anchors_ = true
 
 [node name="MathNeutral" type="Sprite2D" parent="AnimationPlayer"]
-position = Vector2(648.75, 531.5)
-scale = Vector2(0.373535, 0.347005)
+position = Vector2(609, 490)
+scale = Vector2(0.29834, 0.275391)
 texture = ExtResource("7_nno6u")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AnimationPlayer"]
 
 [node name="Demo1" parent="AnimationPlayer" instance=ExtResource("8_txg5j")]
-offset_left = 935.0
-offset_top = 496.0
-offset_right = 1268.0
-offset_bottom = 715.0
+offset_left = 863.0
+offset_top = 448.0
+offset_right = 1196.0
+offset_bottom = 667.0
+scale = Vector2(0.8, 0.8)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
 [connection signal="pressed" from="AnimationPlayer/Demo1" to="AnimationPlayer" method="_on_demo_1_pressed"]
