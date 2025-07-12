@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bm2fni83yb4ys"]
+[gd_scene load_steps=4 format=3 uid="uid://bm2fni83yb4ys"]
 
 [ext_resource type="Script" uid="uid://dtaeijpj3emxx" path="res://Scenes/Minigame 1/Script/number_slot.gd" id="1_0no1l"]
 [ext_resource type="FontFile" uid="uid://bt1ct53es0jkj" path="res://Orbitron/static/Orbitron-ExtraBold.ttf" id="2_367uw"]
+[ext_resource type="Texture2D" uid="uid://tfju2evg3f00" path="res://Images/EllieBubble3.png" id="2_52427"]
 
 [node name="NumberSlot" type="Control"]
 layout_mode = 3
@@ -20,7 +21,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_367uw")
 theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Number"]
+show_behind_parent = true
+position = Vector2(51.7062, 54.031)
+scale = Vector2(0.360148, 0.67069)
+texture = ExtResource("2_52427")
