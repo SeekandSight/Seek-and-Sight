@@ -175,20 +175,39 @@ func is_click_in_dig_spot(click_pos: Vector2, spot: Area2D, spot_index: int) -> 
 	
 	return is_inside
 
+#region Temp Fix
+#Temp Fix
 func scan_audio_files():
-	"""Scan audio directories for 2-4 letter word files"""
-	print("Scanning audio directories for 2-4 letter words...")
+	"""Manually load audio file paths for HTML5 compatibility"""
+	print("Loading audio files from hardcoded list (HTML5 compatible)")
 	
-	# Clear existing data
 	sight_words.clear()
 	audio_file_paths.clear()
-	
-	# Check each directory
-	for directory in audio_directories:
-		scan_directory(directory)
-	
-	# Organize words by difficulty
+
+	var word_files = {
+		"at": "res://Assets/Audio/Words/at.mp3",
+		"cat": "res://Assets/Audio/Words/cat.mp3",
+		"hat": "res://Assets/Audio/Words/hat.mp3",
+		"dog": "res://Assets/Audio/Words/dog.mp3",
+		"run": "res://Assets/Audio/Words/run.mp3",
+		"sun": "res://Assets/Audio/Words/sun.mp3",
+		"box": "res://Assets/Audio/Words/box.mp3",
+		"big": "res://Assets/Audio/Words/big.mp3",
+		"top": "res://Assets/Audio/Words/top.mp3",
+		"cup": "res://Assets/Audio/Words/cup.mp3",
+		"can": "res://Assets/Audio/Words/can.mp3",
+		"pot": "res://Assets/Audio/Words/pot.mp3"
+	}
+
+	for word in word_files.keys():
+		sight_words.append(word)
+		audio_file_paths[word] = word_files[word]
+
+	# Continue as normal
 	organize_words_by_difficulty()
+#Temp Fix
+#endregion
+#
 
 func scan_directory(dir_path: String):
 	"""Scan a specific directory for audio files"""
