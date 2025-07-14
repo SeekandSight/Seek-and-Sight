@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://def3b52bqu3xn"]
+[gd_scene load_steps=4 format=3 uid="uid://def3b52bqu3xn"]
 
 [ext_resource type="Script" uid="uid://cmpdhd73bq8jo" path="res://Scenes/Minigame 1/Script/word_slot.gd" id="1_q20ft"]
 [ext_resource type="FontFile" uid="uid://8dw2ln34u4q6" path="res://Orbitron/static/Orbitron-Bold.ttf" id="2_8j2pn"]
+[ext_resource type="Texture2D" uid="uid://tfju2evg3f00" path="res://Images/EllieBubble3.png" id="3_8j2pn"]
 
 [node name="WordSlot" type="Control"]
 custom_minimum_size = Vector2(200, 100)
@@ -19,15 +20,24 @@ size_flags_horizontal = 3
 script = ExtResource("1_q20ft")
 
 [node name="Word" type="Label" parent="."]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.987
 anchor_bottom = 0.901
 offset_right = 0.535889
-offset_bottom = 0.0970001
+offset_bottom = 0.0969849
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_8j2pn")
 theme_override_font_sizes/font_size = 54
+text = "Word"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Word"]
+show_behind_parent = true
+position = Vector2(111.896, 56.696)
+scale = Vector2(0.616608, 0.616608)
+texture = ExtResource("3_8j2pn")
 
 [node name="CorrectSound" type="AudioStreamPlayer2D" parent="."]
 

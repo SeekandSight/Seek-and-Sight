@@ -23,5 +23,6 @@ offset_right = 8.0
 offset_bottom = -0.0400085
 theme_override_fonts/font = ExtResource("2_e71fy")
 theme_override_font_sizes/font_size = 54
+text = "Heart"
 horizontal_alignment = 1
 vertical_alignment = 1

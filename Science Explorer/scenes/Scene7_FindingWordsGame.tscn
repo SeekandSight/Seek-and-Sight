@@ -327,6 +327,50 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="DigSpot5" type="Area2D" parent="."]
+position = Vector2(812, 444)
+
+[node name="Hole5Sprite" type="Sprite2D" parent="DigSpot5"]
+modulate = Color(0.5, 0.5, 1, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_v8r5s")
+
+[node name="Hole5Collision" type="CollisionShape2D" parent="DigSpot5"]
+shape = SubResource("CircleShape2D_7tg1f")
+
+[node name="Hole5Label" type="Label" parent="DigSpot5"]
+offset_left = -40.0
+offset_top = 70.0
+offset_right = 40.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_font_sizes/font_size = 32
+text = "T"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DigSpot6" type="Area2D" parent="."]
+position = Vector2(930, 324)
+
+[node name="Hole6Sprite" type="Sprite2D" parent="DigSpot6"]
+modulate = Color(1, 0.5, 0.5, 1)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_nccbf")
+
+[node name="Hole6Collision" type="CollisionShape2D" parent="DigSpot6"]
+shape = SubResource("CircleShape2D_svgvj")
+
+[node name="Hole6Label" type="Label" parent="DigSpot6"]
+offset_left = -40.0
+offset_top = 70.0
+offset_right = 40.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.243137, 0.145098, 0.062745, 1)
+theme_override_font_sizes/font_size = 32
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Audio" type="Node2D" parent="."]
 
 [node name="WordAudio" type="AudioStreamPlayer" parent="Audio"]
