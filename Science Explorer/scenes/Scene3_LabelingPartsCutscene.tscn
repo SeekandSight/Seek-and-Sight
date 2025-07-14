@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnlc6s3nij2d3"]
+[gd_scene load_steps=9 format=3 uid="uid://cnlc6s3nij2d3"]
 
 [ext_resource type="Texture2D" uid="uid://ku38vdj43utj" path="res://Assets/Images/plants_bg.png" id="1_atj5v"]
 [ext_resource type="Script" uid="uid://ckaujxkh2tt1i" path="res://scripts/LabelingPartsCutscene.gd" id="1_gf5ht"]
@@ -12,6 +12,18 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.6, 0.4, 0.2, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_back"]
+bg_color = Color(0.8, 0.4, 0.2, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.6, 0.3, 0.1, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
@@ -75,6 +87,22 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 126.0
+offset_top = -394.0
+offset_right = 232.0
+offset_bottom = -349.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_gf5ht")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_back")
+text = "← Back"
+
 [node name="ContinueButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -82,14 +110,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -203.0
-offset_top = -101.0
-offset_right = -34.0
-offset_bottom = -48.0
+offset_left = -19.0
+offset_top = -393.0
+offset_right = 95.0
+offset_bottom = -351.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_gf5ht")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
 theme_override_styles/normal_mirrored = SubResource("StyleBoxLine_go6n4")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gf5ht")
 text = "Continue"
@@ -101,4 +129,5 @@ volume_db = -10.0
 volume_db = -25.0
 autoplay = true
 
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]

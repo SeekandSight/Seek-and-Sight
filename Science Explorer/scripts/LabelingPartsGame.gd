@@ -418,4 +418,4 @@ func _on_back_button_pressed():
 
 func _on_next_button_pressed():
 	# Navigate to the next game
-	get_tree().change_scene_to_file("res://scenes/Scene7_FindingWordsGame.tscn")
+	get_tree().change_scene_to_file("res://scenes/Scene6_FindingWordsCutscene.tscn")
