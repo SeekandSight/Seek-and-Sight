@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0f7th7oe2n7s"]
+[gd_scene load_steps=10 format=3 uid="uid://b0f7th7oe2n7s"]
 
 [ext_resource type="Script" uid="uid://ionxorg8a4nf" path="res://scripts/LabelingPartsGame.gd" id="1_64o2u"]
 [ext_resource type="Texture2D" uid="uid://ku38vdj43utj" path="res://Assets/Images/plants_bg.png" id="1_ubwiw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dsln7qtavnrs1" path="res://Assets/Images/label_parts_character.png" id="3_ptura"]
 [ext_resource type="FontFile" uid="uid://cvrt0yq7n0qp7" path="res://Assets/Fonts/Chewy-Regular.ttf" id="4_cdogm"]
 [ext_resource type="Texture2D" uid="uid://c2ksk818tcdmv" path="res://Assets/Images/EllieBubble1.png" id="5_36w6p"]
+[ext_resource type="AudioStream" uid="uid://cd3s2nkeijomp" path="res://Assets/Audio/Background1.mp3" id="7_ptura"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
 bg_color = Color(0.9, 0.95, 1, 0.8)
@@ -286,6 +287,7 @@ volume_db = -10.0
 volume_db = -5.0
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ptura")
 volume_db = -25.0
 autoplay = true
 

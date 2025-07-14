@@ -20,7 +20,7 @@ func _on_tree_entered():
 func setup_menu():
 	# Start background music if available
 	if background_music:
-		background_music.volume_db = -15
+		background_music.volume_db = -20
 		background_music.play()
 
 # Main play button - goes to first game (Making Words)

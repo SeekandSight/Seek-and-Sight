@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cnlc6s3nij2d3"]
+[gd_scene load_steps=11 format=3 uid="uid://cnlc6s3nij2d3"]
 
 [ext_resource type="Texture2D" uid="uid://ku38vdj43utj" path="res://Assets/Images/plants_bg.png" id="1_atj5v"]
 [ext_resource type="Script" uid="uid://ckaujxkh2tt1i" path="res://scripts/LabelingPartsCutscene.gd" id="1_gf5ht"]
-[ext_resource type="Texture2D" uid="uid://dsln7qtavnrs1" path="res://Assets/Images/label_parts_character.png" id="2_go6n4"]
 [ext_resource type="FontFile" uid="uid://cvrt0yq7n0qp7" path="res://Assets/Fonts/Chewy-Regular.ttf" id="3_gf5ht"]
+[ext_resource type="Texture2D" uid="uid://f65jlmr8kv0p" path="res://Assets/Images/SunnyWave.png" id="3_m6r6l"]
+[ext_resource type="AudioStream" uid="uid://cpkn28yysymed" path="res://Assets/Audio/Sandy Sparks Flower (Temp).mp3" id="5_784gr"]
+[ext_resource type="AudioStream" uid="uid://cd3s2nkeijomp" path="res://Assets/Audio/Background1.mp3" id="5_ovf65"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1"]
 bg_color = Color(1, 1, 0.8, 0.9)
@@ -51,7 +53,7 @@ texture = ExtResource("1_atj5v")
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 position = Vector2(894, 302)
 scale = Vector2(0.360059, 0.352327)
-texture = ExtResource("2_go6n4")
+texture = ExtResource("3_m6r6l")
 
 [node name="SpeechBubble" type="Panel" parent="."]
 layout_mode = 1
@@ -82,7 +84,8 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_gf5ht")
 theme_override_font_sizes/font_size = 24
-text = "Hi there! I'm Sandy, and I love studying plants!"
+text = "I love studying plants! 
+Can you help me label the parts of of a flower?"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -123,9 +126,12 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_gf5ht")
 text = "Continue"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_784gr")
 volume_db = -10.0
+autoplay = true
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ovf65")
 volume_db = -25.0
 autoplay = true
 
