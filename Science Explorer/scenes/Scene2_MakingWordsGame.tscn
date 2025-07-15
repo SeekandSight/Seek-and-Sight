@@ -58,14 +58,14 @@ script = ExtResource("1_pilkf")
 [node name="Background" type="Node2D" parent="."]
 
 [node name="LabBackground" type="Sprite2D" parent="Background"]
-position = Vector2(578.5, 323.5)
-scale = Vector2(0.816051, 0.811869)
+position = Vector2(640, 361)
+scale = Vector2(0.903409, 0.906566)
 texture = ExtResource("2_fxf0t")
 
 [node name="Character" type="Node2D" parent="."]
 
 [node name="ScientistCharacter" type="Sprite2D" parent="Character"]
-position = Vector2(1013, 367)
+position = Vector2(1145, 368)
 scale = Vector2(0.3125, 0.344727)
 texture = ExtResource("3_71bq5")
 
@@ -100,10 +100,10 @@ flip_h = true
 
 [node name="InstructionText" type="Label" parent="UI/InstructionBubble"]
 clip_contents = true
-offset_left = -343.0
-offset_top = -133.75
-offset_right = -103.0
-offset_bottom = -33.75
+offset_left = -287.0
+offset_top = -108.75
+offset_right = -47.0
+offset_bottom = -8.75
 theme_override_colors/font_color = Color(0.4, 0.2, 0, 1)
 theme_override_font_sizes/font_size = 18
 text = "Listen to the word, then
@@ -169,9 +169,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 500.0
+offset_left = 572.0
 offset_top = 278.0
-offset_right = 950.0
+offset_right = 1022.0
 offset_bottom = 458.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -375,7 +375,7 @@ vertical_alignment = 1
 position = Vector2(640, 350)
 
 [node name="MixingCollision" type="CollisionShape2D" parent="MixingDropZone"]
-position = Vector2(86, 18)
+position = Vector2(158, 18)
 shape = SubResource("RectangleShape2D_mixing_area")
 debug_color = Color(0, 1, 0, 0.2)
 

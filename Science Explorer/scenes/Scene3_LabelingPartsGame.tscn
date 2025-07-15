@@ -33,17 +33,17 @@ grow_vertical = 2
 script = ExtResource("1_64o2u")
 
 [node name="BackgroundSprite" type="Sprite2D" parent="."]
-position = Vector2(574, 323)
-scale = Vector2(0.814631, 0.808081)
+position = Vector2(642.25, 359.5)
+scale = Vector2(0.911577, 0.900253)
 texture = ExtResource("1_ubwiw")
 
 [node name="PlantSprite" type="Sprite2D" parent="."]
-position = Vector2(735, 433)
+position = Vector2(761, 414)
 scale = Vector2(0.356445, 0.316406)
 texture = ExtResource("2_64o2u")
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
-position = Vector2(964, 348)
+position = Vector2(1102, 448)
 scale = Vector2(0.29668, 0.309863)
 texture = ExtResource("3_ptura")
 
