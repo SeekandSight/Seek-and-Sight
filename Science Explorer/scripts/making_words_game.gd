@@ -100,6 +100,7 @@ func setup_text_wrapping():
 		score_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		score_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
+<<<<<<< HEAD
 func load_audio_from_json():
 	"""Load audio files from JSON configuration - WEB COMPATIBLE"""
 	print("📖 Loading audio from JSON config...")
@@ -116,6 +117,45 @@ func load_audio_from_json():
 		print("   1. Create res://tools/audio_generator.gd")
 		print("   2. Run it in Godot Editor (Tools > Execute Script)")
 		show_no_words_message()
+=======
+#region Temp Fix
+#Temp Fix
+func scan_audio_files():
+	"""Manually load audio file paths for HTML5 compatibility"""
+	print("Loading audio files from hardcoded list (HTML5 compatible)")
+	
+	sight_words.clear()
+	audio_file_paths.clear()
+
+	var word_files = {
+		"at": "res://Assets/Audio/Words/at.mp3",
+		"cat": "res://Assets/Audio/Words/cat.mp3",
+		"hat": "res://Assets/Audio/Words/hat.mp3",
+		"dog": "res://Assets/Audio/Words/dog.mp3",
+		"run": "res://Assets/Audio/Words/run.mp3",
+		"sun": "res://Assets/Audio/Words/sun.mp3",
+		"box": "res://Assets/Audio/Words/box.mp3",
+		"big": "res://Assets/Audio/Words/big.mp3",
+		"top": "res://Assets/Audio/Words/top.mp3",
+		"cup": "res://Assets/Audio/Words/cup.mp3",
+		"can": "res://Assets/Audio/Words/can.mp3",
+		"pot": "res://Assets/Audio/Words/pot.mp3"
+	}
+
+	for word in word_files.keys():
+		sight_words.append(word)
+		audio_file_paths[word] = word_files[word]
+
+	# Continue as normal
+	organize_words_by_difficulty()
+#Temp Fix
+#endregion
+
+func scan_directory(dir_path: String):
+	"""Scan a specific directory for audio files"""
+	if not DirAccess.dir_exists_absolute(dir_path):
+		print("Directory does not exist: ", dir_path)
+>>>>>>> d82c90b2235a0ebab599504baf2006a1387f1547
 		return
 	
 	var file = FileAccess.open(config_path, FileAccess.READ)
