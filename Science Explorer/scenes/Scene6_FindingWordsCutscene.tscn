@@ -139,24 +139,17 @@ theme_override_font_sizes/font_size = 14
 text = "Skip"
 flat = true
 
-<<<<<<< HEAD
 [node name="audio" type="Node2D" parent="."]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="audio"]
-=======
-[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
->>>>>>> d82c90b2235a0ebab599504baf2006a1387f1547
 stream = ExtResource("4_dm1hf")
 volume_db = -20.0
 autoplay = true
 
-<<<<<<< HEAD
 [node name="IntroAudio" type="AudioStreamPlayer2D" parent="audio"]
 position = Vector2(640, 360)
 volume_db = -5.0
 
-=======
->>>>>>> d82c90b2235a0ebab599504baf2006a1387f1547
 [connection signal="pressed" from="UI/DialoguePanel/ContinueButton" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="UI/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="UI/SkipButton" to="." method="_on_skip_pressed"]

@@ -4,11 +4,7 @@
 [ext_resource type="Script" uid="uid://grw7qypty526" path="res://scripts/ScienceMainMenu.gd" id="1_kbrv0"]
 [ext_resource type="Texture2D" uid="uid://f65jlmr8kv0p" path="res://Assets/Images/SunnyWave.png" id="2_ng7iv"]
 [ext_resource type="FontFile" uid="uid://cvrt0yq7n0qp7" path="res://Assets/Fonts/Chewy-Regular.ttf" id="3_ng7iv"]
-<<<<<<< HEAD
 [ext_resource type="AudioStream" uid="uid://cd3s2nkeijomp" path="res://Assets/Audio/Background1.mp3" id="6_p7j7q"]
-=======
-[ext_resource type="AudioStream" uid="uid://cd3s2nkeijomp" path="res://Assets/Audio/Background1.mp3" id="5_yipey"]
->>>>>>> d82c90b2235a0ebab599504baf2006a1387f1547
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_play"]
 bg_color = Color(0.2, 0.8, 0.3, 1)
@@ -82,13 +78,8 @@ position = Vector2(640, 360)
 autoplay = true
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="Audio"]
-<<<<<<< HEAD
 stream = ExtResource("6_p7j7q")
 volume_db = -15.0
-=======
-stream = ExtResource("5_yipey")
-volume_db = -80.0
->>>>>>> d82c90b2235a0ebab599504baf2006a1387f1547
 autoplay = true
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]

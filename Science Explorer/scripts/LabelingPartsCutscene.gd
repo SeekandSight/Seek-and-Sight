@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-# LabelingPartsCutscene.gd
 extends Control
 
 # Scene paths - CORRECTED BACK NAVIGATION
@@ -94,12 +92,3 @@ func _input(event):
 		_on_continue_button_pressed()
 	elif event.is_action_pressed("ui_cancel"):
 		_on_back_button_pressed()
-=======
-extends Control
-
-func _on_continue_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/Scene3_LabelingPartsGame.tscn")
-
-func _on_back_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/Scene1_ScienceMainMenu.tscn")
->>>>>>> d82c90b2235a0ebab599504baf2006a1387f1547

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjtb5lx13ejsn"]
+[gd_scene load_steps=14 format=3 uid="uid://cjtb5lx13ejsn"]
 
 [ext_resource type="Script" uid="uid://pe3ubufc2fyl" path="res://scripts/making_words_game.gd" id="1_pilkf"]
 [ext_resource type="Texture2D" uid="uid://cj22v75nx3n5n" path="res://Assets/Images/making_words_bg.png" id="2_fxf0t"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://c0hg7i7kt8gel" path="res://Assets/Images/flask_733786.png" id="5_jlgpy"]
 [ext_resource type="Texture2D" uid="uid://dowe5r2msaffd" path="res://Assets/Images/flask_544310.png" id="6_ddhha"]
 [ext_resource type="Texture2D" uid="uid://cj153rf717ucw" path="res://Assets/Images/beaker_7357113 (1).png" id="7_fiwpa"]
-[ext_resource type="AudioStream" uid="uid://cd3s2nkeijomp" path="res://Assets/Audio/Background1.mp3" id="8_fxf0t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_word_display"]
 bg_color = Color(0.8, 0.5, 0.2, 0.9)
@@ -392,7 +391,6 @@ volume_db = -5.0
 volume_db = -5.0
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource("8_fxf0t")
 volume_db = -15.0
 autoplay = true
 
