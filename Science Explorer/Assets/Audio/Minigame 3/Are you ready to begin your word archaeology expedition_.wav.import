@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ditm8c5aew2dy"
+path="res://.godot/imported/Are you ready to begin your word archaeology expedition_.wav-1c7516ceb53a3c6bf07cdcaa7c1f3ed3.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Minigame 3/Are you ready to begin your word archaeology expedition_.wav"
+dest_files=["res://.godot/imported/Are you ready to begin your word archaeology expedition_.wav-1c7516ceb53a3c6bf07cdcaa7c1f3ed3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

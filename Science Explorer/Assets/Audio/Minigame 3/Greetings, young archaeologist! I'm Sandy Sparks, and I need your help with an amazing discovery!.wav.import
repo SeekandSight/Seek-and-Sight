@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c5ktn46pl88w8"
+path="res://.godot/imported/Greetings, young archaeologist! I'm Sandy Sparks, and I need your help with an amazing discovery!.wav-70e3806298c02001369d0e2df8b1fd0d.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Minigame 3/Greetings, young archaeologist! I'm Sandy Sparks, and I need your help with an amazing discovery!.wav"
+dest_files=["res://.godot/imported/Greetings, young archaeologist! I'm Sandy Sparks, and I need your help with an amazing discovery!.wav-70e3806298c02001369d0e2df8b1fd0d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

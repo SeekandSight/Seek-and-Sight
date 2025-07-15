@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dtu8tcrcxkp37"
+path="res://.godot/imported/We've found an ancient dig site where magical words are buried deep in the sand!.wav-d568aa047e1fc444b428955d1df5e2d5.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Minigame 3/We've found an ancient dig site where magical words are buried deep in the sand!.wav"
+dest_files=["res://.godot/imported/We've found an ancient dig site where magical words are buried deep in the sand!.wav-d568aa047e1fc444b428955d1df5e2d5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

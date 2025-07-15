@@ -1,19 +1,12 @@
 extends Node2D
 
-# Finding Words Game Script - MANUAL CLICK DETECTION VERSION
-# Uses global input handling instead of Area2D signals
+# Finding Words Game Script - WEB COMPATIBLE VERSION
+# Uses JSON config instead of directory scanning
 
 # Scene paths
 const MAIN_MENU_SCENE = "res://scenes/Scene1_ScienceMainMenu.tscn"
 const CUTSCENE_SCENE = "res://scenes/Scene6_FindingWordsCutscene.tscn"
-const NEXT_CUTSCENE = "res://scenes/Scene1_ScienceMainMenu.tscn"
-
-# Audio file paths to check
-var audio_directories = [
-	"res://Assets/Audio/First Grade Words/",
-	"res://Assets/Audio/Words/",
-	"res://Assets/Audio/"
-]
+const NEXT_CUTSCENE = "res://scenes/Scene8_FinalCutscene.tscn"
 
 # Available words for dig spots
 var available_dig_labels = ["for", "his", "play", "started", "mother", "out", "came", "jhodk", "6th", "7", "big", "L", "just", "3"]
@@ -61,7 +54,7 @@ var dig_spot_data = {}  # Store word/letter data for each spot
 @onready var background_music = $Audio/BackgroundMusic
 
 func _ready():
-	print("Finding Words Game - MANUAL CLICK DETECTION VERSION")
+	print("Finding Words Game - WEB COMPATIBLE VERSION")
 	await get_tree().process_frame
 	
 	# Setup proper text wrapping for labels
@@ -73,8 +66,8 @@ func _ready():
 	# Connect UI signals  
 	setup_ui_connections()
 	
-	# Scan for audio files and build word list
-	scan_audio_files()
+	# CHANGED: Load from JSON config instead of scanning directories
+	load_audio_from_json()
 	
 	# Setup game if words were found
 	if sight_words.size() > 0:
@@ -175,95 +168,87 @@ func is_click_in_dig_spot(click_pos: Vector2, spot: Area2D, spot_index: int) -> 
 	
 	return is_inside
 
-func scan_audio_files():
-	"""Scan audio directories for 2-4 letter word files"""
-	print("Scanning audio directories for 2-4 letter words...")
+func load_audio_from_json():
+	"""Load audio files from JSON configuration - WEB COMPATIBLE"""
+	print("📖 Loading audio from JSON config...")
 	
-	# Clear existing data
 	sight_words.clear()
 	audio_file_paths.clear()
+	word_levels.clear()
 	
-	# Check each directory
-	for directory in audio_directories:
-		scan_directory(directory)
+	var config_path = "res://word_config.json"
 	
-	# Organize words by difficulty
-	organize_words_by_difficulty()
-
-func scan_directory(dir_path: String):
-	"""Scan a specific directory for audio files"""
-	if not DirAccess.dir_exists_absolute(dir_path):
+	if not FileAccess.file_exists(config_path):
+		print("❌ word_config.json not found!")
+		print("🛠️  Run the audio generator tool first:")
+		print("   1. Create res://tools/audio_generator.gd")
+		print("   2. Run it in Godot Editor (Tools > Execute Script)")
+		show_no_words_message()
 		return
 	
-	var dir = DirAccess.open(dir_path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
+	var file = FileAccess.open(config_path, FileAccess.READ)
+	if not file:
+		print("❌ Could not open word_config.json")
+		show_no_words_message()
+		return
+	
+	var json_text = file.get_as_text()
+	file.close()
+	
+	var json = JSON.new()
+	var parse_result = json.parse(json_text)
+	
+	if parse_result != OK:
+		print("❌ Invalid JSON in word_config.json")
+		print("🛠️  Re-run the audio generator tool")
+		show_no_words_message()
+		return
+	
+	var config = json.data
+	
+	# Extract metadata
+	var metadata = config.get("metadata", {})
+	print("📊 Config generated: ", metadata.get("generated_at", "unknown"))
+	print("📦 Total files available: ", metadata.get("total_files", 0))
+	
+	# Load each level
+	var levels_data = config.get("levels", {})
+	
+	for level_name in levels_data:
+		word_levels[level_name] = []
+		var level_info = levels_data[level_name]
+		var words_in_level = level_info.get("words", {})
 		
-		while file_name != "":
-			if not dir.current_is_dir():
-				# Check if it's an audio file
-				if is_audio_file(file_name):
-					var word = extract_word_from_filename(file_name)
-					
-					# Check if it's 2-4 letters long
-					if word.length() >= 2 and word.length() <= 4:
-						sight_words.append(word)
-						audio_file_paths[word] = dir_path + file_name
+		print("📁 Loading ", level_info.get("description", level_name), "...")
+		
+		# Load each word in this level
+		for word in words_in_level:
+			var audio_path = words_in_level[word]
 			
-			file_name = dir.get_next()
-		
-		dir.list_dir_end()
-
-func is_audio_file(filename: String) -> bool:
-	"""Check if file is an audio file"""
-	var audio_extensions = [".wav", ".ogg", ".mp3"]
-	var lower_filename = filename.to_lower()
+			# Verify the audio file exists
+			if ResourceLoader.exists(audio_path):
+				sight_words.append(word)
+				audio_file_paths[word] = audio_path
+				word_levels[level_name].append(word)
+				print("  ✅ ", word, " -> ", audio_path.get_file())
+			else:
+				print("  ❌ Missing: ", word, " -> ", audio_path)
 	
-	for ext in audio_extensions:
-		if lower_filename.ends_with(ext):
-			return true
+	# Limit each level to 6 words for testing
+	word_levels["level_1"] = word_levels["level_1"].slice(0, 6)
+	word_levels["level_2"] = word_levels["level_2"].slice(0, 6)
+	word_levels["level_3"] = word_levels["level_3"].slice(0, 6)
 	
-	return false
-
-func extract_word_from_filename(filename: String) -> String:
-	"""Extract word from filename (remove extension)"""
-	var word = filename
+	# Summary
+	var total_loaded = sight_words.size()
+	print("🎉 Successfully loaded ", total_loaded, " words!")
+	print("   📝 Level 1 (2-letter): ", word_levels.get("level_1", []).size(), " words")
+	print("   📚 Level 2 (3-letter): ", word_levels.get("level_2", []).size(), " words")
+	print("   🎓 Level 3 (4-letter): ", word_levels.get("level_3", []).size(), " words")
 	
-	# Remove common audio extensions
-	var extensions = [".wav", ".ogg", ".mp3", ".WAV", ".OGG", ".MP3"]
-	for ext in extensions:
-		if word.ends_with(ext):
-			word = word.substr(0, word.length() - ext.length())
-			break
-	
-	# Convert to lowercase for consistency
-	return word.to_lower()
-
-func organize_words_by_difficulty():
-	"""Organize words by length into levels"""
-	word_levels["level_1"].clear()
-	word_levels["level_2"].clear()
-	word_levels["level_3"].clear()
-	
-	# Collect all words by length
-	for word in sight_words:
-		if word.length() == 2:
-			word_levels["level_1"].append(word)
-		elif word.length() == 3:
-			word_levels["level_2"].append(word)
-		elif word.length() == 4:
-			word_levels["level_3"].append(word)
-	
-	# Sort each level alphabetically
-	word_levels["level_1"].sort()
-	word_levels["level_2"].sort()
-	word_levels["level_3"].sort()
-	
-	print("=== WORD ORGANIZATION ===")
-	print("Level 1 (2-letter): ", word_levels["level_1"].size(), " words")
-	print("Level 2 (3-letter): ", word_levels["level_2"].size(), " words")
-	print("Level 3 (4-letter): ", word_levels["level_3"].size(), " words")
+	if total_loaded == 0:
+		print("⚠️ No audio files loaded! Check your file paths.")
+		show_no_words_message()
 
 func setup_game():
 	"""Setup the game with found words"""
@@ -619,12 +604,14 @@ func game_complete():
 
 func show_no_words_message():
 	"""Show message when no words found"""
-	print("No word audio files found!")
+	print("No audio files loaded from config!")
 	
 	if words_remaining_label:
 		words_remaining_label.text = "No words found!"
 	if game_title:
 		game_title.text = "NO AUDIO FILES FOUND"
+	if instruction_text:
+		instruction_text.text = "Run the audio generator tool first!\nTools > Execute Script"
 	if play_word_button:
 		play_word_button.disabled = true
 

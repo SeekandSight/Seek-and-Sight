@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://umbmtow43bhm"]
+[gd_scene load_steps=8 format=3 uid="uid://umbmtow43bhm"]
 
 [ext_resource type="Script" uid="uid://cvyqt2k2fdaka" path="res://scripts/finding_words_cutscene.gd" id="1_cutscene"]
 [ext_resource type="Texture2D" uid="uid://cmwg15mrnnfwy" path="res://Assets/Images/finding_words_bg.png" id="2_background"]
 [ext_resource type="Texture2D" uid="uid://f65jlmr8kv0p" path="res://Assets/Images/SunnyWave.png" id="3_character"]
+[ext_resource type="AudioStream" uid="uid://cd3s2nkeijomp" path="res://Assets/Audio/Background1.mp3" id="4_dm1hf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialogue"]
 bg_color = Color(1, 1, 1, 0.9)
@@ -71,10 +72,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -166.0
-offset_top = -340.0
-offset_right = 419.0
-offset_bottom = -154.0
+offset_left = -203.0
+offset_top = -448.0
+offset_right = 382.0
+offset_bottom = -262.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dialogue")
@@ -115,10 +116,10 @@ text = "Continue"
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 429.0
-offset_top = -195.0
-offset_right = 517.0
-offset_bottom = -166.0
+offset_left = 465.0
+offset_top = -302.0
+offset_right = 553.0
+offset_bottom = -273.0
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
@@ -137,6 +138,17 @@ theme_override_colors/font_color = Color(0.5, 0.3, 0.2, 1)
 theme_override_font_sizes/font_size = 14
 text = "Skip"
 flat = true
+
+[node name="audio" type="Node2D" parent="."]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="audio"]
+stream = ExtResource("4_dm1hf")
+volume_db = -20.0
+autoplay = true
+
+[node name="IntroAudio" type="AudioStreamPlayer2D" parent="audio"]
+position = Vector2(640, 360)
+volume_db = -5.0
 
 [connection signal="pressed" from="UI/DialoguePanel/ContinueButton" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="UI/BackButton" to="." method="_on_back_button_pressed"]
