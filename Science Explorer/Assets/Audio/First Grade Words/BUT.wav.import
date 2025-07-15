@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cy2acmylayh01"
+path="res://.godot/imported/BUT.wav-07255fb84442e0e1dacb1101dd3d83ec.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/First Grade Words/BUT.wav"
+dest_files=["res://.godot/imported/BUT.wav-07255fb84442e0e1dacb1101dd3d83ec.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://4sha5prcfgr2"
+path="res://.godot/imported/Here's how our word archaeology works_ I'll speak a word, you'll see options buried in sand, and you click the correct one!.wav-708179c2df357a14dcce1d78e9f85db2.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Minigame 3/Here's how our word archaeology works_ I'll speak a word, you'll see options buried in sand, and you click the correct one!.wav"
+dest_files=["res://.godot/imported/Here's how our word archaeology works_ I'll speak a word, you'll see options buried in sand, and you click the correct one!.wav-708179c2df357a14dcce1d78e9f85db2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
