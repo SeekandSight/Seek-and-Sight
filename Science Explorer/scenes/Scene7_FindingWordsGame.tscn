@@ -61,14 +61,14 @@ script = ExtResource("1_ucru8")
 [node name="Background" type="Node2D" parent="."]
 
 [node name="DigBackground" type="Sprite2D" parent="Background"]
-position = Vector2(578.5, 323.5)
-scale = Vector2(0.816051, 0.811869)
+position = Vector2(641.5, 360.5)
+scale = Vector2(0.90554, 0.905303)
 texture = ExtResource("2_p7ju5")
 
 [node name="Character" type="Node2D" parent="."]
 
 [node name="ScientistCharacter" type="Sprite2D" parent="Character"]
-position = Vector2(172, 340)
+position = Vector2(223, 428)
 scale = Vector2(0.3125, 0.344727)
 texture = ExtResource("3_83cp3")
 
