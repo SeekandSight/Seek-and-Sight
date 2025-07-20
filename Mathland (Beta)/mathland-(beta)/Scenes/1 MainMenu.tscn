@@ -1,0 +1,133 @@
+[gd_scene load_steps=10 format=3 uid="uid://ct0r2daf0t526"]
+
+[ext_resource type="Texture2D" uid="uid://dcd1inmrqf16w" path="res://Assets/Images/Mathland BG.png" id="1_ekwkc"]
+[ext_resource type="Texture2D" uid="uid://dhqs2mf2uh2uv" path="res://Assets/Images/ChatGPT Image Jul 20, 2025, 11_43_38 AM.png" id="2_5uu8i"]
+[ext_resource type="Texture2D" uid="uid://bbrewlvwac1ku" path="res://Assets/Images/Math Mishmash.png" id="3_jkykj"]
+[ext_resource type="Texture2D" uid="uid://bc3pmb2m5i8cg" path="res://Assets/Images/MathNeutral.png" id="4_xu6rc"]
+[ext_resource type="Texture2D" uid="uid://be42estrifm6v" path="res://Assets/Images/EllieBubble5.png" id="5_gfsqm"]
+[ext_resource type="FontFile" uid="uid://cvby2mqpig7hm" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Bangers/Bangers-Regular.ttf" id="6_6juwb"]
+[ext_resource type="Texture2D" uid="uid://caf7qbyotwpi" path="res://Assets/Images/EllieBubble1.png" id="7_e5ka2"]
+[ext_resource type="FontFile" uid="uid://cdyoxgc0mmi7g" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Chewy/Chewy-Regular.ttf" id="8_4igwv"]
+[ext_resource type="Texture2D" uid="uid://b3a140xaalp3o" path="res://Assets/Images/2025-04-20.webp" id="9_db3xq"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(573.5, 325.5)
+scale = Vector2(1.85417, 1.41595)
+texture = ExtResource("1_ekwkc")
+
+[node name="ChatGptImageJul20,2025,114338Am" type="Sprite2D" parent="."]
+position = Vector2(577.5, 325.5)
+scale = Vector2(1.13184, 0.637695)
+texture = ExtResource("2_5uu8i")
+
+[node name="MathMishmash" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(573.5, 319.625)
+scale = Vector2(1.11621, 0.63208)
+texture = ExtResource("3_jkykj")
+
+[node name="Math Wizard" type="Sprite2D" parent="."]
+position = Vector2(235, 420)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_xu6rc")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(575.5, 102)
+scale = Vector2(1.69006, 1)
+texture = ExtResource("5_gfsqm")
+
+[node name="Label" type="Label" parent="Title"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -346.5
+offset_top = -190.5
+offset_right = -166.5
+offset_bottom = -145.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_6juwb")
+theme_override_font_sizes/font_size = 78
+text = "Mathland"
+uppercase = true
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 421.0
+offset_top = 154.0
+offset_right = 951.0
+offset_bottom = 1161.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_constants/separation = -80
+
+[node name="Play" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("7_e5ka2")
+
+[node name="Label" type="Label" parent="Buttons/Play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_4igwv")
+theme_override_font_sizes/font_size = 80
+text = "play"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Options" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("7_e5ka2")
+
+[node name="Label" type="Label" parent="Buttons/Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_4igwv")
+theme_override_font_sizes/font_size = 80
+text = "options"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Quit" type="TextureButton" parent="Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("7_e5ka2")
+
+[node name="Label" type="Label" parent="Buttons/Quit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_4igwv")
+theme_override_font_sizes/font_size = 80
+text = "quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="2025-04-20" type="Sprite2D" parent="."]
+position = Vector2(76, 65)
+scale = Vector2(0.392308, 0.392308)
+texture = ExtResource("9_db3xq")
