@@ -1,0 +1,172 @@
+[gd_scene load_steps=8 format=3 uid="uid://db30t3waiprh2"]
+
+[ext_resource type="Texture2D" uid="uid://dcd1inmrqf16w" path="res://Assets/Images/Mathland BG.png" id="1_r6gmb"]
+[ext_resource type="Texture2D" uid="uid://be42estrifm6v" path="res://Assets/Images/EllieBubble5.png" id="2_wh6qq"]
+[ext_resource type="FontFile" uid="uid://cvby2mqpig7hm" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Bangers/Bangers-Regular.ttf" id="3_or1ld"]
+[ext_resource type="FontFile" uid="uid://3xugaqylvqlp" path="res://Assets/Fonts/Chewy,Orbitron,Rubik_Distressed/Chewy/Chewy-Regular.ttf" id="4_jife1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s0dnv"]
+texture = ExtResource("1_r6gmb")
+modulate_color = Color(0.834614, 0.834614, 0.834614, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlki2"]
+bg_color = Color(0.716296, 0.716296, 0.716296, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ighjx"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.407246, 0.338652, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="Minigame1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_s0dnv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(365, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Instructions for
+Dragging"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DragableItemsPanel" type="Panel" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="EllieBubble5" type="Sprite2D" parent="HBoxContainer/VBoxContainer2/TextureRect"]
+position = Vector2(186.5, 113)
+scale = Vector2(0.975877, 0.767857)
+texture = ExtResource("2_wh6qq")
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/TextureRect/EllieBubble5"]
+offset_left = -164.467
+offset_top = -42.9767
+offset_right = 162.533
+offset_bottom = 43.0233
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_or1ld")
+theme_override_font_sizes/font_size = 80
+text = "MATHLAND"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.0
+alignment = 1
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "Timer"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Button2" type="Button" parent="HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "Start"
+
+[node name="Button3" type="Button" parent="HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "Options"
+
+[node name="Button4" type="Button" parent="HBoxContainer/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "Back"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Instructions for
+Solving"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnswerAreaPanel" type="Panel" parent="HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
