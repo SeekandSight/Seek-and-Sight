@@ -133,7 +133,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="2025-04-20" type="Sprite2D" parent="."]
+[node name="Logo" type="Sprite2D" parent="."]
 position = Vector2(76, 65)
 scale = Vector2(0.392308, 0.392308)
 texture = ExtResource("9_db3xq")
