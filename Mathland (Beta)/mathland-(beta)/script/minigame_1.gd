@@ -60,6 +60,10 @@ var active_word_bubbles = []
 @onready var options_button = $ControlsContainer/OptionsButton
 @onready var back_button = $ControlsContainer/BackButton
 
+#Menu Overlay
+@onready var controls_container = $ControlsContainer
+@onready var character_area = $CharacterArea
+
 # Audio references
 @onready var success_sound = $Audio/SuccessSound
 @onready var error_sound = $Audio/ErrorSound
@@ -140,10 +144,14 @@ func _on_start_game():
 			reset_button.disabled = false
 		
 		start_new_round()
+		controls_container.visible = false
+		character_area.visible = false
+		
 	else:
 		# Next round
 		if current_round < total_rounds:
 			start_new_round()
+			controls_container.visible = false
 		else:
 			# Game completed
 			complete_game()
@@ -507,6 +515,7 @@ func handle_correct_match():
 	# Check if round complete
 	if matches_remaining <= 0:
 		complete_round()
+		controls_container.visible = true
 
 func handle_incorrect_match():
 	"""Handle wrong match"""
@@ -562,14 +571,19 @@ func show_completion_popup():
 		completion_text += "[center][color=cyan]🎯 Ready for Medium difficulty?\n(Numbers 1-10, 4 rounds)[/color][/center]"
 		next_round_button.text = "▶️ Play Medium"
 		next_round_button.show()
+		controls_container.visible = false
+		
 	elif current_difficulty == "medium":
 		completion_text += "[center][color=orange]🔥 Ready for Hard difficulty?\n(Numbers 1-20, 5 rounds)[/color][/center]"
 		next_round_button.text = "▶️ Play Hard"
 		next_round_button.show()
+		controls_container.visible = false
+		
 	else:
 		completion_text += "[center][color=gold]🌟 CONGRATULATIONS! 🌟\nYou've completed all difficulties![/color][/center]"
 		next_round_button.text = "🎮 Play Again"
 		next_round_button.show()
+		controls_container.visible = false
 	
 	results_label.text = completion_text
 	finish_button.text = "➡️ Next Game"
