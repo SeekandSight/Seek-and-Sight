@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Mathland (Beta)"
+run/main_scene="uid://db30t3waiprh2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [rendering]
