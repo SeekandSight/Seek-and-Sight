@@ -1,32 +1,35 @@
-[gd_scene load_steps=10 format=3 uid="uid://ct0r2daf0t526"]
+[gd_scene load_steps=13 format=3 uid="uid://ct0r2daf0t526"]
 
-[ext_resource type="Texture2D" uid="uid://dcd1inmrqf16w" path="res://Assets/Images/Mathland BG.png" id="1_ekwkc"]
-[ext_resource type="Texture2D" uid="uid://dhqs2mf2uh2uv" path="res://Assets/Images/ChatGPT Image Jul 20, 2025, 11_43_38 AM.png" id="2_5uu8i"]
 [ext_resource type="Texture2D" uid="uid://bbrewlvwac1ku" path="res://Assets/Images/Math Mishmash.png" id="3_jkykj"]
 [ext_resource type="Texture2D" uid="uid://bc3pmb2m5i8cg" path="res://Assets/Images/MathNeutral.png" id="4_xu6rc"]
 [ext_resource type="Texture2D" uid="uid://be42estrifm6v" path="res://Assets/Images/EllieBubble5.png" id="5_gfsqm"]
 [ext_resource type="FontFile" uid="uid://cvby2mqpig7hm" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Bangers/Bangers-Regular.ttf" id="6_6juwb"]
 [ext_resource type="Texture2D" uid="uid://caf7qbyotwpi" path="res://Assets/Images/EllieBubble1.png" id="7_e5ka2"]
 [ext_resource type="FontFile" uid="uid://cdyoxgc0mmi7g" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Chewy/Chewy-Regular.ttf" id="8_4igwv"]
+[ext_resource type="Script" uid="uid://b0s16cneeiuif" path="res://Scripts/play.gd" id="8_xu6rc"]
 [ext_resource type="Texture2D" uid="uid://b3a140xaalp3o" path="res://Assets/Images/2025-04-20.webp" id="9_db3xq"]
+[ext_resource type="Script" uid="uid://bw8c61eaxrk5k" path="res://Scripts/options.gd" id="10_jkykj"]
+[ext_resource type="Script" uid="uid://cncc3etnr728b" path="res://Scripts/quit.gd" id="11_xu6rc"]
+
+[sub_resource type="Gradient" id="Gradient_5uu8i"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.298039, 1, 1, 0.741176)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jkykj"]
+gradient = SubResource("Gradient_5uu8i")
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Background" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(573.5, 325.5)
-scale = Vector2(1.85417, 1.41595)
-texture = ExtResource("1_ekwkc")
+[node name="Images" type="Node" parent="."]
 
-[node name="ChatGptImageJul20,2025,114338Am" type="Sprite2D" parent="."]
-position = Vector2(577.5, 325.5)
-scale = Vector2(1.13184, 0.637695)
-texture = ExtResource("2_5uu8i")
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(572.5, 320.5)
+scale = Vector2(17.9531, 10.1719)
+texture = SubResource("GradientTexture2D_jkykj")
 
 [node name="MathMishmash" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(573.5, 319.625)
-scale = Vector2(1.11621, 0.63208)
+position = Vector2(905, 395)
+scale = Vector2(0.262695, 0.424072)
 texture = ExtResource("3_jkykj")
 
 [node name="Math Wizard" type="Sprite2D" parent="."]
@@ -73,6 +76,7 @@ theme_override_constants/separation = -80
 [node name="Play" type="TextureButton" parent="Buttons"]
 layout_mode = 2
 texture_normal = ExtResource("7_e5ka2")
+script = ExtResource("8_xu6rc")
 
 [node name="Label" type="Label" parent="Buttons/Play"]
 layout_mode = 1
@@ -92,6 +96,7 @@ uppercase = true
 [node name="Options" type="TextureButton" parent="Buttons"]
 layout_mode = 2
 texture_normal = ExtResource("7_e5ka2")
+script = ExtResource("10_jkykj")
 
 [node name="Label" type="Label" parent="Buttons/Options"]
 layout_mode = 1
@@ -111,6 +116,7 @@ uppercase = true
 [node name="Quit" type="TextureButton" parent="Buttons"]
 layout_mode = 2
 texture_normal = ExtResource("7_e5ka2")
+script = ExtResource("11_xu6rc")
 
 [node name="Label" type="Label" parent="Buttons/Quit"]
 layout_mode = 1
@@ -131,3 +137,10 @@ uppercase = true
 position = Vector2(76, 65)
 scale = Vector2(0.392308, 0.392308)
 texture = ExtResource("9_db3xq")
+
+[connection signal="mouse_entered" from="Buttons/Play" to="." method="_on_play_mouse_entered"]
+[connection signal="pressed" from="Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Buttons/Play" to="Buttons/Play" method="_on_pressed"]
+[connection signal="pressed" from="Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Buttons/Quit" to="Buttons/Play" method="_on_quit_pressed"]

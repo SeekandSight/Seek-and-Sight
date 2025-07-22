@@ -1,0 +1,274 @@
+[gd_scene load_steps=8 format=3 uid="uid://c24ubqtme8vdx"]
+
+[ext_resource type="Texture2D" uid="uid://dcd1inmrqf16w" path="res://Assets/Images/Mathland BG.png" id="1_33dbb"]
+[ext_resource type="FontFile" uid="uid://cwvl0c8skandk" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Orbitron/Orbitron-VariableFont_wght.ttf" id="2_cdg48"]
+[ext_resource type="Texture2D" uid="uid://bc3pmb2m5i8cg" path="res://Assets/Images/MathNeutral.png" id="3_1i1uu"]
+[ext_resource type="FontFile" uid="uid://degh3wr68670a" path="res://Assets/Fonts/Chewy,Orbitron,Rubik_Distressed/Orbitron/Orbitron-VariableFont_wght.ttf" id="4_0abbc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_elj0y"]
+texture = ExtResource("1_33dbb")
+modulate_color = Color(0.838897, 0.838897, 0.838897, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqvox"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpvao"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.490196, 0.490196, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_elj0y")
+
+[node name="RandomNumbers" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 412.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="Panel/RandomNumbers"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_cdg48")
+theme_override_font_sizes/font_size = 35
+text = "Randomized
+Numbers"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/RandomNumbers"]
+custom_minimum_size = Vector2(0, 550)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/RandomNumbers/Panel"]
+layout_mode = 0
+offset_right = 383.0
+offset_bottom = 105.0
+
+[node name="Button" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/RandomNumbers/Panel"]
+layout_mode = 0
+offset_top = 110.0
+offset_right = 412.0
+offset_bottom = 215.0
+
+[node name="Button" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/RandomNumbers/Panel"]
+layout_mode = 0
+offset_top = 216.0
+offset_right = 412.0
+offset_bottom = 321.0
+
+[node name="Button" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer3"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/RandomNumbers/Panel"]
+layout_mode = 0
+offset_top = 324.0
+offset_right = 412.0
+offset_bottom = 429.0
+
+[node name="Button" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer4"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer4"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer4"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer4"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Panel/RandomNumbers/Panel"]
+layout_mode = 0
+offset_top = 432.0
+offset_right = 412.0
+offset_bottom = 537.0
+
+[node name="Button" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer5"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 2.0
+offset_right = 763.0
+offset_bottom = 647.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+
+[node name="MathNeutral" type="Sprite2D" parent="Panel/VBoxContainer2/TextureRect"]
+position = Vector2(167, 250)
+scale = Vector2(0.256836, 0.193034)
+texture = ExtResource("3_1i1uu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer2"]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+alignment = 1
+
+[node name="TimerButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqvox")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lpvao")
+text = "Timer"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer2/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="NextButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqvox")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lpvao")
+text = "Next"
+
+[node name="OptionsButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqvox")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lpvao")
+text = "Options"
+
+[node name="BackButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/hover = SubResource("StyleBoxFlat_jqvox")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lpvao")
+text = "Back"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 771.0
+offset_top = 2.0
+offset_right = 1151.0
+offset_bottom = 647.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_0abbc")
+theme_override_font_sizes/font_size = 35
+text = "Target Number"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="TargetPanel" type="Panel" parent="Panel/VBoxContainer3"]
+custom_minimum_size = Vector2(280, 250)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
