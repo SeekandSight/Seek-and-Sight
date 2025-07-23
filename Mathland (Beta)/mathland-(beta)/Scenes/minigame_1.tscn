@@ -106,8 +106,14 @@ grow_vertical = 2
 
 [node name="TimerContainer" type="Panel" parent="UI"]
 layout_mode = 1
-offset_right = 180.0
-offset_bottom = 50.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -229.0
+offset_top = 5.0
+offset_right = -85.0
+offset_bottom = 42.0
+grow_horizontal = 0
 scale = Vector2(1.5, 1.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_timer")
 
@@ -132,10 +138,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -121.0
-offset_top = -142.0
-offset_right = -9.0
-offset_bottom = -79.0
+offset_left = -127.0
+offset_top = -80.0
+offset_right = -12.0
+offset_bottom = -48.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(2, 2)
@@ -200,6 +206,7 @@ theme_override_fonts/font = ExtResource("3_or1ld")
 theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 2
+autowrap_mode = 2
 
 [node name="RoundCompletePopup" type="AcceptDialog" parent="UI"]
 title = "🎉 Round Complete!"
@@ -302,9 +309,10 @@ text = "🔥 Hard (Numbers 1-20)"
 
 [node name="GameContainer" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 1.202
+anchor_bottom = 1.225
+offset_right = 7.29602
+offset_bottom = -145.8
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -313,10 +321,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2.0
-offset_top = -2.0
-offset_right = -2.0
-offset_bottom = -2.0
+offset_left = -83.0
+offset_top = 74.0
+offset_right = -163.0
+offset_bottom = 42.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -362,10 +370,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 4.5
-offset_top = 6.0
-offset_right = 39.5
-offset_bottom = 6.0
+offset_top = 13.0
+offset_right = 35.0
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -541,15 +548,15 @@ offset_bottom = 210.0
 grow_horizontal = 2
 
 [node name="EllieBubble" type="Sprite2D" parent="CharacterArea"]
-position = Vector2(389.5, 117.208)
-scale = Vector2(2.58, 1.2691)
+position = Vector2(2.5, 87)
+scale = Vector2(0.693957, 0.422619)
 texture = ExtResource("2_wh6qq")
 
 [node name="GameTitle" type="Label" parent="CharacterArea/EllieBubble"]
-offset_left = -154.072
-offset_top = -35.4217
-offset_right = 167.928
-offset_bottom = 34.5783
+offset_left = -165.274
+offset_top = -37.1161
+offset_right = 156.726
+offset_bottom = 32.8839
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_or1ld")
 theme_override_font_sizes/font_size = 60
@@ -562,12 +569,11 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -587.0
-offset_top = 294.0
-offset_right = 264.0
-offset_bottom = 373.0
+offset_left = -176.0
+offset_top = 70.0
+offset_right = 476.0
+offset_bottom = 130.0
 grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 alignment = 1
