@@ -6,10 +6,10 @@
 [ext_resource type="FontFile" uid="uid://cvby2mqpig7hm" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Bangers/Bangers-Regular.ttf" id="6_6juwb"]
 [ext_resource type="Texture2D" uid="uid://caf7qbyotwpi" path="res://Assets/Images/EllieBubble1.png" id="7_e5ka2"]
 [ext_resource type="FontFile" uid="uid://cdyoxgc0mmi7g" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Chewy/Chewy-Regular.ttf" id="8_4igwv"]
-[ext_resource type="Script" uid="uid://b0s16cneeiuif" path="res://Scripts/play.gd" id="8_xu6rc"]
+[ext_resource type="Script" uid="uid://b0s16cneeiuif" path="res://script/play.gd" id="8_xu6rc"]
 [ext_resource type="Texture2D" uid="uid://b3a140xaalp3o" path="res://Assets/Images/2025-04-20.webp" id="9_db3xq"]
-[ext_resource type="Script" uid="uid://bw8c61eaxrk5k" path="res://Scripts/options.gd" id="10_jkykj"]
-[ext_resource type="Script" uid="uid://cncc3etnr728b" path="res://Scripts/quit.gd" id="11_xu6rc"]
+[ext_resource type="Script" uid="uid://bw8c61eaxrk5k" path="res://script/options.gd" id="10_jkykj"]
+[ext_resource type="Script" uid="uid://cncc3etnr728b" path="res://script/quit.gd" id="11_xu6rc"]
 
 [sub_resource type="Gradient" id="Gradient_5uu8i"]
 offsets = PackedFloat32Array(1)
