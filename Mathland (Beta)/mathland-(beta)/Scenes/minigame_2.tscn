@@ -1,16 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7a1w12bj5k0g"]
+[gd_scene load_steps=13 format=3 uid="uid://b7a1w12bj5k0g"]
 
-[ext_resource type="Texture2D" uid="uid://dcd1inmrqf16w" path="res://Assets/Images/Mathland BG.png" id="1_5x31c"]
-[ext_resource type="Texture2D" uid="uid://be42estrifm6v" path="res://Assets/Images/EllieBubble5.png" id="2_3qiw4"]
-[ext_resource type="FontFile" uid="uid://cvby2mqpig7hm" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Bangers/Bangers-Regular.ttf" id="3_gc66t"]
-[ext_resource type="FontFile" uid="uid://3xugaqylvqlp" path="res://Assets/Fonts/Chewy,Orbitron,Rubik_Distressed/Chewy/Chewy-Regular.ttf" id="4_n6gid"]
+[ext_resource type="Texture2D" uid="uid://dcd1inmrqf16w" path="res://Assets/Images/Mathland BG.png" id="1_r6gmb"]
+[ext_resource type="Texture2D" uid="uid://be42estrifm6v" path="res://Assets/Images/EllieBubble5.png" id="2_wh6qq"]
+[ext_resource type="FontFile" uid="uid://cvby2mqpig7hm" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Bangers/Bangers-Regular.ttf" id="3_or1ld"]
+[ext_resource type="FontFile" uid="uid://3xugaqylvqlp" path="res://Assets/Fonts/Chewy,Orbitron,Rubik_Distressed/Chewy/Chewy-Regular.ttf" id="4_jife1"]
+[ext_resource type="Script" uid="uid://cb71nuf4eh3ko" path="res://script/minigame_2.gd" id="5_script"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s0dnv"]
-texture = ExtResource("1_5x31c")
+texture = ExtResource("1_r6gmb")
 modulate_color = Color(0.834614, 0.834614, 0.834614, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlki2"]
-bg_color = Color(0.716296, 0.716296, 0.716296, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_timer"]
+bg_color = Color(0, 0, 0, 0.7)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ighjx"]
 bg_color = Color(1, 1, 1, 1)
@@ -24,15 +34,59 @@ corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
-[node name="Minigame1" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bubble"]
+bg_color = Color(0.9, 0.95, 1, 0.8)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.4, 0.6, 1, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_decorative_bubble"]
+bg_color = Color(0.7, 0.9, 1, 0.3)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 0.5)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_answer_bubble"]
+bg_color = Color(1, 0.95, 0.9, 0.8)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.6, 0.4, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlki2"]
+bg_color = Color(0.716296, 0.716296, 0.716296, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Minigame2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_script")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,7 +95,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_s0dnv")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="UI" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,124 +103,522 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(365, 0)
-layout_mode = 2
+[node name="TimerContainer" type="Panel" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -229.0
+offset_top = 5.0
+offset_right = -85.0
+offset_bottom = 42.0
+grow_horizontal = 0
+scale = Vector2(1.5, 1.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_timer")
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-text = "Instructions for
-Dragging"
+[node name="TimerLabel" type="Label" parent="UI/TimerContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 18
+text = "Time:0:0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ScoreContainer" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = -80.0
+offset_right = 16.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+theme_override_styles/panel = SubResource("StyleBoxFlat_timer")
+
+[node name="ScoreLabel" type="Label" parent="UI/ScoreContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 16
+text = "Score: 0/4"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="RoundsContainer" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -177.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_timer")
+
+[node name="RoundsLabel" type="Label" parent="UI/RoundsContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 20
+text = "Round: 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DragableItemsPanel" type="Panel" parent="HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 500)
+[node name="FeedbackLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -17.5
+offset_right = 0.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_or1ld")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="RoundCompletePopup" type="AcceptDialog" parent="UI"]
+title = "🎉 Round Complete!"
+initial_position = 2
+size = Vector2i(450, 350)
+dialog_autowrap = true
+
+[node name="ResultsLabel" type="RichTextLabel" parent="UI/RoundCompletePopup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_jife1")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+fit_content = true
+
+[node name="ButtonContainer" type="HBoxContainer" parent="UI/RoundCompletePopup"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -50.0
+offset_right = -20.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+alignment = 1
+
+[node name="NextRoundButton" type="Button" parent="UI/RoundCompletePopup/ButtonContainer"]
+custom_minimum_size = Vector2(140, 50)
 layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "Next Round"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(380, 0)
+[node name="FinishButton" type="Button" parent="UI/RoundCompletePopup/ButtonContainer"]
+custom_minimum_size = Vector2(140, 50)
 layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "Finish Game"
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 200)
+[node name="DifficultyPopup" type="AcceptDialog" parent="UI"]
+title = "🎯 Choose Your Challenge!"
+initial_position = 2
+size = Vector2i(450, 350)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DifficultyPopup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="EasyButton" type="Button" parent="UI/DifficultyPopup/VBoxContainer"]
+custom_minimum_size = Vector2(350, 60)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "😊 Easy (4 Basic Shapes)"
 
-[node name="EllieBubble5" type="Sprite2D" parent="HBoxContainer/VBoxContainer2/TextureRect"]
-position = Vector2(186.5, 113)
-scale = Vector2(0.975877, 0.767857)
-texture = ExtResource("2_3qiw4")
+[node name="MediumButton" type="Button" parent="UI/DifficultyPopup/VBoxContainer"]
+custom_minimum_size = Vector2(350, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "🎯 Medium (6 Different Shapes)"
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2/TextureRect/EllieBubble5"]
-offset_left = -164.467
-offset_top = -42.9767
-offset_right = 162.533
-offset_bottom = 43.0233
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_gc66t")
-theme_override_font_sizes/font_size = 80
-text = "MATHLAND"
+[node name="HardButton" type="Button" parent="UI/DifficultyPopup/VBoxContainer"]
+custom_minimum_size = Vector2(350, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "🔥 Hard (8 Complex Shapes)"
+
+[node name="GameContainer" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 1.202
+anchor_bottom = 1.225
+offset_right = 7.29602
+offset_bottom = -145.8
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -83.0
+offset_top = 74.0
+offset_right = -163.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftColumn" type="VBoxContainer" parent="GameContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 500)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="InstructionsLabel" type="Label" parent="GameContainer/HBoxContainer/LeftColumn"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 28
+text = "Drag the Shapes!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer2"]
+[node name="ShapesBubble" type="Panel" parent="GameContainer/HBoxContainer/LeftColumn"]
+custom_minimum_size = Vector2(0, 450)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-size_flags_stretch_ratio = 0.0
-alignment = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_bubble")
 
-[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(150, 70)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_n6gid")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
-text = "Timer"
+[node name="ShapesBubbleLabel" type="Label" parent="GameContainer/HBoxContainer/LeftColumn/ShapesBubble"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = 10.0
+offset_right = 80.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.2, 0.4, 0.8, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 20
+text = "Shape Cards"
+horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(0, 70)
-layout_mode = 2
-size_flags_horizontal = 4
-alignment = 1
+[node name="DecorativeBubbles" type="Control" parent="GameContainer/HBoxContainer/LeftColumn/ShapesBubble"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
 
-[node name="Button2" type="Button" parent="HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 70)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_n6gid")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
-text = "Start"
+[node name="Bubble1" type="Panel" parent="GameContainer/HBoxContainer/LeftColumn/ShapesBubble/DecorativeBubbles"]
+layout_mode = 1
+offset_left = 30.0
+offset_top = 50.0
+offset_right = 50.0
+offset_bottom = 70.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_decorative_bubble")
 
-[node name="Button3" type="Button" parent="HBoxContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 70)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_n6gid")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
-text = "Options"
+[node name="Bubble2" type="Panel" parent="GameContainer/HBoxContainer/LeftColumn/ShapesBubble/DecorativeBubbles"]
+layout_mode = 1
+offset_left = 300.0
+offset_top = 40.0
+offset_right = 315.0
+offset_bottom = 55.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_decorative_bubble")
 
-[node name="Button4" type="Button" parent="HBoxContainer/VBoxContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(150, 70)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_n6gid")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
-text = "Back"
+[node name="Bubble3" type="Panel" parent="GameContainer/HBoxContainer/LeftColumn/ShapesBubble/DecorativeBubbles"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 200.0
+offset_right = 38.0
+offset_bottom = 218.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_decorative_bubble")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Bubble4" type="Panel" parent="GameContainer/HBoxContainer/LeftColumn/ShapesBubble/DecorativeBubbles"]
+layout_mode = 1
+offset_left = 320.0
+offset_top = 180.0
+offset_right = 345.0
+offset_bottom = 205.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_decorative_bubble")
+
+[node name="Bubble5" type="Panel" parent="GameContainer/HBoxContainer/LeftColumn/ShapesBubble/DecorativeBubbles"]
+layout_mode = 1
+offset_left = 50.0
+offset_top = 380.0
+offset_right = 64.0
+offset_bottom = 394.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_decorative_bubble")
+
+[node name="CardContainer" type="Control" parent="GameContainer/HBoxContainer/LeftColumn/ShapesBubble"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RightColumn" type="VBoxContainer" parent="GameContainer/HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3"]
-custom_minimum_size = Vector2(0, 150)
+[node name="AnswerInstructions" type="Label" parent="GameContainer/HBoxContainer/RightColumn"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-text = "Instructions for
-Solving"
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 28
+text = "Match to Names!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnswerAreaPanel" type="Panel" parent="HBoxContainer/VBoxContainer3"]
-custom_minimum_size = Vector2(0, 500)
+[node name="AnswerBubble" type="Panel" parent="GameContainer/HBoxContainer/RightColumn"]
+custom_minimum_size = Vector2(0, 450)
 layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_answer_bubble")
+
+[node name="AnswerBubbleLabel" type="Label" parent="GameContainer/HBoxContainer/RightColumn/AnswerBubble"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = 10.0
+offset_right = 80.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.8, 0.4, 0.2, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 20
+text = "Shape Names"
+horizontal_alignment = 1
+
+[node name="DecorativeBubbles" type="Control" parent="GameContainer/HBoxContainer/RightColumn/AnswerBubble"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bubble1" type="Panel" parent="GameContainer/HBoxContainer/RightColumn/AnswerBubble/DecorativeBubbles"]
+layout_mode = 1
+offset_left = 40.0
+offset_top = 60.0
+offset_right = 58.0
+offset_bottom = 78.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_decorative_bubble")
+
+[node name="Bubble2" type="Panel" parent="GameContainer/HBoxContainer/RightColumn/AnswerBubble/DecorativeBubbles"]
+layout_mode = 1
+offset_left = 350.0
+offset_top = 50.0
+offset_right = 370.0
+offset_bottom = 70.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_decorative_bubble")
+
+[node name="Bubble3" type="Panel" parent="GameContainer/HBoxContainer/RightColumn/AnswerBubble/DecorativeBubbles"]
+layout_mode = 1
+offset_left = 30.0
+offset_top = 250.0
+offset_right = 42.0
+offset_bottom = 262.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_decorative_bubble")
+
+[node name="Bubble4" type="Panel" parent="GameContainer/HBoxContainer/RightColumn/AnswerBubble/DecorativeBubbles"]
+layout_mode = 1
+offset_left = 360.0
+offset_top = 220.0
+offset_right = 385.0
+offset_bottom = 245.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_decorative_bubble")
+
+[node name="Bubble5" type="Panel" parent="GameContainer/HBoxContainer/RightColumn/AnswerBubble/DecorativeBubbles"]
+layout_mode = 1
+offset_left = 60.0
+offset_top = 400.0
+offset_right = 75.0
+offset_bottom = 415.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_decorative_bubble")
+
+[node name="TargetContainer" type="Control" parent="GameContainer/HBoxContainer/RightColumn/AnswerBubble"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Audio" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+
+[node name="SuccessSound" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -5.0
+
+[node name="ErrorSound" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -3.0
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -15.0
+
+[node name="CharacterArea" type="Control" parent="."]
+custom_minimum_size = Vector2(50, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -383.5
+offset_top = 10.0
+offset_right = 383.5
+offset_bottom = 210.0
+grow_horizontal = 2
+
+[node name="EllieBubble" type="Sprite2D" parent="CharacterArea"]
+position = Vector2(2.5, 87)
+scale = Vector2(0.693957, 0.422619)
+texture = ExtResource("2_wh6qq")
+
+[node name="GameTitle" type="Label" parent="CharacterArea/EllieBubble"]
+offset_left = -165.274
+offset_top = -37.1161
+offset_right = 156.726
+offset_bottom = 32.8839
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_or1ld")
+theme_override_font_sizes/font_size = 60
+text = "SHAPE MATCH!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlsContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_top = 70.0
+offset_right = 476.0
+offset_bottom = 130.0
+grow_horizontal = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+alignment = 1
+
+[node name="StartButton" type="Button" parent="ControlsContainer"]
+custom_minimum_size = Vector2(180, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "🎮 Start Game"
+
+[node name="OptionsButton" type="Button" parent="ControlsContainer"]
+custom_minimum_size = Vector2(140, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "⚙️ Difficulty"
+
+[node name="BackButton" type="Button" parent="ControlsContainer"]
+custom_minimum_size = Vector2(180, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "⬅️ Back to Menu"
+
+[node name="ResetButton" type="Button" parent="ControlsContainer"]
+custom_minimum_size = Vector2(140, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "🔄 Reset"

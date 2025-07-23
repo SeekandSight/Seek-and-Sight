@@ -243,21 +243,42 @@ func connect_signals():
 	finish_button.pressed.connect(_on_finish_game_pressed)
 
 func _on_start_game():
-	"""Start or continue the game"""
-	if not is_game_started:
-		current_round = 0
-		total_matches = 0
-		total_rounds = difficulty_levels[current_difficulty]["rounds"]
-		start_time = Time.get_unix_time_from_system()
-		is_game_started = true
-		start_button.text = "Next Round"
-		reset_button.disabled = false
-		start_new_round()
-	else:
-		if current_round < total_rounds:
-			start_new_round()
-		else:
-			complete_game()
+	"""Show difficulty selection instead of starting immediately"""
+	difficulty_popup.popup_centered()
+
+func _on_difficulty_selected(difficulty: String):
+	"""Select difficulty and automatically start game"""
+	current_difficulty = difficulty
+	difficulty_popup.hide()
+	
+	var messages = {
+		"easy": "😊 Easy Mode Selected! Numbers 1-5, 3 rounds",
+		"medium": "🎯 Medium Mode Selected! Numbers 1-10, 4 rounds", 
+		"hard": "🔥 Hard Mode Selected! Numbers 1-20, 5 rounds"
+	}
+	
+	# Show selection message for longer duration
+	show_feedback(messages[difficulty], Color.CYAN, 3.0)
+	
+	# Wait longer before auto-starting to let user read the message
+	await get_tree().create_timer(2.5).timeout
+	
+	# Show starting message
+	show_feedback("🎮 Starting game...", Color.GREEN, 1.5)
+	await get_tree().create_timer(1.0).timeout
+	
+	auto_start_game()
+
+func auto_start_game():
+	"""Automatically start the game after difficulty selection"""
+	current_round = 0
+	total_matches = 0
+	total_rounds = difficulty_levels[current_difficulty]["rounds"]
+	start_time = Time.get_unix_time_from_system()
+	is_game_started = true
+	start_button.text = "Next Round"
+	reset_button.disabled = false
+	start_new_round()
 
 func start_new_round():
 	"""Start a new round"""
@@ -276,7 +297,11 @@ func start_new_round():
 	create_dynamic_number_bubbles()
 	create_dynamic_word_bubbles()
 	
-	show_feedback("Round %d - Match the numbers! 🎯" % current_round, Color.BLUE)
+	# Clear any previous feedback before showing round message
+	feedback_label.text = ""
+	await get_tree().create_timer(0.5).timeout
+	
+	show_feedback("Round %d - Match the numbers! 🎯" % current_round, Color.BLUE, 3.0)
 	start_button.disabled = true
 
 func generate_round_numbers():
@@ -668,7 +693,7 @@ func _on_next_round_pressed():
 	reset_for_new_difficulty()
 
 func reset_for_new_difficulty():
-	"""Reset game for new difficulty"""
+	"""Reset game for new difficulty and auto-start"""
 	is_game_started = false
 	current_round = 0
 	total_matches = 0
@@ -678,7 +703,15 @@ func reset_for_new_difficulty():
 	start_button.text = "🎮 Start %s" % current_difficulty.capitalize()
 	start_button.disabled = false
 	
-	show_feedback("🎯 %s Mode Selected!" % current_difficulty.capitalize(), Color.CYAN, 3.0)
+	# Clear feedback first, then show new difficulty message
+	feedback_label.text = ""
+	await get_tree().create_timer(0.3).timeout
+	
+	show_feedback("🎯 %s Mode Ready!" % current_difficulty.capitalize(), Color.CYAN, 2.5)
+	
+	# Auto-start the new difficulty
+	await get_tree().create_timer(2.0).timeout
+	auto_start_game()
 
 func _on_finish_game_pressed():
 	"""Handle next game button"""
@@ -707,16 +740,31 @@ func reset_game():
 
 func show_feedback(message: String, color: Color, duration: float = 4.0):
 	"""Show feedback message"""
+	# Clear any existing tween first
+	var existing_tweens = get_tree().get_processed_tweens()
+	for tween in existing_tweens:
+		if tween.is_valid():
+			tween.kill()
+	
 	feedback_label.text = message
 	feedback_label.modulate = color
+	feedback_label.scale = Vector2.ONE  # Reset scale
 	
 	var tween = create_tween()
-	tween.tween_property(feedback_label, "scale", Vector2(1.2, 1.2), 0.15)
-	tween.tween_property(feedback_label, "scale", Vector2.ONE, 0.15)
+	tween.tween_property(feedback_label, "scale", Vector2(1.1, 1.1), 0.2)
+	tween.tween_property(feedback_label, "scale", Vector2.ONE, 0.2)
 	
-	await get_tree().create_timer(duration).timeout
-	if feedback_label:
-		feedback_label.text = ""
+	# Create a separate timer to clear the text
+	var timer = Timer.new()
+	timer.wait_time = duration
+	timer.one_shot = true
+	timer.timeout.connect(func():
+		if feedback_label and is_instance_valid(feedback_label):
+			feedback_label.text = ""
+		timer.queue_free()
+	)
+	add_child(timer)
+	timer.start()
 
 func _on_reset_game():
 	"""Reset button pressed"""
@@ -724,21 +772,7 @@ func _on_reset_game():
 
 func _on_options_pressed():
 	"""Show difficulty options"""
-	difficulty_popup.show()
-
-func _on_difficulty_selected(difficulty: String):
-	"""Select difficulty and reset game"""
-	current_difficulty = difficulty
-	difficulty_popup.hide()
-	
-	var messages = {
-		"easy": "😊 Easy Mode! Numbers 1-5, 3 rounds",
-		"medium": "🎯 Medium Mode! Numbers 1-10, 4 rounds", 
-		"hard": "🔥 Hard Mode! Numbers 1-20, 5 rounds"
-	}
-	
-	show_feedback(messages[difficulty], Color.YELLOW, 4.0)
-	reset_for_new_difficulty()
+	difficulty_popup.popup_centered()
 
 func _on_back_to_menu():
 	"""Return to menu"""
