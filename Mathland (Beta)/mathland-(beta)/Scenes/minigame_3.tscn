@@ -1,274 +1,566 @@
-[gd_scene load_steps=8 format=3 uid="uid://c24ubqtme8vdx"]
+[gd_scene load_steps=13 format=3 uid="uid://c24ubqtme8vdx"]
 
+[ext_resource type="Script" uid="uid://dbnvfhmpcywow" path="res://script/minigame_3.gd" id="1_6sdpr"]
 [ext_resource type="Texture2D" uid="uid://dcd1inmrqf16w" path="res://Assets/Images/Mathland BG.png" id="1_33dbb"]
-[ext_resource type="FontFile" uid="uid://cwvl0c8skandk" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Orbitron/Orbitron-VariableFont_wght.ttf" id="2_cdg48"]
-[ext_resource type="Texture2D" uid="uid://bc3pmb2m5i8cg" path="res://Assets/Images/MathNeutral.png" id="3_1i1uu"]
-[ext_resource type="FontFile" uid="uid://degh3wr68670a" path="res://Assets/Fonts/Chewy,Orbitron,Rubik_Distressed/Orbitron/Orbitron-VariableFont_wght.ttf" id="4_0abbc"]
+[ext_resource type="Texture2D" uid="uid://be42estrifm6v" path="res://Assets/Images/EllieBubble5.png" id="2_wh6qq"]
+[ext_resource type="FontFile" uid="uid://cvby2mqpig7hm" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Bangers/Bangers-Regular.ttf" id="3_or1ld"]
+[ext_resource type="FontFile" uid="uid://3xugaqylvqlp" path="res://Assets/Fonts/Chewy,Orbitron,Rubik_Distressed/Chewy/Chewy-Regular.ttf" id="4_jife1"]
+[ext_resource type="Texture2D" uid="uid://bc3pmb2m5i8cg" path="res://Assets/Images/MathNeutral.png" id="5_1i1uu"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_elj0y"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s0dnv"]
 texture = ExtResource("1_33dbb")
-modulate_color = Color(0.838897, 0.838897, 0.838897, 1)
+modulate_color = Color(0.834614, 0.834614, 0.834614, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqvox"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_timer"]
+bg_color = Color(0, 0, 0, 0.7)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpvao"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ighjx"]
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(1, 0.490196, 0.490196, 1)
+border_color = Color(1, 0.407246, 0.338652, 1)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
-[node name="MainUI" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bubble"]
+bg_color = Color(0.9, 0.95, 1, 0.8)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.4, 0.6, 1, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_target_bubble"]
+bg_color = Color(1, 0.95, 0.9, 0.8)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.6, 0.4, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlki2"]
+bg_color = Color(0.716296, 0.716296, 0.716296, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Minigame3" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6sdpr")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_elj0y")
+theme_override_styles/panel = SubResource("StyleBoxTexture_s0dnv")
 
-[node name="RandomNumbers" type="VBoxContainer" parent="Panel"]
-layout_mode = 0
-offset_right = 412.0
-offset_bottom = 648.0
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="Panel/RandomNumbers"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_cdg48")
-theme_override_font_sizes/font_size = 35
-text = "Randomized
-Numbers"
+[node name="TimerContainer" type="Panel" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -229.0
+offset_top = 5.0
+offset_right = -85.0
+offset_bottom = 42.0
+grow_horizontal = 0
+scale = Vector2(1.5, 1.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_timer")
+
+[node name="TimerLabel" type="Label" parent="UI/TimerContainer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 18
+text = "Time:0:0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ScoreContainer" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = -80.0
+offset_right = 16.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+theme_override_styles/panel = SubResource("StyleBoxFlat_timer")
+
+[node name="ScoreLabel" type="Label" parent="UI/ScoreContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 16
+text = "Progress: 0/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="RoundsContainer" type="Panel" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -177.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_timer")
+
+[node name="RoundsLabel" type="Label" parent="UI/RoundsContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 20
+text = "Round: 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="Panel/RandomNumbers"]
-custom_minimum_size = Vector2(0, 550)
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/RandomNumbers/Panel"]
-layout_mode = 0
-offset_right = 383.0
-offset_bottom = 105.0
-
-[node name="Button" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button2" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button3" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button4" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/RandomNumbers/Panel"]
-layout_mode = 0
-offset_top = 110.0
-offset_right = 412.0
-offset_bottom = 215.0
-
-[node name="Button" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer2"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button2" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer2"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button3" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer2"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button4" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer2"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/RandomNumbers/Panel"]
-layout_mode = 0
-offset_top = 216.0
-offset_right = 412.0
-offset_bottom = 321.0
-
-[node name="Button" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer3"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button2" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer3"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button3" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer3"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button4" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer3"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/RandomNumbers/Panel"]
-layout_mode = 0
-offset_top = 324.0
-offset_right = 412.0
-offset_bottom = 429.0
-
-[node name="Button" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer4"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button2" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer4"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button3" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer4"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button4" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer4"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="HBoxContainer5" type="HBoxContainer" parent="Panel/RandomNumbers/Panel"]
-layout_mode = 0
-offset_top = 432.0
-offset_right = 412.0
-offset_bottom = 537.0
-
-[node name="Button" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer5"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button2" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer5"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button3" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer5"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Button4" type="Button" parent="Panel/RandomNumbers/Panel/HBoxContainer5"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 2.0
-offset_right = 763.0
-offset_bottom = 647.0
-
-[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 350)
-layout_mode = 2
-
-[node name="MathNeutral" type="Sprite2D" parent="Panel/VBoxContainer2/TextureRect"]
-position = Vector2(167, 250)
-scale = Vector2(0.256836, 0.193034)
-texture = ExtResource("3_1i1uu")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer2"]
-custom_minimum_size = Vector2(300, 200)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer2/VBoxContainer"]
-custom_minimum_size = Vector2(0, 250)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 6
-alignment = 1
-
-[node name="TimerButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(150, 40)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-theme_override_styles/hover = SubResource("StyleBoxFlat_jqvox")
-theme_override_styles/normal = SubResource("StyleBoxFlat_lpvao")
-text = "Timer"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer2/VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="NextButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 40)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-theme_override_styles/hover = SubResource("StyleBoxFlat_jqvox")
-theme_override_styles/normal = SubResource("StyleBoxFlat_lpvao")
-text = "Next"
-
-[node name="OptionsButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 40)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-theme_override_styles/hover = SubResource("StyleBoxFlat_jqvox")
-theme_override_styles/normal = SubResource("StyleBoxFlat_lpvao")
-text = "Options"
-
-[node name="BackButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(150, 40)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-theme_override_styles/hover = SubResource("StyleBoxFlat_jqvox")
-theme_override_styles/normal = SubResource("StyleBoxFlat_lpvao")
-text = "Back"
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="Panel"]
-layout_mode = 0
-offset_left = 771.0
-offset_top = 2.0
-offset_right = 1151.0
-offset_bottom = 647.0
-
-[node name="Label" type="Label" parent="Panel/VBoxContainer3"]
-custom_minimum_size = Vector2(0, 250)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_0abbc")
-theme_override_font_sizes/font_size = 35
-text = "Target Number"
+[node name="FeedbackLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -17.5
+offset_right = 0.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_or1ld")
+theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 2
+autowrap_mode = 2
 
-[node name="TargetPanel" type="Panel" parent="Panel/VBoxContainer3"]
-custom_minimum_size = Vector2(280, 250)
+[node name="RoundCompletePopup" type="AcceptDialog" parent="UI"]
+title = "🎉 Round Complete!"
+initial_position = 2
+size = Vector2i(450, 350)
+dialog_autowrap = true
+
+[node name="ResultsLabel" type="RichTextLabel" parent="UI/RoundCompletePopup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_jife1")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+fit_content = true
+
+[node name="ButtonContainer" type="HBoxContainer" parent="UI/RoundCompletePopup"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -50.0
+offset_right = -20.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+alignment = 1
+
+[node name="NextRoundButton" type="Button" parent="UI/RoundCompletePopup/ButtonContainer"]
+custom_minimum_size = Vector2(140, 50)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "Next Round"
+
+[node name="FinishButton" type="Button" parent="UI/RoundCompletePopup/ButtonContainer"]
+custom_minimum_size = Vector2(140, 50)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "Finish Game"
+
+[node name="DifficultyPopup" type="AcceptDialog" parent="UI"]
+title = "🎯 Choose Your Challenge!"
+initial_position = 2
+size = Vector2i(450, 350)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DifficultyPopup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="EasyButton" type="Button" parent="UI/DifficultyPopup/VBoxContainer"]
+custom_minimum_size = Vector2(350, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "😊 Easy (Count to 5-10)"
+
+[node name="MediumButton" type="Button" parent="UI/DifficultyPopup/VBoxContainer"]
+custom_minimum_size = Vector2(350, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "🎯 Medium (Count to 11-20)"
+
+[node name="HardButton" type="Button" parent="UI/DifficultyPopup/VBoxContainer"]
+custom_minimum_size = Vector2(350, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "🔥 Hard (Count to 21-30)"
+
+[node name="GameContainer" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 1.202
+anchor_bottom = 1.225
+offset_right = 7.29602
+offset_bottom = -145.8
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = 68.0
+offset_right = -170.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftColumn" type="VBoxContainer" parent="GameContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 500)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+
+[node name="InstructionsLabel" type="Label" parent="GameContainer/HBoxContainer/LeftColumn"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 28
+text = "Click Numbers in Order!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumbersBubble" type="Panel" parent="GameContainer/HBoxContainer/LeftColumn"]
+custom_minimum_size = Vector2(0, 450)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bubble")
+
+[node name="NumbersBubbleLabel" type="Label" parent="GameContainer/HBoxContainer/LeftColumn/NumbersBubble"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = 10.0
+offset_right = 80.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.2, 0.4, 0.8, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 20
+text = "Number Buttons"
+horizontal_alignment = 1
+
+[node name="NumberGrid" type="GridContainer" parent="GameContainer/HBoxContainer/LeftColumn/NumbersBubble"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 50.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 5
+
+[node name="MiddleColumn" type="VBoxContainer" parent="GameContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="MathCharacter" type="Control" parent="GameContainer/HBoxContainer/MiddleColumn"]
+custom_minimum_size = Vector2(150, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MathSprite" type="Sprite2D" parent="GameContainer/HBoxContainer/MiddleColumn/MathCharacter"]
+position = Vector2(107, 129)
+scale = Vector2(0.269141, 0.239811)
+texture = ExtResource("5_1i1uu")
+
+[node name="NextStepLabel" type="Label" parent="GameContainer/HBoxContainer/MiddleColumn"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.255778, 0.866753, 0.749037, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 24
+text = "Click: 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightColumn" type="VBoxContainer" parent="GameContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="TargetInstructions" type="Label" parent="GameContainer/HBoxContainer/RightColumn"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 28
+text = "Count Up To:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TargetBubble" type="Panel" parent="GameContainer/HBoxContainer/RightColumn"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
 size_flags_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_target_bubble")
+
+[node name="TargetLabel" type="Label" parent="GameContainer/HBoxContainer/RightColumn/TargetBubble"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
+theme_override_fonts/font = ExtResource("3_or1ld")
+theme_override_font_sizes/font_size = 80
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBubble" type="Panel" parent="GameContainer/HBoxContainer/RightColumn"]
+custom_minimum_size = Vector2(0, 260)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_target_bubble")
+
+[node name="ProgressLabel" type="Label" parent="GameContainer/HBoxContainer/RightColumn/ProgressBubble"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = 10.0
+offset_right = 80.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.8, 0.4, 0.2, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 18
+text = "Progress"
+horizontal_alignment = 1
+
+[node name="ProgressGrid" type="GridContainer" parent="GameContainer/HBoxContainer/RightColumn/ProgressBubble"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 40.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 6
+
+[node name="Audio" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+
+[node name="SuccessSound" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -5.0
+
+[node name="ErrorSound" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -3.0
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -15.0
+
+[node name="CharacterArea" type="Control" parent="."]
+custom_minimum_size = Vector2(50, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -383.5
+offset_top = 10.0
+offset_right = 383.5
+offset_bottom = 210.0
+grow_horizontal = 2
+
+[node name="EllieBubble" type="Sprite2D" parent="CharacterArea"]
+position = Vector2(2.5, 87)
+scale = Vector2(0.693957, 0.422619)
+texture = ExtResource("2_wh6qq")
+
+[node name="GameTitle" type="Label" parent="CharacterArea/EllieBubble"]
+offset_left = -165.274
+offset_top = -37.1161
+offset_right = 156.726
+offset_bottom = 32.8839
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_or1ld")
+theme_override_font_sizes/font_size = 60
+text = "COUNT UP!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlsContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_top = 70.0
+offset_right = 476.0
+offset_bottom = 130.0
+grow_horizontal = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+alignment = 1
+
+[node name="StartButton" type="Button" parent="ControlsContainer"]
+custom_minimum_size = Vector2(180, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "🎮 Start Game"
+
+[node name="OptionsButton" type="Button" parent="ControlsContainer"]
+custom_minimum_size = Vector2(140, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "⚙️ Difficulty"
+
+[node name="BackButton" type="Button" parent="ControlsContainer"]
+custom_minimum_size = Vector2(180, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "⬅️ Back to shape match"
+
+[node name="ResetButton" type="Button" parent="ControlsContainer"]
+custom_minimum_size = Vector2(140, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_jife1")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/hover = SubResource("StyleBoxFlat_vlki2")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ighjx")
+text = "🔄 Reset"
