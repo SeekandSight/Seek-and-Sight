@@ -290,7 +290,7 @@ func create_number_buttons():
 		
 		# Style the button
 		var normal_style = StyleBoxFlat.new()
-		normal_style.bg_color = Color.WHITE
+		normal_style.bg_color = Color.BLACK
 		normal_style.border_width_left = 3
 		normal_style.border_width_top = 3
 		normal_style.border_width_right = 3

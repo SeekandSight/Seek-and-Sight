@@ -236,8 +236,14 @@ func connect_signals():
 	back_button.pressed.connect(_on_back_to_menu)
 	
 	easy_btn.pressed.connect(_on_difficulty_selected.bind("easy"))
+	total_rounds = 3
+	print("Complete 3 Rounds")
 	medium_btn.pressed.connect(_on_difficulty_selected.bind("medium"))
+	total_rounds = 4
+	print("Complete 4 Rounds")
 	hard_btn.pressed.connect(_on_difficulty_selected.bind("hard"))
+	total_rounds = 5
+	print("Complete 5 Rounds")
 	
 	next_round_button.pressed.connect(_on_next_round_pressed)
 	finish_button.pressed.connect(_on_finish_game_pressed)
@@ -283,6 +289,7 @@ func auto_start_game():
 func start_new_round():
 	"""Start a new round"""
 	current_round += 1
+	print("Current Round: ", current_round)
 	correct_matches_this_round = 0
 	var level_config = difficulty_levels[current_difficulty]
 	matches_remaining = level_config["count"]
@@ -605,7 +612,7 @@ func animate_success_target(target: Control):
 	tween.tween_property(target, "scale", Vector2.ONE, 0.2)
 
 func handle_correct_match():
-	"""Handle correct match"""
+	print("Handle correct match")
 	correct_matches_this_round += 1
 	total_matches += 1
 	matches_remaining -= 1
@@ -632,26 +639,31 @@ func handle_incorrect_match():
 	show_feedback(messages[randi() % messages.size()], Color.ORANGE, 2.0)
 
 func complete_round():
-	"""Complete current round"""
+	print("Complete current round")
+	current_round + 1
+	print("Round: ", current_round, " out of ", total_rounds)
+	
 	is_game_active = false
 	
 	if current_round < total_rounds:
+		start_new_round()
 		show_feedback("Round %d Complete! 🎉" % current_round, Color.GOLD)
 		await get_tree().create_timer(2.0).timeout
 		start_button.disabled = false
 		start_button.text = "Next Round"
+		print("Next Round Debug")
 	else:
 		complete_game()
 
 func complete_game():
-	"""Complete current difficulty level"""
+	print("Complete current difficulty level")
 	is_game_active = false
 	show_feedback("🏆 %s Mode Complete! 🏆" % current_difficulty.capitalize(), Color.GOLD)
 	await get_tree().create_timer(2.0).timeout
 	show_completion_popup()
 
 func show_completion_popup():
-	"""Show completion popup"""
+	print("Show completion popup")
 	var completion_text = ""
 	var elapsed_time = Time.get_unix_time_from_system() - start_time
 	var minutes = int(elapsed_time) / 60
@@ -663,12 +675,15 @@ func show_completion_popup():
 	completion_text += "[center]⭐ Total Matches: %d[/center]\n\n" % total_matches
 	
 	if current_difficulty == "easy":
+		total_rounds = 3
 		completion_text += "[center][color=cyan]🎯 Ready for Medium difficulty?[/color][/center]"
 		next_round_button.text = "▶️ Play Medium"
 	elif current_difficulty == "medium":
+		total_rounds = 4
 		completion_text += "[center][color=orange]🔥 Ready for Hard difficulty?[/color][/center]"
 		next_round_button.text = "▶️ Play Hard"
 	else:
+		total_rounds = 5
 		completion_text += "[center][color=gold]🌟 CONGRATULATIONS! 🌟[/color][/center]"
 		next_round_button.text = "🎮 Play Again"
 	
@@ -679,21 +694,23 @@ func show_completion_popup():
 	round_complete_popup.show()
 
 func _on_next_round_pressed():
-	"""Handle next difficulty button"""
+	print("Handle next difficulty button")
 	round_complete_popup.hide()
 	
 	if current_difficulty == "hard":
 		current_difficulty = "easy"
+
 	else:
 		if current_difficulty == "easy":
 			current_difficulty = "medium"
+			
 		elif current_difficulty == "medium":
 			current_difficulty = "hard"
 	
 	reset_for_new_difficulty()
 
 func reset_for_new_difficulty():
-	"""Reset game for new difficulty and auto-start"""
+	print("Reset game for new difficulty and auto-start")
 	is_game_started = false
 	current_round = 0
 	total_matches = 0
@@ -701,7 +718,7 @@ func reset_for_new_difficulty():
 	
 	update_rounds_display()
 	start_button.text = "🎮 Start %s" % current_difficulty.capitalize()
-	start_button.disabled = false
+	start_button.disabled = false	
 	
 	# Clear feedback first, then show new difficulty message
 	feedback_label.text = ""

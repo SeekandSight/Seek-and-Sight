@@ -113,6 +113,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
+[node name="Label2" type="Label" parent="Buttons/Options"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 217.0
+offset_right = 380.0
+offset_bottom = 296.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 21
+text = "Disconnected"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Quit" type="TextureButton" parent="Buttons"]
 layout_mode = 2
 texture_normal = ExtResource("7_e5ka2")
