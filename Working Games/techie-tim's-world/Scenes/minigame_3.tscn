@@ -1,0 +1,149 @@
+[gd_scene load_steps=8 format=3 uid="uid://ylfet47lfewu"]
+
+[ext_resource type="Texture2D" uid="uid://dlvtpecq5whgd" path="res://Images/Background.png" id="1_ihkhm"]
+[ext_resource type="FontFile" uid="uid://bl48cdejj2bho" path="res://Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Orbitron/Orbitron-VariableFont_wght.ttf" id="2_we0jk"]
+[ext_resource type="Texture2D" uid="uid://dqnf7jkafrwy" path="res://Tech Coder/TimGesture2.png" id="3_6sdpr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lr4ld"]
+texture = ExtResource("1_ihkhm")
+modulate_color = Color(0.597176, 0.597176, 0.597176, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rpf30"]
+texture = ExtResource("3_6sdpr")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6mal"]
+bg_color = Color(0.762404, 0.762404, 0.762403, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cfv6"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.862745, 0.815686, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Minigame3" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_lr4ld")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 339.0
+offset_top = 16.0
+offset_right = 859.0
+offset_bottom = 112.0
+theme_override_fonts/font = ExtResource("2_we0jk")
+theme_override_font_sizes/font_size = 70
+text = "Audio Prompt"
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 22.0
+offset_right = 274.0
+offset_bottom = 218.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_rpf30")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 229.0
+offset_right = 383.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Audio Prompt"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 147.0
+offset_right = 816.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Target Word Area"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 430)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 150.0
+offset_right = 1144.0
+offset_bottom = 651.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer3"]
+layout_mode = 2
+
+[node name="TimerButton" type="Button" parent="Panel/VBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_we0jk")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_y6mal")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4cfv6")
+text = "Timer"
+
+[node name="MainMenuButton" type="Button" parent="Panel/VBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_we0jk")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_y6mal")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4cfv6")
+text = "Main Menu"
+
+[node name="GameSelectButton" type="Button" parent="Panel/VBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_we0jk")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_y6mal")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4cfv6")
+text = "Game Selection"
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Instructions"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 235)
+layout_mode = 2

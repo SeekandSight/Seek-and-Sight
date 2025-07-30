@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjmvueikyvfbs"]
+
+[ext_resource type="Texture2D" uid="uid://dlvtpecq5whgd" path="res://Images/Background.png" id="1_f6tb2"]
+[ext_resource type="FontFile" uid="uid://bl48cdejj2bho" path="res://Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Orbitron/Orbitron-VariableFont_wght.ttf" id="2_o6yob"]
+[ext_resource type="Texture2D" uid="uid://byhgad58ruhg5" path="res://Tech Coder/TimNeutral.png" id="3_5txvl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0uv5o"]
+texture = ExtResource("1_f6tb2")
+modulate_color = Color(0.74558, 0.74558, 0.74558, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojqsy"]
+bg_color = Color(0.762404, 0.762404, 0.762403, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmcek"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.862745, 0.815686, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ne1wf"]
+texture = ExtResource("3_5txvl")
+
+[node name="Minigame1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0uv5o")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 28.0
+offset_right = 838.0
+offset_bottom = 141.0
+theme_override_fonts/font = ExtResource("2_o6yob")
+theme_override_font_sizes/font_size = 90
+text = "Code Maze"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 163.0
+offset_right = 744.0
+offset_bottom = 646.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Maze Play Area"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 430)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 746.0
+offset_top = 163.0
+offset_right = 1151.0
+offset_bottom = 646.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer2"]
+layout_mode = 2
+
+[node name="TimerButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_o6yob")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_ojqsy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jmcek")
+text = "Timer"
+
+[node name="MainMenuButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_o6yob")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_ojqsy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jmcek")
+text = "Main Menu"
+
+[node name="GameSelectButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_o6yob")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_ojqsy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_jmcek")
+text = "Game Selection"
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Instructions"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 232)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 23.0
+offset_right = 216.0
+offset_bottom = 230.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ne1wf")

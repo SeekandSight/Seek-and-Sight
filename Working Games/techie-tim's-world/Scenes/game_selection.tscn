@@ -1,0 +1,164 @@
+[gd_scene load_steps=10 format=3 uid="uid://cg7hcl4domx30"]
+
+[ext_resource type="Texture2D" uid="uid://dlvtpecq5whgd" path="res://Images/Background.png" id="1_5kv3t"]
+[ext_resource type="FontFile" uid="uid://bl48cdejj2bho" path="res://Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Orbitron/Orbitron-VariableFont_wght.ttf" id="2_5kv3t"]
+[ext_resource type="Texture2D" uid="uid://byhgad58ruhg5" path="res://Tech Coder/TimNeutral.png" id="3_0lr14"]
+[ext_resource type="Texture2D" uid="uid://nfms2evpotrd" path="res://Images/minigame1.png" id="4_ov8iy"]
+[ext_resource type="Texture2D" uid="uid://dethtf2g03jpb" path="res://Images/minigame2.png" id="5_bysyl"]
+[ext_resource type="Texture2D" uid="uid://hrssilcs67gk" path="res://Images/minigame3.png" id="6_qk8bi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0lr14"]
+texture = ExtResource("1_5kv3t")
+modulate_color = Color(0.552956, 0.552956, 0.552956, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bysyl"]
+texture = ExtResource("3_0lr14")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktr47"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.239216, 0.47451, 0.862745, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="GameSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_0lr14")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 302.0
+offset_top = 28.0
+offset_right = 868.0
+offset_bottom = 145.0
+theme_override_fonts/font = ExtResource("2_5kv3t")
+theme_override_font_sizes/font_size = 80
+text = "Games"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 302.0
+offset_top = 2.0
+offset_right = 437.0
+offset_bottom = 152.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_bysyl")
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 161.0
+offset_right = 1154.0
+offset_bottom = 649.0
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer"]
+custom_minimum_size = Vector2(380, 470)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("4_ov8iy")
+expand_mode = 1
+
+[node name="CodeMazeButton" type="Button" parent="Panel/GridContainer/VBoxContainer"]
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5kv3t")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_ktr47")
+text = "Code Maze"
+
+[node name="Label" type="Label" parent="Panel/GridContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Instructions"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/GridContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/GridContainer"]
+custom_minimum_size = Vector2(380, 450)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("5_bysyl")
+expand_mode = 1
+
+[node name="PuzzleButton" type="Button" parent="Panel/GridContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(330, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5kv3t")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_ktr47")
+text = "Complete the Puzzle"
+
+[node name="Label" type="Label" parent="Panel/GridContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Instructions"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/GridContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/GridContainer"]
+custom_minimum_size = Vector2(380, 450)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+texture = ExtResource("6_qk8bi")
+expand_mode = 1
+
+[node name="AudioButton" type="Button" parent="Panel/GridContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5kv3t")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_ktr47")
+text = "Audio Prompt"
+
+[node name="Label" type="Label" parent="Panel/GridContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Instructions"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/GridContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2

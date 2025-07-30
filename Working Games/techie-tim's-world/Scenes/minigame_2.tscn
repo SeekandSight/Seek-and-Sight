@@ -1,0 +1,149 @@
+[gd_scene load_steps=8 format=3 uid="uid://021hsoocbgk3"]
+
+[ext_resource type="Texture2D" uid="uid://dlvtpecq5whgd" path="res://Images/Background.png" id="1_l4g8r"]
+[ext_resource type="FontFile" uid="uid://bl48cdejj2bho" path="res://Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Orbitron/Orbitron-VariableFont_wght.ttf" id="2_dfb65"]
+[ext_resource type="Texture2D" uid="uid://dymdxcxndc6yw" path="res://Tech Coder/TimWave.png" id="3_rfxq2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mmgun"]
+texture = ExtResource("1_l4g8r")
+modulate_color = Color(0.687215, 0.687215, 0.687215, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h684j"]
+texture = ExtResource("3_rfxq2")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu6l1"]
+bg_color = Color(0.762404, 0.762404, 0.762403, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqly6"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.862745, 0.815686, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Minigame2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_mmgun")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 30.0
+offset_right = 985.0
+offset_bottom = 119.0
+theme_override_fonts/font = ExtResource("2_dfb65")
+theme_override_font_sizes/font_size = 70
+text = "Complete the Puzzle"
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 12.0
+offset_right = 170.0
+offset_bottom = 144.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_h684j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 162.0
+offset_right = 436.0
+offset_bottom = 648.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Puzzle Area"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 425)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 447.0
+offset_top = 159.0
+offset_right = 818.0
+offset_bottom = 645.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Sight Words"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 425)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 824.0
+offset_top = 160.0
+offset_right = 1146.0
+offset_bottom = 646.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer3"]
+layout_mode = 2
+
+[node name="TimerButton" type="Button" parent="Panel/VBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_dfb65")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_wu6l1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cqly6")
+text = "Timer"
+
+[node name="MainMenuButton" type="Button" parent="Panel/VBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_dfb65")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_wu6l1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cqly6")
+text = "Main Menu"
+
+[node name="GameSelectButton" type="Button" parent="Panel/VBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_dfb65")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_wu6l1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cqly6")
+text = "Game Selection"
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Instructions"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 235)
+layout_mode = 2
