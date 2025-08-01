@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://ylfet47lfewu"]
 
-[ext_resource type="Texture2D" uid="uid://dlvtpecq5whgd" path="res://Images/Background.png" id="1_ihkhm"]
-[ext_resource type="FontFile" uid="uid://bl48cdejj2bho" path="res://Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Orbitron/Orbitron-VariableFont_wght.ttf" id="2_we0jk"]
-[ext_resource type="Texture2D" uid="uid://dqnf7jkafrwy" path="res://Tech Coder/TimGesture2.png" id="3_6sdpr"]
+[ext_resource type="Texture2D" uid="uid://ccfdqtdbife83" path="res://Assests/images/Background.png" id="1_ihkhm"]
+[ext_resource type="FontFile" uid="uid://de5txl2j3vn6u" path="res://Assests/Fonts/Chewy,Orbitron,Rubik_Distressed/Orbitron/Orbitron-VariableFont_wght.ttf" id="2_we0jk"]
+[ext_resource type="Texture2D" uid="uid://cryufsg3o52d0" path="res://Assests/images/TimGesture.png" id="3_6sdpr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lr4ld"]
 texture = ExtResource("1_ihkhm")
