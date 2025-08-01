@@ -1,3 +1,6 @@
+# Scene4_FixBridge.gd - Updated with Analytics
+# Attach this script to the Scene4_FixBridge root node
+
 extends Node2D
 
 # Game variables
@@ -11,6 +14,7 @@ var current_slot_index = 0
 var is_dragging = false
 var dragged_plank = null
 var original_positions = {}
+var original_font_sizes = {}
 
 # First grade sight words - same as Scene 2
 var sight_words = [
@@ -25,11 +29,39 @@ var word_audio_files = {}
 var feedback_audio_files = {}
 
 func _ready():
+	# --- SETTINGS CHANGE ---
+	apply_settings()
+	store_original_font_sizes()
+	# ------------------------
 	initialize_game()
 	setup_audio_system()
 	load_feedback_audio_files()
 	setup_bridge_sequence()
 	next_word()
+	
+# --- SETTINGS CHANGE ---
+func store_original_font_sizes():
+	var labels_to_scale = [
+		$UI/AudioPanel/ScoreLabel,
+		$UI/AudioPanel/CurrentWordLabel,
+		$UI/InstructionBubble/InstructionText
+	]
+	for label in labels_to_scale:
+		if label:
+			if label.has_theme_font_size("font_size"):
+				original_font_sizes[label] = label.get_theme_font_size("font_size")
+			else:
+				original_font_sizes[label] = 16 # Fallback default size
+
+# The 'apply_settings' function should not take any parameters.
+# gets the scale value directly from the global Settings singleton.
+func apply_settings():
+	# Apply text scaling by adjusting font size override
+	for label in original_font_sizes:
+		var original_size = original_font_sizes[label]
+		var new_size = int(original_size * Settings.text_scale)
+		label.add_theme_font_size_override("font_size", new_size)
+
 
 func initialize_game():
 	# Get word planks (now only 3)
@@ -169,13 +201,16 @@ func highlight_current_slot():
 		var panel = slot.get_node("SlotPanel" + str(i + 1))
 		if panel:
 			if i == current_slot_index:
-				panel.modulate = Color(1.2, 1.2, 0.8, 1)  # Highlight current slot
+				panel.modulate = Color(1.2, 1.2, 0.8, 1) # Highlight current slot
 			else:
 				panel.modulate = Color.WHITE
 
 func play_word_audio(word):
 	await get_tree().create_timer(3.0).timeout
 	if word in word_audio_files and word_audio_files[word] != null:
+		# --- SETTINGS CHANGE ---
+		$Audio/WordAudio.pitch_scale = Settings.audio_speed
+		# ------------------------
 		$Audio/WordAudio.stream = word_audio_files[word]
 		$Audio/WordAudio.play()
 	else:
@@ -195,6 +230,9 @@ func play_feedback_audio(feedback_type):
 			audio_key = "way_to_go"
 	
 	if audio_key in feedback_audio_files and feedback_audio_files[audio_key] != null:
+		# --- SETTINGS CHANGE ---
+		$Audio/CorrectSound.pitch_scale = Settings.audio_speed
+		# ------------------------
 		$Audio/CorrectSound.stream = feedback_audio_files[audio_key]
 		$Audio/CorrectSound.play()
 		print("Playing feedback audio: " + feedback_type)
@@ -276,12 +314,17 @@ func drop_plank_in_slot(plank, slot, slot_index):
 		wrong_placement(plank, slot, slot_index)
 
 func correct_placement(plank, slot, slot_index):
+	# --- ANALYTICS CHANGE ---
+	Analytics.increment_correct_answers()
+	Analytics.add_score(15)
+	# ------------------------
+
 	# Place plank in slot
 	place_plank_in_slot(plank, slot, slot_index)
 	
 	# Update game state
 	score += 15
-	$UI/AudioPanel/ScoreLabel.text = "Score: " + str(score)
+	$UI/AudioPanel/ScoreLabel.text = "Score: " + str(Analytics.score) # Use analytics score
 	placed_planks[slot_index] = plank
 	current_slot_index += 1
 	
@@ -299,6 +342,10 @@ func correct_placement(plank, slot, slot_index):
 	next_word()
 
 func wrong_placement(plank, slot, slot_index):
+	# --- ANALYTICS CHANGE ---
+	Analytics.increment_incorrect_answers()
+	# ------------------------
+
 	# Check if slot is already occupied
 	if slot_index in placed_planks:
 		show_feedback("This spot is already filled! Try another spot.", true)
@@ -475,9 +522,15 @@ func _input(event):
 				stop_dragging()
 
 func _on_back_button_pressed():
+	# --- ANALYTICS CHANGE ---
+	Analytics.save_data()
+	# ------------------------
 	get_tree().change_scene_to_file("res://Levels/Main Menu/Scenes/Scene1_Welcome.tscn")
 
 func _on_next_button_pressed():
+	# --- ANALYTICS CHANGE ---
+	Analytics.save_data()
+	# ------------------------
 	get_tree().quit()
 
 func reset_game():
