@@ -1,0 +1,123 @@
+[gd_scene load_steps=7 format=3 uid="uid://dmsx5b0yagpv7"]
+
+[ext_resource type="Texture2D" uid="uid://dhhdjhddaalyc" path="res://Images/background.png" id="1_ihkhm"]
+[ext_resource type="Texture2D" uid="uid://twngccyb2cy" path="res://Images/EchoWave.png" id="2_we0jk"]
+[ext_resource type="FontFile" uid="uid://clstqc52sg603" path="res://Assets/Fonts/Chewy-Regular.ttf" id="3_6sdpr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lr4ld"]
+texture = ExtResource("1_ihkhm")
+modulate_color = Color(0.61339, 0.61339, 0.61339, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rpf30"]
+texture = ExtResource("2_we0jk")
+modulate_color = Color(0.775063, 0.775063, 0.775063, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6mal"]
+bg_color = Color(0.866667, 0.721569, 0.172549, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.167376, 0.41409, 0, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
+[node name="Minigame3" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_lr4ld")
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 198.0
+offset_right = 316.0
+offset_bottom = 554.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_rpf30")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 428.0
+offset_top = 25.0
+offset_right = 703.0
+offset_bottom = 116.0
+theme_override_fonts/font = ExtResource("3_6sdpr")
+theme_override_font_sizes/font_size = 70
+text = "Word Sort"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 156.0
+offset_right = 783.0
+offset_bottom = 647.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6sdpr")
+theme_override_font_sizes/font_size = 30
+text = "Word Sort Area"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 420)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 798.0
+offset_top = 156.0
+offset_right = 1069.0
+offset_bottom = 647.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer3"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="Panel/VBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(190, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_y6mal")
+text = "Main Menu"
+
+[node name="InstructionButton" type="Button" parent="Panel/VBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(190, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_y6mal")
+text = "Game Selection"
+
+[node name="SettingButton" type="Button" parent="Panel/VBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(190, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_y6mal")
+text = "Settings"
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6sdpr")
+theme_override_font_sizes/font_size = 25
+text = "Game Instructions"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 275)
+layout_mode = 2

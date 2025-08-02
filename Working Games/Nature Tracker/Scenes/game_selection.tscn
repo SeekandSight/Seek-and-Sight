@@ -1,0 +1,168 @@
+[gd_scene load_steps=13 format=3 uid="uid://dj64i4ys75ojs"]
+
+[ext_resource type="Texture2D" uid="uid://dhhdjhddaalyc" path="res://Images/background.png" id="1_0qblp"]
+[ext_resource type="Texture2D" uid="uid://twngccyb2cy" path="res://Images/EchoWave.png" id="2_0lr14"]
+[ext_resource type="FontFile" uid="uid://clstqc52sg603" path="res://Assets/Fonts/Chewy-Regular.ttf" id="3_ov8iy"]
+[ext_resource type="Texture2D" uid="uid://bsecagk5d5jkn" path="res://Images/animal.png" id="4_bysyl"]
+[ext_resource type="Texture2D" uid="uid://ch0qovwgyfmt6" path="res://Images/wordsearch.png" id="5_qk8bi"]
+[ext_resource type="Texture2D" uid="uid://dqvfo46w8f5l1" path="res://Images/wordsort.png" id="6_ktr47"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qw7ht"]
+texture = ExtResource("1_0qblp")
+modulate_color = Color(0.577008, 0.577008, 0.577008, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7kdj"]
+texture = ExtResource("2_0lr14")
+modulate_color = Color(0.724643, 0.724643, 0.724643, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8jea3"]
+texture = ExtResource("4_bysyl")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ufcof"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ah1yd"]
+texture = ExtResource("5_qk8bi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p4sfi"]
+texture = ExtResource("6_ktr47")
+
+[node name="GameSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qw7ht")
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 197.0
+offset_right = 287.0
+offset_bottom = 550.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_r7kdj")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 27.0
+offset_right = 847.0
+offset_bottom = 118.0
+theme_override_fonts/font = ExtResource("3_ov8iy")
+theme_override_font_sizes/font_size = 70
+text = "Game Selection Menu"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 150.0
+offset_right = 364.0
+offset_bottom = 647.0
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_8jea3")
+
+[node name="AnimalMatchButton" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ufcof")
+text = "Animal Match"
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ov8iy")
+theme_override_font_sizes/font_size = 20
+text = "Game Instructions"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 150.0
+offset_right = 719.0
+offset_bottom = 647.0
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ah1yd")
+
+[node name="WordSearchButton" type="Button" parent="Panel/VBoxContainer2"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ufcof")
+text = "Word Search"
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ov8iy")
+theme_override_font_sizes/font_size = 20
+text = "Game Instructions"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="Panel/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 791.0
+offset_top = 151.0
+offset_right = 1058.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_p4sfi")
+
+[node name="WordSortButton" type="Button" parent="Panel/VBoxContainer3"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ufcof")
+text = "Word Sort"
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ov8iy")
+theme_override_font_sizes/font_size = 20
+text = "Game Instructions"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="Panel/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
