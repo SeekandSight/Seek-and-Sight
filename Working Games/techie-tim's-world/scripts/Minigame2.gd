@@ -1,840 +1,504 @@
 extends Control
 
-# Node references - Using correct paths from your scene structure
-@onready var maze_container = $MainContainer/GameContent/LeftPanel/MazeContainer
-@onready var moves_label = $MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer/MovesLabel
-@onready var timer_label = $MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer/TimerLabel
+# Node references
+@onready var robot_container = $MainContainer/GameContent/LeftPanel/RobotContainer
+@onready var robot_face = $MainContainer/GameContent/LeftPanel/RobotContainer/RobotContent/RobotFace
+@onready var error_message = $MainContainer/GameContent/LeftPanel/RobotContainer/RobotContent/ErrorMessage
+@onready var scrambled_display = $MainContainer/GameContent/LeftPanel/RobotContainer/RobotContent/ScrambledDisplay
+
+# Drop zones
+@onready var drop_zone1 = $MainContainer/GameContent/LeftPanel/FixZone/DropZoneContainer/DropZone1
+@onready var drop_zone2 = $MainContainer/GameContent/LeftPanel/FixZone/DropZoneContainer/DropZone2
+@onready var drop_zone3 = $MainContainer/GameContent/LeftPanel/FixZone/DropZoneContainer/DropZone3
+@onready var drop_label1 = $MainContainer/GameContent/LeftPanel/FixZone/DropZoneContainer/DropZone1/DropLabel1
+@onready var drop_label2 = $MainContainer/GameContent/LeftPanel/FixZone/DropZoneContainer/DropZone2/DropLabel2
+@onready var drop_label3 = $MainContainer/GameContent/LeftPanel/FixZone/DropZoneContainer/DropZone3/DropLabel3
+
+# UI elements
+@onready var word_label = $MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer/WordLabel
+@onready var score_label = $MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer/ScoreLabel
 @onready var status_label = $MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer/StatusLabel
-@onready var current_level_label = $MainContainer/Header/LevelContainer/CurrentLevelLabel
 
-# Command builder UI (NEW)
-@onready var command_queue_container = $MainContainer/GameContent/RightPanel/CommandBuilderPanel/CommandBuilderContainer/CommandQueue
-@onready var run_program_button = $MainContainer/GameContent/RightPanel/CommandBuilderPanel/CommandBuilderContainer/CommandButtons/RunProgramButton
-@onready var clear_code_button = $MainContainer/GameContent/RightPanel/CommandBuilderPanel/CommandBuilderContainer/CommandButtons/ClearCodeButton
+# Letter buttons
+@onready var letter_c = $MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/LetterGrid/LetterC
+@onready var letter_a = $MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/LetterGrid/LetterA
+@onready var letter_t = $MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/LetterGrid/LetterT
 
-# Direction buttons (now build commands instead of immediate movement)
-@onready var up_button = $MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/DirectionButtons/UpButton
-@onready var down_button = $MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/DirectionButtons/DownButton
-@onready var left_button = $MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/DirectionButtons/MiddleRow/LeftButton
-@onready var right_button = $MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/DirectionButtons/MiddleRow/RightButton
-
-# Level buttons
-@onready var level1_button = $MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer/Level1Button
-@onready var level2_button = $MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer/Level2Button
-@onready var level3_button = $MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer/Level3Button
-@onready var level4_button = $MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer/Level4Button
-@onready var level5_button = $MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer/Level5Button
-
-# Game buttons
-@onready var reset_button = $MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons/ResetButton
-@onready var main_menu_button = $MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons/MainMenuButton
-@onready var game_select_button = $MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons/GameSelectButton
-
-# Programming concepts (NEW)
-var command_queue = []  # Array of commands to execute
-var max_commands = 8   # Limit commands for difficulty progression
-var is_executing = false
-var execution_speed = 0.5  # Seconds between command execution
-var command_labels = []    # Visual representation of commands
+# Control buttons
+@onready var test_button = $MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons/TestRobotButton
+@onready var next_button = $MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons/NextWordButton
+@onready var reset_button = $MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons/ResetButton
+@onready var main_menu_button = $MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons/MainMenuButton
+@onready var game_select_button = $MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons/GameSelectButton
 
 # Game variables
-var current_level = 1
-var max_level = 5
-var grid_size = Vector2(8, 8)
-var cell_size = 48
-var tim_position = Vector2(0, 0)
-var end_position = Vector2(7, 7)
-var maze_grid = []
-var tim_sprite: Sprite2D
-var maze_cells = []
-var moves_count = 0
-var game_won = false
-var start_time = 0.0
-var game_timer = 0.0
-var timer_running = false
-var level_buttons = []
+var current_word_index = 0
+var robots_fixed = 0
+var selected_letter = ""
+var current_drop_zone = 0
+var robot_fixed = false
 
-# Responsive design variables
-var screen_size: Vector2
-var is_mobile: bool = false
-var scale_factor: float = 1.0
+# Word data - target words and their scrambled versions
+var word_data = [
+	{"target": "CAT", "scrambled": "TAC", "letters": ["C", "A", "T"]},
+	{"target": "DOG", "scrambled": "GOD", "letters": ["D", "O", "G"]},
+	{"target": "BAT", "scrambled": "TAB", "letters": ["B", "A", "T"]},
+	{"target": "SUN", "scrambled": "NUS", "letters": ["S", "U", "N"]},
+	{"target": "RUN", "scrambled": "NUR", "letters": ["R", "U", "N"]},
+	{"target": "BIG", "scrambled": "GIB", "letters": ["B", "I", "G"]},
+	{"target": "RED", "scrambled": "DER", "letters": ["R", "E", "D"]},
+	{"target": "BED", "scrambled": "DEB", "letters": ["B", "E", "D"]},
+	{"target": "HAT", "scrambled": "TAH", "letters": ["H", "A", "T"]},
+	{"target": "CAN", "scrambled": "NAC", "letters": ["C", "A", "N"]}
+]
 
-# Audio system (DISABLED - add audio files later)
-var audio_player: AudioStreamPlayer
-var audio_enabled = false  # Set to true when you add audio files
-var sound_effects = {}
+# Drop zone array for easy access
+var drop_zones = []
+var drop_labels = []
 
-# Command types enum for clarity
-enum Commands {
-	MOVE_UP,
-	MOVE_DOWN, 
-	MOVE_LEFT,
-	MOVE_RIGHT
-}
-
-# Multiple maze layouts for different levels
-var maze_layouts = {
-	1: [  # Level 1 - Easy (clear corridor path)
-		[1, 1, 1, 1, 1, 0, 0, 0],
-		[0, 0, 0, 0, 1, 0, 1, 1],
-		[0, 1, 1, 0, 1, 0, 1, 0],
-		[0, 1, 0, 0, 1, 0, 1, 0],
-		[0, 1, 0, 1, 1, 0, 1, 0],
-		[0, 1, 0, 0, 1, 0, 1, 0],
-		[0, 1, 1, 1, 1, 1, 1, 1],
-		[0, 0, 0, 0, 0, 0, 0, 1]
-	],
-	2: [  # Level 2 - Easy-Medium (simple L-path)
-		[1, 0, 0, 0, 0, 0, 0, 0],
-		[1, 1, 1, 1, 1, 1, 1, 0],
-		[0, 0, 0, 0, 0, 0, 1, 0],
-		[0, 1, 1, 1, 1, 0, 1, 0],
-		[0, 1, 0, 0, 1, 0, 1, 0],
-		[0, 1, 0, 0, 1, 0, 1, 0],
-		[0, 1, 1, 1, 1, 0, 1, 0],
-		[0, 0, 0, 0, 0, 0, 1, 1]
-	],
-	3: [  # Level 3 - Medium (zigzag path)
-		[1, 0, 0, 0, 0, 0, 0, 0],
-		[1, 1, 1, 0, 1, 1, 1, 0],
-		[0, 0, 1, 0, 1, 0, 1, 0],
-		[1, 0, 1, 0, 1, 0, 1, 0],
-		[1, 0, 1, 0, 1, 0, 1, 0],
-		[1, 0, 1, 1, 1, 0, 1, 0],
-		[1, 0, 0, 0, 0, 0, 1, 0],
-		[1, 1, 1, 1, 1, 1, 1, 1]
-	],
-	4: [  # Level 4 - Hard (spiral path)
-		[1, 0, 0, 0, 0, 0, 0, 0],
-		[1, 1, 1, 1, 1, 1, 1, 0],
-		[0, 0, 0, 0, 0, 0, 1, 0],
-		[0, 1, 1, 1, 1, 0, 1, 0],
-		[0, 1, 0, 0, 1, 0, 1, 0],
-		[0, 1, 0, 0, 1, 1, 1, 0],
-		[0, 1, 0, 0, 0, 0, 0, 0],
-		[0, 1, 1, 1, 1, 1, 1, 1]
-	],
-	5: [  # Level 5 - Expert (complex but clear path)
-		[1, 0, 0, 0, 0, 0, 0, 0],
-		[1, 1, 1, 0, 1, 1, 1, 0],
-		[0, 0, 1, 0, 1, 0, 1, 0],
-		[1, 1, 1, 0, 1, 0, 1, 0],
-		[1, 0, 0, 0, 1, 0, 1, 0],
-		[1, 1, 1, 1, 1, 0, 1, 0],
-		[0, 0, 0, 0, 0, 0, 1, 0],
-		[0, 1, 1, 1, 1, 1, 1, 1]
-	]
-}
-
-# Enhanced color scheme with tech aesthetic
-var colors = {
-	"path": Color(0.1, 0.8, 0.4, 1),        # Bright green circuit paths
-	"wall": Color(0.8, 0.1, 0.2, 1),        # Red blocked circuits
-	"start": Color(0.2, 1, 0.2, 1),         # Bright green start terminal
-	"goal": Color(0.0, 0.6, 1, 1),          # Blue goal terminal
-	"trail": Color(1, 0.8, 0.2, 1),         # Yellow execution trail
-	"current": Color(0.8, 0.2, 1, 1),       # Purple - Tim's current position
-	"command_bg": Color(0.1, 0.1, 0.3, 0.9), # Dark blue command blocks
-	"command_text": Color(0.9, 0.9, 1, 1)   # Light text for commands
-}
+# Current word solution
+var solution_sequence = []
+var player_sequence = []
 
 func _ready():
-	# Setup audio player (disabled until audio files are added)
-	audio_player = AudioStreamPlayer.new()
-	add_child(audio_player)
-	audio_enabled = false  # Enable when you add audio files
+	print("🤖 Debug the Word Bot - Starting!")
 	
-	# Detect screen size and adjust for responsive design
-	detect_screen_size()
-	setup_responsive_ui()
-	setup_level_buttons()
-	load_level(current_level)
+	# Setup drop zones array
+	drop_zones = [drop_zone1, drop_zone2, drop_zone3]
+	drop_labels = [drop_label1, drop_label2, drop_label3]
+	
+	# Setup drop zone click detection
+	setup_drop_zones()
+	
+	# Load first word
+	load_current_word()
+	
+	# Connect signals
 	connect_signals()
-	start_game()
 	
-	# Connect to screen resize events
-	get_viewport().size_changed.connect(_on_screen_resized)
+	# Initial UI update
+	update_ui()
 
-func detect_screen_size():
-	"""Detect screen size and set responsive parameters"""
-	screen_size = get_viewport().get_visible_rect().size
-	print("Screen size detected: ", screen_size)
-	
-	# Determine if mobile/small screen
-	is_mobile = screen_size.x < 800 or screen_size.y < 600
-	
-	# Calculate scale factor based on screen size
-	var base_width = 1200.0  # Reference desktop width
-	scale_factor = screen_size.x / base_width
-	scale_factor = clamp(scale_factor, 0.5, 2.0)  # Limit scaling range
-	
-	print("Mobile device: ", is_mobile)
-	print("Scale factor: ", scale_factor)
-
-func setup_responsive_ui():
-	"""Adjust UI elements for different screen sizes"""
-	if is_mobile:
-		setup_mobile_layout()
-	else:
-		setup_desktop_layout()
-
-func setup_mobile_layout():
-	"""Optimize layout for mobile devices"""
-	print("Setting up mobile layout")
-	
-	# Adjust font sizes for mobile
-	var title_size = int(48 * scale_factor)
-	var header_size = int(20 * scale_factor)
-	var button_size = int(16 * scale_factor)
-	
-	# Apply responsive font sizes
-	if current_level_label:
-		current_level_label.add_theme_font_size_override("font_size", header_size)
-	if moves_label:
-		moves_label.add_theme_font_size_override("font_size", header_size)
-	if timer_label:
-		timer_label.add_theme_font_size_override("font_size", header_size)
-	if status_label:
-		status_label.add_theme_font_size_override("font_size", int(14 * scale_factor))
-	
-	# Adjust button sizes for mobile
-	var button_height = int(45 * scale_factor)
-	var button_width = int(80 * scale_factor)
-	
-	adjust_button_sizes(button_width, button_height)
-
-func setup_desktop_layout():
-	"""Optimize layout for desktop"""
-	print("Setting up desktop layout")
-	
-	# Desktop uses original sizes but scaled
-	var title_size = int(72 * scale_factor)
-	var header_size = int(24 * scale_factor)
-	var button_size = int(18 * scale_factor)
-	
-	# Apply scaled font sizes
-	if moves_label:
-		moves_label.add_theme_font_size_override("font_size", header_size)
-	if timer_label:
-		timer_label.add_theme_font_size_override("font_size", header_size)
-	if status_label:
-		status_label.add_theme_font_size_override("font_size", int(16 * scale_factor))
-	
-	# Standard button sizes scaled
-	var button_height = int(50 * scale_factor)
-	var button_width = int(100 * scale_factor)
-	
-	adjust_button_sizes(button_width, button_height)
-
-func adjust_button_sizes(width: int, height: int):
-	"""Adjust all button sizes for responsiveness"""
-	var buttons = [up_button, down_button, left_button, right_button, reset_button, run_program_button, clear_code_button]
-	
-	for button in buttons:
-		if button:
-			button.custom_minimum_size = Vector2(width, height)
-			button.add_theme_font_size_override("font_size", int(16 * scale_factor))
-	
-	# Level buttons (smaller)
-	var level_size = int(35 * scale_factor)
-	for button in level_buttons:
-		if button:
-			button.custom_minimum_size = Vector2(level_size, level_size)
-			button.add_theme_font_size_override("font_size", int(14 * scale_factor))
-
-func _on_screen_resized():
-	"""Handle screen resize events"""
-	print("Screen resized")
-	detect_screen_size()
-	setup_responsive_ui()
-	# Recreate maze with new sizing
-	if maze_grid.size() > 0:
-		setup_maze()
-		setup_tim()
-
-func setup_level_buttons():
-	"""Setup level selection buttons"""
-	level_buttons = [level1_button, level2_button, level3_button, level4_button, level5_button]
-	
-	for i in range(level_buttons.size()):
-		var button = level_buttons[i]
-		if button == null:
-			print("Level button ", i+1, " is null")
-			continue
-			
-		var level_num = i + 1
-		button.pressed.connect(_on_level_selected.bind(level_num))
-		
-		# Highlight current level
-		if level_num == current_level:
-			button.modulate = Color(1.2, 1.2, 1.2, 1)
-		else:
-			button.modulate = Color(0.8, 0.8, 0.8, 1)
-
-func load_level(level_num: int):
-	"""Load a specific level"""
-	if level_num < 1 or level_num > max_level:
-		return
-	
-	current_level = level_num
-	current_level_label.text = str(current_level)
-	
-	# Adjust command limit based on level (progressive difficulty)
-	match current_level:
-		1, 2:
-			max_commands = 6
-		3, 4:
-			max_commands = 8
-		5:
-			max_commands = 10
-	
-	# Load maze layout for this level
-	maze_grid = maze_layouts[current_level].duplicate(true)
-	
-	# Update level button highlights
-	for i in range(level_buttons.size()):
-		if level_buttons[i]:
-			if i + 1 == current_level:
-				level_buttons[i].modulate = Color(1.2, 1.2, 1.2, 1)
-			else:
-				level_buttons[i].modulate = Color(0.8, 0.8, 0.8, 1)
-	
-	setup_maze()
-	setup_tim()
-	clear_command_queue()
-
-func setup_maze():
-	"""Initialize the visual maze grid with responsive sizing"""
-	# Clear any existing maze cells
-	for child in maze_container.get_children():
-		child.queue_free()
-	maze_cells.clear()
-	
-	# Calculate responsive cell size
-	var container_size = maze_container.size
-	if container_size == Vector2.ZERO:
-		if is_mobile:
-			container_size = Vector2(300, 300)
-		else:
-			container_size = Vector2(450, 450)
-	
-	var available_width = container_size.x - 20
-	var available_height = container_size.y - 20
-	var max_cell_size = min(available_width / grid_size.x, available_height / grid_size.y)
-	cell_size = max(max_cell_size - 2, 20)
-	
-	print("Container size: ", container_size)
-	print("Calculated cell size: ", cell_size)
-	
-	# Create visual maze with tech aesthetic
-	for y in range(grid_size.y):
-		var row = []
-		for x in range(grid_size.x):
-			var cell = ColorRect.new()
-			cell.size = Vector2(cell_size, cell_size)
-			cell.position = Vector2(x * (cell_size + 2) + 10, y * (cell_size + 2) + 10)
-			
-			# Tech-themed color coding
-			if x == 0 and y == 0:
-				cell.color = colors.start
-			elif x == end_position.x and y == end_position.y:
-				cell.color = colors.goal
-			elif maze_grid[y][x] == 1:
-				cell.color = colors.path
-			else:
-				cell.color = colors.wall
-			
-			# Add subtle border for tech look
-			var border = ColorRect.new()
-			border.size = Vector2(cell_size + 2, cell_size + 2)
-			border.position = Vector2(x * (cell_size + 2) + 9, y * (cell_size + 2) + 9)
-			border.color = Color(0.3, 0.8, 1, 0.3)  # Subtle blue border
-			border.z_index = -1
-			maze_container.add_child(border)
-			
-			maze_container.add_child(cell)
-			row.append(cell)
-		maze_cells.append(row)
-
-func setup_tim():
-	"""Create and position Tim sprite with responsive scaling"""
-	if tim_sprite:
-		tim_sprite.queue_free()
-	
-	tim_sprite = Sprite2D.new()
-	var tim_texture = preload("res://Assests/images/TimNeutral-removebg-preview.png")
-	tim_sprite.texture = tim_texture
-	
-	# Responsive Tim scaling
-	var tim_scale = (cell_size / 200.0) * scale_factor
-	tim_scale = clamp(tim_scale, 0.08, 0.25)
-	tim_sprite.scale = Vector2(tim_scale, tim_scale)
-	
-	print("Tim scale: ", tim_scale)
-	
-	update_tim_position()
-	maze_container.add_child(tim_sprite)
+func setup_drop_zones():
+	for i in range(drop_zones.size()):
+		var zone = drop_zones[i]
+		var zone_button = Button.new()
+		zone_button.flat = true
+		zone_button.custom_minimum_size = zone.size
+		zone_button.position = Vector2.ZERO
+		zone_button.size = zone.size
+		zone_button.pressed.connect(_on_drop_zone_clicked.bind(i))
+		zone.add_child(zone_button)
 
 func connect_signals():
-	"""Connect all button signals - NOW FOR COMMAND BUILDING"""
-	# Direction buttons now ADD commands instead of moving immediately
-	up_button.pressed.connect(_on_add_command.bind(Commands.MOVE_UP))
-	down_button.pressed.connect(_on_add_command.bind(Commands.MOVE_DOWN))
-	left_button.pressed.connect(_on_add_command.bind(Commands.MOVE_LEFT))
-	right_button.pressed.connect(_on_add_command.bind(Commands.MOVE_RIGHT))
+	# Letter selection buttons
+	letter_c.pressed.connect(_on_letter_selected.bind("C"))
+	letter_a.pressed.connect(_on_letter_selected.bind("A"))
+	letter_t.pressed.connect(_on_letter_selected.bind("T"))
 	
-	# NEW: Program execution buttons
-	run_program_button.pressed.connect(_on_run_program)
-	clear_code_button.pressed.connect(_on_clear_code)
-	
+	# Control buttons
+	test_button.pressed.connect(_on_test_robot_pressed)
+	next_button.pressed.connect(_on_next_word_pressed)
 	reset_button.pressed.connect(_on_reset_pressed)
 	main_menu_button.pressed.connect(_on_main_menu_pressed)
 	game_select_button.pressed.connect(_on_game_select_pressed)
 
-func start_game():
-	"""Initialize game state"""
-	tim_position = Vector2(0, 0)
-	moves_count = 0
-	game_won = false
-	is_executing = false
-	start_time = Time.get_time_dict_from_system()["second"]
-	timer_running = true
-	clear_command_queue()
+func load_current_word():
+	if current_word_index >= word_data.size():
+		show_completion()
+		return
+	
+	var word_info = word_data[current_word_index]
+	solution_sequence = word_info.letters.duplicate()
+	player_sequence = ["", "", ""]
+	robot_fixed = false
+	
+	# Update UI
+	word_label.text = "TARGET WORD: " + word_info.target
+	scrambled_display.text = word_info.scrambled
+	
+	# Reset robot to broken state
+	robot_face.text = "🤖"
+	robot_face.modulate = Color(1, 0.3, 0.3, 1)
+	error_message.text = "ERROR: WORD CIRCUITS SCRAMBLED!"
+	error_message.modulate = Color(1, 0.4, 0.4, 1)
+	
+	# Reset drop zones
+	for i in range(drop_labels.size()):
+		drop_labels[i].text = "?"
+		drop_labels[i].modulate = Color(0.8, 0.8, 1, 1)
+	
+	# Update available letters for current word
+	update_letter_buttons(word_info.letters)
+	
+	# Reset UI
+	current_drop_zone = 0
+	selected_letter = ""
+	
+	# Clear and helpful instructions
+	status_label.text = "Select a letter from the toolbox, then click a slot to place it!"
+	
 	update_ui()
-	show_status("🤖 LEVEL " + str(current_level) + " LOADED! Program Tim's path to the BLUE terminal!")
-	
-	# Update button text to reflect programming theme
-	up_button.text = "⬆ MOVE UP"
-	down_button.text = "⬇ MOVE DOWN"
-	left_button.text = "⬅ MOVE LEFT"
-	right_button.text = "➡ MOVE RIGHT"
 
-# NEW PROGRAMMING FUNCTIONS
-
-func _on_add_command(command: Commands):
-	"""Add a command to the programming queue"""
-	if is_executing or game_won:
-		return
+func update_letter_buttons(available_letters: Array):
+	# Get the letter grid container
+	var letter_grid = $MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/LetterGrid
 	
-	if command_queue.size() >= max_commands:
-		show_status("⚠️ COMMAND LIMIT REACHED! Max " + str(max_commands) + " commands per program.")
-		play_sound("error")
-		return
+	# Clear existing buttons
+	for child in letter_grid.get_children():
+		child.queue_free()
 	
-	# Add command to queue
-	command_queue.append(command)
-	play_sound("command_added")
+	# Wait for nodes to be freed
+	await get_tree().process_frame
 	
-	# Update visual command queue
-	update_command_queue_display()
+	# SHUFFLE the letters so they're not in the correct order!
+	var shuffled_letters = available_letters.duplicate()
+	shuffled_letters.shuffle()
 	
-	# Update status with programming language
-	var command_name = get_command_name(command)
-	show_status("✅ COMMAND ADDED: " + command_name + " | Commands: " + str(command_queue.size()) + "/" + str(max_commands))
-
-func _on_run_program():
-	"""Execute the programmed sequence"""
-	if is_executing or game_won or command_queue.is_empty():
-		return
-	
-	if command_queue.is_empty():
-		show_status("❌ NO PROGRAM TO RUN! Add commands first.")
-		play_sound("error")
-		return
-	
-	show_status("🚀 EXECUTING PROGRAM... " + str(command_queue.size()) + " COMMANDS")
-	play_sound("program_start")
-	
-	is_executing = true
-	disable_programming_buttons()
-	
-	# Execute commands one by one with delay
-	execute_next_command(0)
-
-func _on_clear_code():
-	"""Clear all commands from the queue"""
-	if is_executing:
-		return
+	# Create new letter buttons for current word (in shuffled order)
+	for i in range(shuffled_letters.size()):
+		var letter = shuffled_letters[i]
+		var button = Button.new()
+		button.custom_minimum_size = Vector2(70, 70)
+		button.text = letter
+		button.add_theme_font_size_override("font_size", 32)
+		button.add_theme_color_override("font_color", Color.WHITE)
 		
-	clear_command_queue()
-	show_status("🗑️ PROGRAM CLEARED! Ready to code a new path for Tim.")
-	play_sound("debug")
-
-func clear_command_queue():
-	"""Clear command queue and update display"""
-	command_queue.clear()
-	update_command_queue_display()
-	enable_programming_buttons()
-	is_executing = false
-
-func execute_next_command(index: int):
-	"""Execute commands sequentially with animation"""
-	if index >= command_queue.size():
-		# Program execution complete
-		is_executing = false
-		enable_programming_buttons()
-		show_status("✅ PROGRAM EXECUTION COMPLETE!")
-		return
-	
-	var command = command_queue[index]
-	var direction = get_direction_from_command(command)
-	var command_name = get_command_name(command)
-	
-	# Highlight current command being executed
-	highlight_current_command(index)
-	
-	show_status("⚡ EXECUTING: " + command_name + " (" + str(index + 1) + "/" + str(command_queue.size()) + ")")
-	play_sound("command_execute")
-	
-	# Check if move is valid
-	var new_position = tim_position + direction
-	
-	# Check bounds
-	if new_position.x < 0 or new_position.x >= grid_size.x or \
-	   new_position.y < 0 or new_position.y >= grid_size.y:
-		handle_program_error("🚫 ERROR: BOUNDARY VIOLATION! Tim tried to move outside the grid.", index)
-		return
-	
-	# Check if target cell is walkable
-	if maze_grid[new_position.y][new_position.x] == 0:
-		handle_program_error("🧱 ERROR: WALL COLLISION! Tim hit a wall at command " + str(index + 1) + ".", index)
-		return
-	
-	# Valid move - execute it
-	tim_position = new_position
-	moves_count += 1
-	mark_path_cell(tim_position)
-	animate_tim_movement()
-	update_ui()
-	
-	# Check win condition
-	if tim_position == end_position:
-		win_game()
-		return
-	
-	# Continue to next command after delay
-	await get_tree().create_timer(execution_speed).timeout
-	execute_next_command(index + 1)
-
-func handle_program_error(error_message: String, failed_command_index: int):
-	"""Handle execution errors with debugging info"""
-	is_executing = false
-	enable_programming_buttons()
-	
-	show_status("❌ " + error_message + " 🔧 DEBUG YOUR CODE!")
-	play_sound("error")
-	
-	# Highlight the failed command
-	highlight_failed_command(failed_command_index)
-	
-	# Flash Tim's position to show where the error occurred
-	flash_tim_error()
-
-func update_command_queue_display():
-	"""Update the visual representation of the command queue"""
-	# Clear existing command labels
-	for label in command_labels:
-		if label:
-			label.queue_free()
-	command_labels.clear()
-	
-	# Create new command labels
-	for i in range(command_queue.size()):
-		var command = command_queue[i]
-		var command_name = get_command_name(command)
+		# Apply styles (simplified version)
+		var normal_style = StyleBoxFlat.new()
+		normal_style.bg_color = Color(0.2, 0.2, 0.8, 0.9)
+		normal_style.border_width_left = 3
+		normal_style.border_width_top = 3
+		normal_style.border_width_right = 3
+		normal_style.border_width_bottom = 3
+		normal_style.border_color = Color(0.4, 0.4, 1, 1)
+		normal_style.corner_radius_top_left = 15
+		normal_style.corner_radius_top_right = 15
+		normal_style.corner_radius_bottom_right = 15
+		normal_style.corner_radius_bottom_left = 15
+		button.add_theme_stylebox_override("normal", normal_style)
 		
-		var command_block = create_command_block(command_name, i)
-		command_queue_container.add_child(command_block)
-		command_labels.append(command_block)
+		var hover_style = normal_style.duplicate()
+		hover_style.bg_color = Color(0.3, 0.3, 1, 1)
+		hover_style.border_color = Color(0.5, 0.5, 1, 1)
+		button.add_theme_stylebox_override("hover", hover_style)
+		
+		button.pressed.connect(_on_letter_selected.bind(letter))
+		letter_grid.add_child(button)
 
-func create_command_block(command_text: String, index: int) -> Control:
-	"""Create a visual command block with tech aesthetic"""
-	var block = Panel.new()
-	block.custom_minimum_size = Vector2(120, 30)
+func _on_letter_selected(letter: String):
+	selected_letter = letter
 	
-	# Tech-styled background
-	var style = StyleBoxFlat.new()
-	style.bg_color = colors.command_bg
-	style.border_width_left = 2
-	style.border_width_right = 2
-	style.border_width_top = 2
-	style.border_width_bottom = 2
-	style.border_color = Color(0.3, 0.8, 1, 0.8)
-	style.corner_radius_bottom_left = 8
-	style.corner_radius_bottom_right = 8
-	style.corner_radius_top_left = 8
-	style.corner_radius_top_right = 8
-	block.add_theme_stylebox_override("panel", style)
+	# Clear, non-specific instructions that don't give away the answer
+	var filled_slots = 0
+	for seq in player_sequence:
+		if seq != "":
+			filled_slots += 1
 	
-	# Command text
-	var label = Label.new()
-	label.text = str(index + 1) + ". " + command_text
-	label.add_theme_color_override("font_color", colors.command_text)
-	label.add_theme_font_size_override("font_size", int(14 * scale_factor))
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.anchors_preset = Control.PRESET_FULL_RECT
+	if filled_slots == 0:
+		status_label.text = "Good! Now click any empty slot to place '" + letter + "'"
+	elif filled_slots == 1:
+		status_label.text = "Great! Click another empty slot to place '" + letter + "'"
+	elif filled_slots == 2:
+		status_label.text = "Perfect! Click the last empty slot to place '" + letter + "'"
 	
-	block.add_child(label)
-	return block
+	# Highlight selected letter button
+	var letter_grid = $MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/LetterGrid
+	for child in letter_grid.get_children():
+		if child is Button:
+			if child.text == letter:
+				child.modulate = Color(1.2, 1.2, 1.2, 1)
+				# Add a pulsing effect to show it's selected
+				var tween = create_tween()
+				tween.set_loops()
+				tween.tween_property(child, "modulate", Color(1.5, 1.5, 1.5, 1), 0.5)
+				tween.tween_property(child, "modulate", Color(1.2, 1.2, 1.2, 1), 0.5)
+			else:
+				child.modulate = Color(0.6, 0.6, 0.6, 1)  # Dim other buttons
 
-func highlight_current_command(index: int):
-	"""Highlight the command currently being executed"""
-	if index < command_labels.size() and command_labels[index]:
-		var block = command_labels[index]
-		var tween = create_tween()
-		tween.tween_property(block, "modulate", Color(1.5, 1.5, 1, 1), 0.2)
-		tween.tween_property(block, "modulate", Color(1, 1, 1, 1), 0.2)
+func _on_drop_zone_clicked(zone_index: int):
+	# If slot is filled, remove the letter (click to clear)
+	if player_sequence[zone_index] != "":
+		var removed_letter = player_sequence[zone_index]
+		player_sequence[zone_index] = ""
+		drop_labels[zone_index].text = "?"
+		drop_labels[zone_index].modulate = Color(0.8, 0.8, 1, 1)
+		
+		status_label.text = "Letter '" + removed_letter + "' removed! Select a new letter to place here."
+		
+		# Reset test button highlight if it was highlighted
+		test_button.modulate = Color(1, 1, 1, 1)
+		return
+	
+	if selected_letter == "":
+		# Highlight the letter buttons to guide user
+		var letter_grid = $MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/LetterGrid
+		for child in letter_grid.get_children():
+			if child is Button:
+				child.modulate = Color(1.3, 1.3, 0.5, 1)  # Yellow highlight
+		
+		status_label.text = "⚠️ First select a letter from the toolbox below!"
+		
+		# Reset highlight after 2 seconds
+		await get_tree().create_timer(2.0).timeout
+		for child in letter_grid.get_children():
+			if child is Button:
+				child.modulate = Color(1, 1, 1, 1)
+		return
+	
+	# Place letter in the selected zone
+	player_sequence[zone_index] = selected_letter
+	drop_labels[zone_index].text = selected_letter
+	drop_labels[zone_index].modulate = Color(0.4, 1, 0.8, 1)
+	
+	# Animation for placing letter
+	var tween = create_tween()
+	tween.tween_property(drop_labels[zone_index], "scale", Vector2(1.3, 1.3), 0.2)
+	tween.tween_property(drop_labels[zone_index], "scale", Vector2(1.0, 1.0), 0.2)
+	
+	# Clear selection
+	selected_letter = ""
+	
+	# Reset button highlights
+	var letter_grid = $MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/LetterGrid
+	for child in letter_grid.get_children():
+		if child is Button:
+			child.modulate = Color(1, 1, 1, 1)
+	
+	# Check progress and give clear next steps
+	var filled_slots = 0
+	for seq in player_sequence:
+		if seq != "":
+			filled_slots += 1
+	
+	if filled_slots == 1:
+		status_label.text = "Nice! Select another letter and place it in an empty slot."
+	elif filled_slots == 2:
+		status_label.text = "Almost there! Select the last letter and place it."
+	elif filled_slots == 3:
+		status_label.text = "ALL SLOTS FILLED! Click 'TEST ROBOT' to debug it! 🤖"
+		# Highlight test button
+		test_button.modulate = Color(1.3, 1.3, 0.5, 1)
+		var test_tween = create_tween()
+		test_tween.set_loops()
+		test_tween.tween_property(test_button, "modulate", Color(1.5, 1.5, 0.7, 1), 0.6)
+		test_tween.tween_property(test_button, "modulate", Color(1.3, 1.3, 0.5, 1), 0.6)
 
-func highlight_failed_command(index: int):
-	"""Highlight the command that caused an error"""
-	if index < command_labels.size() and command_labels[index]:
-		var block = command_labels[index]
-		block.modulate = Color(1.5, 0.5, 0.5, 1)  # Red highlight for error
+func _on_test_robot_pressed():
+	# Reset test button highlight
+	test_button.modulate = Color(1, 1, 1, 1)
+	
+	# Check if all slots are filled
+	var all_filled = true
+	for letter in player_sequence:
+		if letter == "":
+			all_filled = false
+			break
+	
+	if not all_filled:
+		status_label.text = "⚠️ FILL ALL 3 SLOTS before testing the robot!"
+		
+		# Highlight empty slots
+		for i in range(player_sequence.size()):
+			if player_sequence[i] == "":
+				drop_labels[i].modulate = Color(1, 0.5, 0.5, 1)  # Red highlight
+				var tween = create_tween()
+				tween.set_loops(3)
+				tween.tween_property(drop_labels[i], "scale", Vector2(1.2, 1.2), 0.3)
+				tween.tween_property(drop_labels[i], "scale", Vector2(1.0, 1.0), 0.3)
+		
+		await get_tree().create_timer(2.0).timeout
+		# Reset highlights
+		for i in range(drop_labels.size()):
+			if player_sequence[i] == "":
+				drop_labels[i].modulate = Color(0.8, 0.8, 1, 1)
+		return
+	
+	# Add suspense before showing result
+	status_label.text = "🔍 TESTING ROBOT... ANALYZING CIRCUITS..."
+	
+	# Brief loading animation
+	for i in range(3):
+		status_label.text = "🔍 TESTING ROBOT" + ".".repeat(i + 1)
+		await get_tree().create_timer(0.5).timeout
+	
+	# Check if sequence is correct
+	var is_correct = true
+	for i in range(solution_sequence.size()):
+		if i < player_sequence.size() and player_sequence[i] != solution_sequence[i]:
+			is_correct = false
+			break
+	
+	if is_correct:
+		fix_robot()
+	else:
+		show_debug_failure()
 
-func flash_tim_error():
-	"""Flash Tim's sprite to indicate error location"""
+func fix_robot():
+	robot_fixed = true
+	robots_fixed += 1
+	
+	# Update robot appearance to fixed
+	robot_face.text = "🤖"
+	robot_face.modulate = Color(0.3, 1, 0.3, 1)
+	error_message.text = "ROBOT ONLINE - WORD CIRCUITS FUNCTIONAL!"
+	error_message.modulate = Color(0.3, 1, 0.3, 1)
+	scrambled_display.text = word_data[current_word_index].target
+	scrambled_display.modulate = Color(0.3, 1, 0.3, 1)
+	
+	# Change robot container style to green
+	var fixed_style = StyleBoxFlat.new()
+	fixed_style.bg_color = Color(0.05, 0.15, 0.05, 0.95)
+	fixed_style.border_width_left = 4
+	fixed_style.border_width_top = 4
+	fixed_style.border_width_right = 4
+	fixed_style.border_width_bottom = 4
+	fixed_style.border_color = Color(0.2, 1, 0.2, 1)
+	fixed_style.corner_radius_top_left = 20
+	fixed_style.corner_radius_top_right = 20
+	fixed_style.corner_radius_bottom_right = 20
+	fixed_style.corner_radius_bottom_left = 20
+	fixed_style.shadow_color = Color(0.2, 1, 0.2, 0.3)
+	fixed_style.shadow_size = 8
+	robot_container.add_theme_stylebox_override("panel", fixed_style)
+	
+	# Celebration animation
 	var tween = create_tween()
 	tween.set_loops(3)
-	tween.tween_property(tim_sprite, "modulate", Color(1.5, 0.5, 0.5, 1), 0.2)
-	tween.tween_property(tim_sprite, "modulate", Color(1, 1, 1, 1), 0.2)
-
-func disable_programming_buttons():
-	"""Disable programming UI during execution"""
-	up_button.disabled = true
-	down_button.disabled = true
-	left_button.disabled = true
-	right_button.disabled = true
-	run_program_button.disabled = true
-	clear_code_button.disabled = true
-
-func enable_programming_buttons():
-	"""Re-enable programming UI"""
-	if not game_won:
-		up_button.disabled = false
-		down_button.disabled = false
-		left_button.disabled = false
-		right_button.disabled = false
-		run_program_button.disabled = false
-		clear_code_button.disabled = false
-
-func get_command_name(command: Commands) -> String:
-	"""Convert command enum to display string"""
-	match command:
-		Commands.MOVE_UP:
-			return "MOVE UP"
-		Commands.MOVE_DOWN:
-			return "MOVE DOWN"
-		Commands.MOVE_LEFT:
-			return "MOVE LEFT"
-		Commands.MOVE_RIGHT:
-			return "MOVE RIGHT"
-		_:
-			return "UNKNOWN"
-
-func get_direction_from_command(command: Commands) -> Vector2:
-	"""Convert command enum to direction vector"""
-	match command:
-		Commands.MOVE_UP:
-			return Vector2(0, -1)
-		Commands.MOVE_DOWN:
-			return Vector2(0, 1)
-		Commands.MOVE_LEFT:
-			return Vector2(-1, 0)
-		Commands.MOVE_RIGHT:
-			return Vector2(1, 0)
-		_:
-			return Vector2.ZERO
-
-func play_sound(sound_name: String):
-	"""Play sound effects - currently disabled until audio files are added"""
-	if audio_enabled and sound_effects.has(sound_name) and audio_player:
-		audio_player.stream = sound_effects[sound_name]
-		audio_player.play()
+	tween.tween_property(robot_face, "scale", Vector2(1.2, 1.2), 0.3)
+	tween.tween_property(robot_face, "scale", Vector2(1.0, 1.0), 0.3)
+	
+	status_label.text = "🎉 ROBOT FIXED! Word debugged successfully! 🎉"
+	
+	# Auto-advance after 2 seconds
+	await get_tree().create_timer(2.0).timeout
+	if current_word_index < word_data.size() - 1:
+		_on_next_word_pressed()
 	else:
-		# For now, just print what sound would play (for debugging)
-		print("🔊 SOUND: " + sound_name)
+		show_completion()
 
-# EXISTING FUNCTIONS (Enhanced with Programming Theme)
+func show_debug_failure():
+	status_label.text = "❌ DEBUG FAILED! The robot is still glitching..."
+	
+	# Show what went wrong with detailed feedback
+	await get_tree().create_timer(1.0).timeout
+	
+	var feedback = "🔍 DEBUGGING REPORT:\n"
+	var correct_word = word_data[current_word_index].target
+	var your_word = ""
+	for letter in player_sequence:
+		your_word += letter
+	
+	feedback += "• Target: " + correct_word + "\n"
+	feedback += "• Your attempt: " + your_word + "\n"
+	feedback += "• Try rearranging the letters!"
+	
+	status_label.text = feedback
+	
+	# Flash incorrect positions red
+	for i in range(player_sequence.size()):
+		if i < solution_sequence.size() and player_sequence[i] != solution_sequence[i]:
+			drop_labels[i].modulate = Color(1, 0.3, 0.3, 1)
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	# Reset to normal color but keep letters
+	for i in range(drop_labels.size()):
+		if player_sequence[i] != "":
+			drop_labels[i].modulate = Color(0.4, 1, 0.8, 1)
+	
+	status_label.text = "Try again! Click letters to remove them, or reset to start over."
 
-func _on_level_selected(level_num: int):
-	"""Handle level selection"""
-	if level_num != current_level and not is_executing:
-		load_level(level_num)
-		start_game()
-
-func animate_tim_movement():
-	"""Smooth movement animation for Tim with tech effects"""
-	var target_pos = Vector2(
-		tim_position.x * (cell_size + 2) + cell_size/2 + 10,
-		tim_position.y * (cell_size + 2) + cell_size/2 + 10-15
-	)
+func _on_next_word_pressed():
+	if not robot_fixed:
+		status_label.text = "Fix the current robot first!"
+		return
 	
-	var tween = create_tween()
-	tween.tween_property(tim_sprite, "position", target_pos, 0.25)
-	
-	# Add subtle tech effect during movement
-	var original_modulate = tim_sprite.modulate
-	tween.parallel().tween_property(tim_sprite, "modulate", Color(0.5, 1, 1, 1), 0.125)
-	tween.tween_property(tim_sprite, "modulate", original_modulate, 0.125)
-
-func update_tim_position():
-	"""Update Tim's visual position on the maze"""
-	var pixel_pos = Vector2(
-		tim_position.x * (cell_size + 2) + cell_size/2 + 10,
-		tim_position.y * (cell_size + 2) + cell_size/2 + 10 - 15
-	)
-	tim_sprite.position = pixel_pos
-
-func mark_path_cell(pos: Vector2):
-	"""Mark cells that Tim has visited with tech trail effect"""
-	if pos != Vector2(0, 0) and pos != end_position:
-		maze_cells[pos.y][pos.x].color = colors.trail
-		
-		# Add subtle glow effect to trail
-		var tween = create_tween()
-		var original_color = colors.trail
-		var bright_color = Color(original_color.r * 1.3, original_color.g * 1.3, original_color.b * 1.3, 1)
-		tween.tween_property(maze_cells[pos.y][pos.x], "color", bright_color, 0.2)
-		tween.tween_property(maze_cells[pos.y][pos.x], "color", original_color, 0.3)
-
-func update_ui():
-	"""Update all UI elements with programming terminology"""
-	moves_label.text = "COMMANDS EXECUTED: " + str(moves_count)
-	
-	if timer_running:
-		var current_time = Time.get_time_dict_from_system()["second"]
-		game_timer = current_time - start_time
-		var minutes = int(game_timer) / 60
-		var seconds = int(game_timer) % 60
-		timer_label.text = "RUNTIME: %02d:%02d" % [minutes, seconds]
-
-func show_status(message: String):
-	"""Update status display with tech formatting"""
-	status_label.text = message
-
-func win_game():
-	"""Handle win condition with programming celebration"""
-	game_won = true
-	timer_running = false
-	is_executing = false
-	
-	show_status("🎉 PROGRAM SUCCESSFUL! LEVEL " + str(current_level) + " COMPLETE! 🎉")
-	play_sound("success")
-	
-	# Disable all programming UI
-	disable_programming_buttons()
-	
-	# Tech celebration - highlight goal with circuit pattern
-	maze_cells[end_position.y][end_position.x].color = Color.GOLD
-	
-	# Celebration animation with tech theme
-	var tween = create_tween()
-	tween.set_loops(3)
-	var current_scale = tim_sprite.scale.x
-	tween.tween_property(tim_sprite, "scale", Vector2(current_scale * 1.3, current_scale * 1.3), 0.2)
-	tween.tween_property(tim_sprite, "scale", Vector2(current_scale, current_scale), 0.2)
-	
-	# Auto-advance to next level after celebration
-	await get_tree().create_timer(3.0).timeout
-	if current_level < max_level:
-		show_status("🚀 LOADING NEXT PROGRAMMING CHALLENGE...")
-		await get_tree().create_timer(1.0).timeout
-		load_level(current_level + 1)
-		reset_game_state()
-		start_game()
-	else:
-		show_status("🏆 ALL SYSTEMS DEBUGGED! You're a master programmer! 🏆")
-
-func reset_game_state():
-	"""Reset game state for new level"""
-	tim_position = Vector2(0, 0)
-	moves_count = 0
-	game_won = false
-	is_executing = false
-	timer_running = true
-	start_time = Time.get_time_dict_from_system()["second"]
-	
-	clear_command_queue()
-	update_tim_position()
+	current_word_index += 1
+	load_current_word()
 
 func _on_reset_pressed():
-	"""Reset the current level to initial state"""
-	if is_executing:
-		return  # Don't allow reset during execution
-		
-	reset_game_state()
+	# Reset current word
+	player_sequence = ["", "", ""]
+	selected_letter = ""
 	
-	# Reset maze colors to original state
-	for y in range(grid_size.y):
-		for x in range(grid_size.x):
-			if x == 0 and y == 0:
-				maze_cells[y][x].color = colors.start
-			elif x == end_position.x and y == end_position.y:
-				maze_cells[y][x].color = colors.goal
-			elif maze_grid[y][x] == 1:
-				maze_cells[y][x].color = colors.path
-			else:
-				maze_cells[y][x].color = colors.wall
+	# Reset drop zones
+	for i in range(drop_labels.size()):
+		drop_labels[i].text = "?"
+		drop_labels[i].modulate = Color(0.8, 0.8, 1, 1)
 	
+	# Reset robot to broken state
+	var broken_style = StyleBoxFlat.new()
+	broken_style.bg_color = Color(0.05, 0.05, 0.15, 0.95)
+	broken_style.border_width_left = 4
+	broken_style.border_width_top = 4
+	broken_style.border_width_right = 4
+	broken_style.border_width_bottom = 4
+	broken_style.border_color = Color(1, 0.2, 0.2, 1)
+	broken_style.corner_radius_top_left = 20
+	broken_style.corner_radius_top_right = 20
+	broken_style.corner_radius_bottom_right = 20
+	broken_style.corner_radius_bottom_left = 20
+	broken_style.shadow_color = Color(1, 0.2, 0.2, 0.3)
+	broken_style.shadow_size = 8
+	robot_container.add_theme_stylebox_override("panel", broken_style)
+	
+	robot_face.modulate = Color(1, 0.3, 0.3, 1)
+	error_message.text = "ERROR: WORD CIRCUITS SCRAMBLED!"
+	error_message.modulate = Color(1, 0.4, 0.4, 1)
+	scrambled_display.text = word_data[current_word_index].scrambled
+	scrambled_display.modulate = Color(1, 0.2, 0.2, 1)
+	
+	robot_fixed = false
 	update_ui()
-	show_status("🔄 SYSTEM RESET! Program Tim's path to the BLUE terminal.")
-	play_sound("debug")
+	status_label.text = "Robot reset! Try debugging it again."
+
+func show_completion():
+	status_label.text = "🏆 ALL ROBOTS FIXED! You're a debugging master! 🏆"
+	robot_face.text = "🏆"
+	robot_face.modulate = Color.GOLD
+	error_message.text = "CONGRATULATIONS - ALL SYSTEMS OPERATIONAL!"
+	error_message.modulate = Color.GOLD
+	scrambled_display.text = "MISSION COMPLETE!"
+	scrambled_display.modulate = Color.GOLD
+
+func update_ui():
+	score_label.text = "ROBOTS FIXED: " + str(robots_fixed)
+	
+	if robot_fixed:
+		status_label.text = "✅ Robot fixed! Ready for next challenge."
+	elif selected_letter != "":
+		status_label.text = "Selected: " + selected_letter + " - Click a slot to place it!"
+	else:
+		var filled_slots = 0
+		for seq in player_sequence:
+			if seq != "":
+				filled_slots += 1
+		
+		if filled_slots == 0:
+			status_label.text = "Click a letter below to start debugging!"
+		elif filled_slots == 3:
+			status_label.text = "All slots filled! Click 'TEST ROBOT' button!"
+		else:
+			status_label.text = "Continue filling slots... " + str(3 - filled_slots) + " more needed!"
 
 func _on_main_menu_pressed():
-	"""Return to main menu"""
-	if is_executing:
-		return  # Don't allow menu change during execution
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func _on_game_select_pressed():
-	"""Go to game selection screen"""
-	if is_executing:
-		return  # Don't allow game change during execution
 	get_tree().change_scene_to_file("res://Scenes/game_selection.tscn")
 
-# Enhanced keyboard input with programming shortcuts
+# Keyboard input for accessibility
 func _input(event):
-	if game_won or is_executing:
-		return
-		
 	if event is InputEventKey and event.pressed:
 		match event.keycode:
-			KEY_UP, KEY_W:
-				_on_add_command(Commands.MOVE_UP)
-			KEY_DOWN, KEY_S:
-				_on_add_command(Commands.MOVE_DOWN)
-			KEY_LEFT, KEY_A:
-				_on_add_command(Commands.MOVE_LEFT)
-			KEY_RIGHT, KEY_D:
-				_on_add_command(Commands.MOVE_RIGHT)
-			KEY_ENTER, KEY_SPACE:  # Run program
-				_on_run_program()
-			KEY_BACKSPACE, KEY_DELETE:  # Clear program
-				_on_clear_code()
-			KEY_R:  # Reset
+			KEY_1, KEY_2, KEY_3:
+				var zone_index = event.keycode - KEY_1
+				if zone_index < drop_zones.size():
+					_on_drop_zone_clicked(zone_index)
+			KEY_SPACE, KEY_ENTER:
+				_on_test_robot_pressed()
+			KEY_N:
+				_on_next_word_pressed()
+			KEY_R:
 				_on_reset_pressed()
-			KEY_1, KEY_2, KEY_3, KEY_4, KEY_5:  # Level selection
-				var level_num = event.keycode - KEY_0
-				if level_num >= 1 and level_num <= max_level:
-					_on_level_selected(level_num)
-
-# Accessibility helper functions
-func get_current_status_for_screen_reader() -> String:
-	"""Provide detailed status for screen readers"""
-	var status = "Tim is at position " + str(tim_position) + ". "
-	status += "Commands in queue: " + str(command_queue.size()) + " of " + str(max_commands) + ". "
-	if is_executing:
-		status += "Program is currently executing. "
-	elif game_won:
-		status += "Level complete! "
-	else:
-		status += "Ready to add commands. "
-	return status
-
-func announce_command_added(command: Commands):
-	"""Announce command additions for accessibility"""
-	var command_name = get_command_name(command)
-	var announcement = "Added command: " + command_name + ". Total commands: " + str(command_queue.size())
-	# This would integrate with screen reader APIs in a real implementation
-	print("ACCESSIBILITY: " + announcement)
