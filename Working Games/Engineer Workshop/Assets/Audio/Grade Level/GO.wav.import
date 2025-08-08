@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://7jhnnp0st4ey"
+path="res://.godot/imported/GO.wav-cc9e067c4c42e75ea65d0944f0ae0f98.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Grade Level/GO.wav"
+dest_files=["res://.godot/imported/GO.wav-cc9e067c4c42e75ea65d0944f0ae0f98.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

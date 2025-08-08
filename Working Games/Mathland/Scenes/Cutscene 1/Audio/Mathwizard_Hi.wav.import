@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cvb68kef5rudk"
+path="res://.godot/imported/Mathwizard_Hi.wav-42c43f5cfe6b21ad3b9b89d23c19a517.sample"
+
+[deps]
+
+source_file="res://Scenes/Cutscene 1/Audio/Mathwizard_Hi.wav"
+dest_files=["res://.godot/imported/Mathwizard_Hi.wav-42c43f5cfe6b21ad3b9b89d23c19a517.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

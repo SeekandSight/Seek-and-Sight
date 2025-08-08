@@ -1,0 +1,57 @@
+{
+	"audio_settings": {
+		"fallback_formats": [
+			"wav",
+			"mp3"
+		],
+		"preferred_format": "ogg",
+		"web_compatible": true
+	},
+	"levels": {
+		"level_1": {
+			"description": "Easy 2-letter words",
+			"difficulty": "beginner",
+			"target_age": "4-6 years",
+			"words": {
+				"as": "res://Assets/Audio/First Grade Words/AS.wav",
+				"by": "res://Assets/Audio/First Grade Words/BY.wav",
+				"do": "res://Assets/Audio/First Grade Words/DO.wav",
+				"in": "res://Assets/Audio/First Grade Words/IN.wav",
+				"me": "res://Assets/Audio/First Grade Words/ME.wav",
+				"on": "res://Assets/Audio/First Grade Words/ON.wav"
+			}
+		},
+		"level_2": {
+			"description": "Medium 3-letter words",
+			"difficulty": "intermediate",
+			"target_age": "5-7 years",
+			"words": {
+				"all": "res://Assets/Audio/First Grade Words/ALL.wav",
+				"and": "res://Assets/Audio/First Grade Words/AND.wav",
+				"did": "res://Assets/Audio/First Grade Words/DID.wav",
+				"him": "res://Assets/Audio/First Grade Words/HIM.wav",
+				"out": "res://Assets/Audio/First Grade Words/OUT.wav",
+				"too": "res://Assets/Audio/First Grade Words/TOO.wav"
+			}
+		},
+		"level_3": {
+			"description": "Hard 4-letter words",
+			"difficulty": "advanced",
+			"target_age": "6-8 years",
+			"words": {
+				"came": "res://Assets/Audio/First Grade Words/CAME.wav",
+				"down": "res://Assets/Audio/First Grade Words/DOWN.wav",
+				"have": "res://Assets/Audio/First Grade Words/HAVE.wav",
+				"just": "res://Assets/Audio/First Grade Words/JUST.wav",
+				"like": "res://Assets/Audio/First Grade Words/LIKE.wav",
+				"that": "res://Assets/Audio/First Grade Words/THAT.wav"
+			}
+		}
+	},
+	"metadata": {
+		"description": "Auto-generated audio configuration for web export",
+		"generated_at": "2025-07-15T13:11:59",
+		"generator_version": "1.0",
+		"total_files": 80
+	}
+}

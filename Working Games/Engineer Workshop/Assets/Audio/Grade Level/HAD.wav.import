@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cfkfnxtvojk5o"
+path="res://.godot/imported/HAD.wav-744b9c866afe3310c97b95a58093c51a.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Grade Level/HAD.wav"
+dest_files=["res://.godot/imported/HAD.wav-744b9c866afe3310c97b95a58093c51a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

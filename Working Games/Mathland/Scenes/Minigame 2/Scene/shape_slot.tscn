@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnqbq7fnul8mc"]
+
+[ext_resource type="Script" uid="uid://dcqf7g0e2pi0m" path="res://Scenes/Minigame 2/Script/shape_slot.gd" id="1_352sl"]
+
+[node name="ShapeSlot" type="Control"]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 3
+anchor_top = 0.714
+anchor_right = 1.0
+anchor_bottom = 0.981
+offset_top = -0.0800171
+offset_bottom = -0.320068
+script = ExtResource("1_352sl")
+
+[node name="Shape" type="Sprite2D" parent="."]
+
+[node name="CorrectSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="IncorrectSound" type="AudioStreamPlayer2D" parent="."]

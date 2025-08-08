@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6qkisn7ajsu3"]
+
+[ext_resource type="Script" uid="uid://c8q3sg5uickte" path="res://Scenes/MainMenu/Script/main_menu.gd" id="1_ghw46"]
+[ext_resource type="Texture2D" uid="uid://vwtbtrplan2s" path="res://Images/Mathland BG.png" id="2_df05h"]
+[ext_resource type="PackedScene" uid="uid://m3t66le74ck3" path="res://Scenes/MainMenu/Scene/play_btn.tscn" id="4_ghw46"]
+[ext_resource type="Texture2D" uid="uid://k0okhij3m1bv" path="res://Images/MathlandTitle.png" id="4_xim88"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ghw46")
+
+[node name="MathlandBg" type="Sprite2D" parent="."]
+position = Vector2(640, 359.5)
+scale = Vector2(2.0641, 1.56681)
+texture = ExtResource("2_df05h")
+
+[node name="ChatGptImageJun23,2025,023920Pm" type="Sprite2D" parent="."]
+position = Vector2(666, 150)
+scale = Vector2(0.488281, 0.432617)
+texture = ExtResource("4_xim88")
+
+[node name="Play_btn" parent="." instance=ExtResource("4_ghw46")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 414.0
+offset_top = 352.0
+offset_right = 1958.0
+offset_bottom = 1384.0

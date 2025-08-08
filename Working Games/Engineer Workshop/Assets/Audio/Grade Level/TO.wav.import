@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b11xoe25qugef"
+path="res://.godot/imported/TO.wav-7c439547aff1aa736f348946afd6dd5b.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Grade Level/TO.wav"
+dest_files=["res://.godot/imported/TO.wav-7c439547aff1aa736f348946afd6dd5b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cdjp1iex6j4ff"
+path="res://.godot/imported/NOT QUIET.wav-7252918f6bf3e4dd75f0d0e2cbae9551.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Feedback/NOT QUIET.wav"
+dest_files=["res://.godot/imported/NOT QUIET.wav-7252918f6bf3e4dd75f0d0e2cbae9551.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

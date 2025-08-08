@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dl0d48ak2f2rb"
+path="res://.godot/imported/OFF.wav-c74d9be1bd8ee5adeb9f36084f79c36e.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/First Grade Words/OFF.wav"
+dest_files=["res://.godot/imported/OFF.wav-c74d9be1bd8ee5adeb9f36084f79c36e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

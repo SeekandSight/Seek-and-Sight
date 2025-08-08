@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqymm5ktquc5f"]
+
+[ext_resource type="Texture2D" uid="uid://vwtbtrplan2s" path="res://Images/Mathland BG.png" id="1_4aqp3"]
+[ext_resource type="Texture2D" uid="uid://cl0jgfcr54c56" path="res://Images/MathNeutral.png" id="2_ffmmy"]
+[ext_resource type="Script" uid="uid://3eyfgdhewnwf" path="res://Scenes/Minigame 2/Script/activity.gd" id="3_x1vg2"]
+
+[node name="Minigame2" type="Node2D"]
+
+[node name="Images" type="Node" parent="."]
+
+[node name="MathlandBg" type="Sprite2D" parent="Images"]
+position = Vector2(633.5, 363)
+scale = Vector2(2.06571, 1.55172)
+texture = ExtResource("1_4aqp3")
+
+[node name="MathNeutral" type="Sprite2D" parent="Images"]
+position = Vector2(186, 527)
+scale = Vector2(0.350098, 0.291016)
+texture = ExtResource("2_ffmmy")
+
+[node name="Activity" type="Node" parent="."]
+script = ExtResource("3_x1vg2")
+
+[node name="Shapes" type="GridContainer" parent="Activity"]
+anchors_preset = -1
+anchor_right = 0.996
+anchor_bottom = 0.412
+offset_left = 368.0
+offset_top = 422.0
+offset_right = 0.119873
+offset_bottom = 422.36
+columns = 5
+
+[node name="ShapeSlot" type="Container" parent="Activity/Shapes"]
+layout_mode = 2
+
+[node name="Shape" type="Sprite2D" parent="Activity/Shapes/ShapeSlot"]
+
+[node name="Names" type="GridContainer" parent="Activity"]
+anchors_preset = -1
+anchor_left = 0.205
+anchor_top = 0.096
+anchor_right = 0.999
+anchor_bottom = 0.365
+offset_left = -95.4
+offset_top = -0.120003
+offset_right = -94.7201
+offset_bottom = 0.199982
+columns = 5
+
+[node name="NameSlot" type="Container" parent="Activity/Names"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Activity/Names/NameSlot"]
+layout_mode = 2

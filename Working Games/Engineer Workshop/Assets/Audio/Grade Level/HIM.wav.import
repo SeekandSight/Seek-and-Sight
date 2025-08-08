@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bfiqvwbrtt8pe"
+path="res://.godot/imported/HIM.wav-e0aaee07c90e7145fa4ee9d87de0489c.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Grade Level/HIM.wav"
+dest_files=["res://.godot/imported/HIM.wav-e0aaee07c90e7145fa4ee9d87de0489c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
