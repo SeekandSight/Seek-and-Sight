@@ -371,5 +371,6 @@ volume_db = -3.0
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="Audio"]
 volume_db = -15.0
 
+[connection signal="pressed" from="UI/NavButtons/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="UI/NavButtons/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="finished" from="UI/NavButtons/ListenToTheWordAndDragItToBuildYourTower" to="." method="_on_listen_to_the_word_and_drag_it_to_build_your_tower_finished"]

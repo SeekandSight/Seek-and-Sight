@@ -1,4 +1,4 @@
-# Scene3_ToolMatch.gd - Updated with Correct Asset Paths
+# Scene3_ToolMatch.gd - Updated with Correct Asset Paths and Analytics
 # Attach this script to the Scene3_ToolMatch root node
 
 extends Node2D
@@ -9,16 +9,36 @@ var original_tool_positions = {}
 var matches_made = 0
 var total_matches = 4
 var matched_pairs = {}
+var original_font_sizes = {}
 
 # Audio system variables
 var word_audio_files = {}
 var feedback_audio_files = {}
 
 func _ready():
+	# --- SETTINGS CHANGE ---
+	apply_settings()
+	store_original_font_sizes()
+	# ------------------------
 	store_original_positions()
 	setup_tools()
 	load_all_audio_files()
 	play_welcome_audio()
+	
+func store_original_font_sizes():
+	var instruction_label = get_node_or_null("UI/InstructionBubble/InstructionText")
+	if instruction_label:
+		if instruction_label.has_theme_font_size("font_size"):
+			original_font_sizes[instruction_label] = instruction_label.get_theme_font_size("font_size")
+		else:
+			original_font_sizes[instruction_label] = 16 # Fallback default size
+
+func apply_settings():
+	# Apply text scaling by adjusting font size override
+	for label in original_font_sizes:
+		var original_size = original_font_sizes[label]
+		var new_size = int(original_size * Settings.text_scale)
+		label.add_theme_font_size_override("font_size", new_size)
 
 func store_original_positions():
 	var tools = [
@@ -145,15 +165,18 @@ func play_tool_audio(tool_name):
 	print("Attempting to play audio for tool: ", tool_name)
 	
 	if has_node("Audio/WordAudio"):
-		# Stop any currently playing audio
 		$Audio/WordAudio.stop()
 		
 		if tool_name in word_audio_files and word_audio_files[tool_name] != null:
+			# --- SETTINGS CHANGE ---
+			$Audio/WordAudio.pitch_scale = Settings.audio_speed
+			# ------------------------
 			$Audio/WordAudio.stream = word_audio_files[tool_name]
 			$Audio/WordAudio.play()
 			print("✅ Playing audio for tool: " + tool_name)
 		else:
 			print("❌ No audio file found for tool: " + tool_name)
+
 
 func play_feedback_audio(category):
 	if category in feedback_audio_files and feedback_audio_files[category].size() > 0:
@@ -161,11 +184,14 @@ func play_feedback_audio(category):
 		var random_audio = audio_streams[randi() % audio_streams.size()]
 		
 		if has_node("Audio/CorrectSound"):
+			# --- SETTINGS CHANGE ---
+			$Audio/CorrectSound.pitch_scale = Settings.audio_speed
+			# ------------------------
 			$Audio/CorrectSound.stream = random_audio
 			$Audio/CorrectSound.play()
 			print("Playing feedback audio: ", category)
 
-func _on_tool_input_event(viewport, event, shape_idx):
+func _on_tool_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			var mouse_pos = get_global_mouse_position()
@@ -252,29 +278,37 @@ func check_match(tool, word_block):
 	if tool_name == word_name:
 		create_successful_match(tool, word_block)
 	else:
+		# --- ANALYTICS CHANGE ---
+		Analytics.increment_incorrect_answers()
+		# ------------------------
 		show_feedback("Try again! " + tool_name.capitalize() + " doesn't match " + word_name.capitalize())
 		play_feedback_audio("wrong")
 		return_to_start(tool)
 
 func create_successful_match(tool, word_block):
+	# --- ANALYTICS CHANGE ---
+	Analytics.increment_correct_answers()
+	Analytics.add_score(25) # Give 25 points for a tool match
+	# ------------------------
+
 	# Play success audio
 	play_feedback_audio("correct")
 	
 	# Hide the tool with a nice fade effect instead of repositioning
 	var tween = create_tween()
-	tween.parallel().tween_property(tool, "modulate:a", 0.0, 0.5)  # Fade out
-	tween.parallel().tween_property(tool, "scale", Vector2(0.5, 0.5), 0.5)  # Shrink
+	tween.parallel().tween_property(tool, "modulate:a", 0.0, 0.5) # Fade out
+	tween.parallel().tween_property(tool, "scale", Vector2(0.5, 0.5), 0.5) # Shrink
 	
 	# Highlight the matched word block with success color
 	var word_sprite = word_block.get_node_or_null("BlockSprite")
 	var word_text = word_block.get_node_or_null("WordText")
 	
 	if word_sprite:
-		word_sprite.modulate = Color(0.7, 1.0, 0.7, 1)  # Success green
+		word_sprite.modulate = Color(0.7, 1.0, 0.7, 1) # Success green
 	
 	if word_text:
 		# Make the text bolder and more visible
-		word_text.modulate = Color(0.2, 0.6, 0.2, 1)  # Dark green
+		word_text.modulate = Color(0.2, 0.6, 0.2, 1) # Dark green
 		word_text.add_theme_color_override("font_shadow_color", Color.WHITE)
 		word_text.add_theme_constant_override("shadow_offset_x", 2)
 		word_text.add_theme_constant_override("shadow_offset_y", 2)
@@ -307,8 +341,8 @@ func show_feedback(message):
 		instruction_text.text = message
 		
 		# Reset any previous styling and use the label's natural properties
-		instruction_text.modulate = Color.WHITE  # Reset modulate
-		instruction_text.add_theme_color_override("font_color", Color(0.55, 0.27, 0.07, 1))  # Brown color
+		instruction_text.modulate = Color.WHITE # Reset modulate
+		instruction_text.add_theme_color_override("font_color", Color(0.55, 0.27, 0.07, 1)) # Brown color
 		
 		# Ensure proper alignment within the bubble
 		instruction_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -324,7 +358,7 @@ func show_feedback(message):
 		
 		# Subtle animation that doesn't break positioning
 		var original_modulate = instruction_text.modulate
-		instruction_text.modulate = Color(1.2, 1.2, 1.2, 1)  # Slightly brighter
+		instruction_text.modulate = Color(1.2, 1.2, 1.2, 1) # Slightly brighter
 		
 		var tween = create_tween()
 		tween.tween_property(instruction_text, "modulate", original_modulate, 0.3)
@@ -335,7 +369,7 @@ func return_to_start(tool):
 	var tween = create_tween()
 	tween.parallel().tween_property(tool, "global_position", original_pos, 0.5)
 	tween.parallel().tween_property(tool, "scale", Vector2(1.0, 1.0), 0.5)
-	tween.parallel().tween_property(tool, "modulate", Color.WHITE, 0.3)  # Reset color
+	tween.parallel().tween_property(tool, "modulate", Color.WHITE, 0.3) # Reset color
 	
 	tool.z_index = 0
 
@@ -367,15 +401,21 @@ func is_tool_matched(tool):
 	var tool_name = get_tool_name(tool)
 	return tool_name in matched_pairs
 
-func _process(delta):
+func _process(_delta):
 	if is_dragging and dragged_tool:
 		dragged_tool.global_position = get_global_mouse_position()
 
 # Navigation button handlers
 func _on_back_button_pressed():
+	# --- ANALYTICS CHANGE ---
+	Analytics.save_data()
+	# ------------------------
 	get_tree().change_scene_to_file("res://Levels/Main Menu/Scenes/Scene1_Welcome.tscn")
 
 func _on_next_button_pressed():
+	# --- ANALYTICS CHANGE ---
+	Analytics.save_data()
+	# ------------------------
 	get_tree().change_scene_to_file("res://Levels/Main Menu/Scenes/Scene4_FixBridge.tscn")
 
 # Debug function to test audio files
