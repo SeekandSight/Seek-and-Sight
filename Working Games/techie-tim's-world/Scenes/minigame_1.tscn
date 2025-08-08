@@ -9,24 +9,26 @@ texture = ExtResource("1_bg")
 modulate_color = Color(0.3, 0.3, 0.4, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_maze_container"]
-bg_color = Color(0.08, 0.08, 0.15, 0.9)
+bg_color = Color(0.05, 0.05, 0.15, 0.95)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color(0.3, 0.8, 1, 0.8)
+border_color = Color(0.2, 0.8, 1, 1)
 corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
+shadow_color = Color(0.2, 0.8, 1, 0.3)
+shadow_size = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.1, 0.1, 0.2, 0.8)
+bg_color = Color(0.08, 0.08, 0.2, 0.9)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.3, 0.8, 1, 0.6)
+border_color = Color(0.3, 0.8, 1, 0.7)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
@@ -43,6 +45,8 @@ corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
+shadow_color = Color(0.3, 0.7, 1, 0.4)
+shadow_size = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
 bg_color = Color(0.1, 0.4, 0.8, 1)
@@ -91,9 +95,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -10.0
-offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -105,28 +106,28 @@ size_flags_vertical = 0
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.9, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 64
-text = "CODE MAZE"
+theme_override_font_sizes/font_size = 56
+text = "TECHIE TIM'S PROGRAMMING MAZE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="MainContainer/Header"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.7, 0.9, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "Navigate Tim Through the Digital Maze"
+theme_override_colors/font_color = Color(0.6, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Navigate Tim Through the Digital Circuit"
 horizontal_alignment = 1
 
 [node name="LevelContainer" type="HBoxContainer" parent="MainContainer/Header"]
 layout_mode = 2
-size_flags_horizontal = 4
 
 [node name="LevelLabel" type="Label" parent="MainContainer/Header/LevelContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.8, 0.4, 1)
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 20
-text = "LEVEL:"
+text = "SYSTEM LEVEL:"
+horizontal_alignment = 2
 
 [node name="CurrentLevelLabel" type="Label" parent="MainContainer/Header/LevelContainer"]
 layout_mode = 2
@@ -151,9 +152,8 @@ size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_maze_container")
 
 [node name="RightPanel" type="VBoxContainer" parent="MainContainer/GameContent"]
-custom_minimum_size = Vector2(350, 0)
+custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="StatsPanel" type="Panel" parent="MainContainer/GameContent/RightPanel"]
 layout_mode = 2
@@ -165,10 +165,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 219.0
-offset_top = -132.0
-offset_right = -3.0
-offset_bottom = -7.0
+offset_left = 13.0
+offset_top = -83.0
+offset_right = -15.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -176,7 +176,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 1, 0.8, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
 text = "MOVES: 0"
 horizontal_alignment = 1
 
@@ -184,22 +184,18 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.8, 0.4, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
 text = "TIME: 00:00"
 horizontal_alignment = 1
 
 [node name="StatusLabel" type="Label" parent="MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(350, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8, 0.8, 1, 1)
-theme_override_font_sizes/font_size = 18
-text = "Guide Tim to the CYAN goal!"
+theme_override_font_sizes/font_size = 16
+text = "🚀 Guide Tim to the BLUE goal!"
 horizontal_alignment = 1
 autowrap_mode = 2
-
-[node name="HSeparator" type="HSeparator" parent="MainContainer/GameContent/RightPanel"]
-visible = false
-layout_mode = 2
 
 [node name="ControlsPanel" type="Panel" parent="MainContainer/GameContent/RightPanel"]
 layout_mode = 2
@@ -211,10 +207,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 15.0
-offset_top = 15.0
-offset_right = -15.0
-offset_bottom = -15.0
+offset_left = 11.0
+offset_top = 12.0
+offset_right = -19.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -222,8 +218,8 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.9, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 24
-text = "CONTROLS"
+theme_override_font_sizes/font_size = 20
+text = "🎮 MOVEMENT CONTROLS"
 horizontal_alignment = 1
 
 [node name="DirectionButtons" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer"]
@@ -231,56 +227,56 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="UpButton" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/DirectionButtons"]
-custom_minimum_size = Vector2(120, 50)
+custom_minimum_size = Vector2(140, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
-text = "⬆ UP"
+text = "⬆️ MOVE UP"
 
 [node name="MiddleRow" type="HBoxContainer" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/DirectionButtons"]
 layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="LeftButton" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/DirectionButtons/MiddleRow"]
-custom_minimum_size = Vector2(80, 50)
+custom_minimum_size = Vector2(95, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
-text = "⬅ LEFT"
+text = "⬅️ MOVE LEFT"
 
 [node name="RightButton" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/DirectionButtons/MiddleRow"]
-custom_minimum_size = Vector2(80, 50)
+custom_minimum_size = Vector2(95, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
-text = "➡ RIGHT"
+text = "➡️ MOVE RIGHT"
 
 [node name="DownButton" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/DirectionButtons"]
-custom_minimum_size = Vector2(120, 50)
+custom_minimum_size = Vector2(140, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 16
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
-text = "⬇ DOWN"
+text = "⬇️ MOVE DOWN"
 
-[node name="HSeparator2" type="HSeparator" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer"]
+[node name="HSeparator" type="HSeparator" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer"]
 layout_mode = 2
 
 [node name="LevelButtons" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer"]
@@ -291,65 +287,65 @@ size_flags_horizontal = 4
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.8, 0.4, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 20
-text = "LEVELS"
+theme_override_font_sizes/font_size = 18
+text = "🔧 SYSTEM LEVELS"
 horizontal_alignment = 1
 
 [node name="LevelButtonsContainer" type="GridContainer" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons"]
 layout_mode = 2
-columns = 3
+columns = 5
 
 [node name="Level1Button" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer"]
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(50, 35)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 text = "1"
 
 [node name="Level2Button" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer"]
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(50, 35)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 text = "2"
 
 [node name="Level3Button" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer"]
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(50, 35)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 text = "3"
 
 [node name="Level4Button" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer"]
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(50, 35)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 text = "4"
 
 [node name="Level5Button" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer"]
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(50, 35)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 text = "5"
 
-[node name="HSeparator3" type="HSeparator" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer"]
 layout_mode = 2
 
 [node name="GameButtons" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer"]
@@ -357,39 +353,39 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="ResetButton" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons"]
-custom_minimum_size = Vector2(150, 45)
+custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
-text = "🔄 RESET"
+text = "🔄 SYSTEM RESET"
 
 [node name="MainMenuButton" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons"]
-custom_minimum_size = Vector2(150, 45)
+custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
-text = "🏠 MAIN MENU"
+text = "🏠 MAIN TERMINAL"
 
 [node name="GameSelectButton" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons"]
-custom_minimum_size = Vector2(150, 45)
+custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 text = "🎮 GAME SELECT"
 
-[node name="HSeparator4" type="HSeparator" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer"]
+[node name="HSeparator3" type="HSeparator" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer"]
 visible = false
 layout_mode = 2
 
@@ -403,18 +399,19 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = -157.0
-offset_right = -385.0
-offset_bottom = -11.0
+offset_left = -640.0
+offset_top = -196.0
+offset_right = -15.0
+offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LegendLabel" type="Label" parent="MainContainer/GameContent/RightPanel/LegendPanel/LegendContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.9, 1, 1)
-theme_override_font_sizes/font_size = 18
-text = "LEGEND"
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "🔍 CIRCUIT LEGEND"
 horizontal_alignment = 1
 
 [node name="LegendItems" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/LegendPanel/LegendContainer"]
@@ -423,34 +420,47 @@ layout_mode = 2
 [node name="StartLegend" type="Label" parent="MainContainer/GameContent/RightPanel/LegendPanel/LegendContainer/LegendItems"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
-theme_override_font_sizes/font_size = 14
-text = "🟢 = START"
+theme_override_font_sizes/font_size = 12
+text = "🟢 = START TERMINAL"
 horizontal_alignment = 1
 
 [node name="PathLegend" type="Label" parent="MainContainer/GameContent/RightPanel/LegendPanel/LegendContainer/LegendItems"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6, 0.9, 0.6, 1)
-theme_override_font_sizes/font_size = 14
-text = "🟢 = Safe Path"
+theme_override_font_sizes/font_size = 12
+text = "🟢 = Active Circuit"
 horizontal_alignment = 1
 
 [node name="WallLegend" type="Label" parent="MainContainer/GameContent/RightPanel/LegendPanel/LegendContainer/LegendItems"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
-theme_override_font_sizes/font_size = 14
-text = "🔴 = Wall/Blocked"
+theme_override_font_sizes/font_size = 12
+text = "🔴 = Blocked Circuit"
 horizontal_alignment = 1
 
 [node name="TrailLegend" type="Label" parent="MainContainer/GameContent/RightPanel/LegendPanel/LegendContainer/LegendItems"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.4, 1)
-theme_override_font_sizes/font_size = 14
-text = "🟡 = Tim's Trail"
+theme_override_font_sizes/font_size = 12
+text = "🟡 = Execution Trail"
 horizontal_alignment = 1
 
 [node name="GoalLegend" type="Label" parent="MainContainer/GameContent/RightPanel/LegendPanel/LegendContainer/LegendItems"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 1, 1, 1)
-theme_override_font_sizes/font_size = 14
-text = "🟦 = GOAL!"
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "🟦 = TARGET TERMINAL"
 horizontal_alignment = 1
+
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/DirectionButtons/UpButton" to="." method="_on_move_button_pressed" binds= [Vector2(0, -1)]]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/DirectionButtons/MiddleRow/LeftButton" to="." method="_on_move_button_pressed" binds= [Vector2(-1, 0)]]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/DirectionButtons/MiddleRow/RightButton" to="." method="_on_move_button_pressed" binds= [Vector2(1, 0)]]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/DirectionButtons/DownButton" to="." method="_on_move_button_pressed" binds= [Vector2(0, 1)]]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer/Level1Button" to="." method="_on_level_selected" binds= [1]]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer/Level2Button" to="." method="_on_level_selected" binds= [2]]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer/Level3Button" to="." method="_on_level_selected" binds= [3]]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer/Level4Button" to="." method="_on_level_selected" binds= [4]]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer/Level5Button" to="." method="_on_level_selected" binds= [5]]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons/ResetButton" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons/MainMenuButton" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons/GameSelectButton" to="." method="_on_game_select_pressed"]

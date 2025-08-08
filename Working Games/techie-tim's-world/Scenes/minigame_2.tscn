@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://021hsoocbgk3"]
+[gd_scene load_steps=10 format=3 uid="uid://021hsoocbgk3"]
 
 [ext_resource type="Texture2D" uid="uid://ccfdqtdbife83" path="res://Assests/images/Background.png" id="1_l4g8r"]
 [ext_resource type="FontFile" uid="uid://de5txl2j3vn6u" path="res://Assests/Fonts/Chewy,Orbitron,Rubik_Distressed/Orbitron/Orbitron-VariableFont_wght.ttf" id="2_dfb65"]
 [ext_resource type="Texture2D" uid="uid://bicn10bxicj18" path="res://Assests/images/TimWave.png" id="3_rfxq2"]
+[ext_resource type="Script" uid="uid://cglo161wcsv1v" path="res://scripts/Minigame2.gd" id="4_script"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mmgun"]
 texture = ExtResource("1_l4g8r")
@@ -10,6 +11,18 @@ modulate_color = Color(0.687215, 0.687215, 0.687215, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h684j"]
 texture = ExtResource("3_rfxq2")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(1, 1, 1, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.5, 0.5, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wu6l1"]
 bg_color = Color(0.762404, 0.762404, 0.762403, 1)
@@ -33,6 +46,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_script")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -53,7 +67,7 @@ theme_override_fonts/font = ExtResource("2_dfb65")
 theme_override_font_sizes/font_size = 70
 text = "Complete the Puzzle"
 
-[node name="Panel" type="Panel" parent="Panel"]
+[node name="LogoPanel" type="Panel" parent="Panel"]
 layout_mode = 0
 offset_left = 34.0
 offset_top = 12.0
@@ -74,9 +88,23 @@ theme_override_font_sizes/font_size = 35
 text = "Puzzle Area"
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="Panel/VBoxContainer"]
+[node name="PuzzlePanel" type="Panel" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 425)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="PuzzleGrid" type="GridContainer" parent="Panel/VBoxContainer/PuzzlePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
@@ -91,9 +119,23 @@ theme_override_font_sizes/font_size = 35
 text = "Sight Words"
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="Panel/VBoxContainer2"]
+[node name="WordsPanel" type="Panel" parent="Panel/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 425)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="WordsGrid" type="GridContainer" parent="Panel/VBoxContainer2/WordsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
@@ -114,7 +156,7 @@ theme_override_fonts/font = ExtResource("2_dfb65")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/hover = SubResource("StyleBoxFlat_wu6l1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_cqly6")
-text = "Timer"
+text = "00:00"
 
 [node name="MainMenuButton" type="Button" parent="Panel/VBoxContainer3/VBoxContainer"]
 custom_minimum_size = Vector2(200, 60)
@@ -138,12 +180,68 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_wu6l1")
 theme_override_styles/normal = SubResource("StyleBoxFlat_cqly6")
 text = "Game Selection"
 
+[node name="NewGameButton" type="Button" parent="Panel/VBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_dfb65")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_wu6l1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cqly6")
+text = "New Game"
+
 [node name="Label" type="Label" parent="Panel/VBoxContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Instructions"
 horizontal_alignment = 1
 
-[node name="Panel" type="Panel" parent="Panel/VBoxContainer3"]
+[node name="InstructionsPanel" type="Panel" parent="Panel/VBoxContainer3"]
 custom_minimum_size = Vector2(0, 235)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="InstructionsText" type="RichTextLabel" parent="Panel/VBoxContainer3/InstructionsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[center]Match sight word pieces to complete the puzzle![/center]
+
+• Drag words from the right side
+• Drop them onto matching puzzle pieces
+• Complete all matches to win
+• Timer shows your progress"
+fit_content = true
+
+[node name="CompletionDialog" type="AcceptDialog" parent="."]
+title = "Puzzle Complete!"
+initial_position = 2
+size = Vector2i(400, 200)
+
+[node name="CompletionLabel" type="Label" parent="CompletionDialog"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -50.0
+offset_right = 150.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "Great job! You completed the puzzle!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
