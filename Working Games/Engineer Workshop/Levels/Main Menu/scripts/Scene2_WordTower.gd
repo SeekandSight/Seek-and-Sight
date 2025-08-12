@@ -25,10 +25,25 @@ var word_audio_files = {}
 var feedback_audio_files = {}
 
 func _ready():
+	# --- SETTINGS CHANGE ---
+	apply_settings()
 	initialize_game()
 	setup_audio_system()
 	load_all_audio_files()
 	next_word()
+	
+	# --- SETTINGS CHANGE ---
+func apply_settings():
+	# Apply text scaling to all relevant labels
+	var labels_to_scale = [
+		$UI/AudioPanel/ScoreLabel,
+		$UI/AudioPanel/CurrentWordLabel,
+		$UI/InstructionBubble/InstructionText
+	]
+	for label in labels_to_scale:
+		if label:
+			label.scale = Vector2(Settings.text_scale, Settings.text_scale)
+# ------------------------
 
 func initialize_game():
 	word_blocks = [
@@ -98,9 +113,6 @@ func setup_audio_system():
 	# Connect play button
 	$UI/AudioPanel/PlayButton.pressed.connect(_on_play_button_pressed)
 	
-	# Connect navigation buttons
-	$UI/NavButtons/BackButton.pressed.connect(_on_back_button_pressed)
-	$UI/NavButtons/NextButton.pressed.connect(_on_next_button_pressed)
 
 func load_all_audio_files():
 	print("=== LOADING AUDIO FILES ===")
@@ -216,10 +228,12 @@ func play_word_audio(word):
 	await get_tree().create_timer(3.0).timeout
 	print("Attempting to play audio for word: ", word)
 	
-	# Stop any currently playing audio
 	$Audio/WordAudio.stop()
 	
 	if word in word_audio_files and word_audio_files[word] != null:
+		# --- SETTINGS CHANGE ---
+		$Audio/WordAudio.pitch_scale = Settings.audio_speed
+		# ------------------------
 		$Audio/WordAudio.stream = word_audio_files[word]
 		$Audio/WordAudio.play()
 		print("✅ Playing audio file for: " + word)
@@ -244,6 +258,9 @@ func play_feedback_audio(category):
 	if category in feedback_audio_files and feedback_audio_files[category].size() > 0:
 		var audio_streams = feedback_audio_files[category]
 		var random_audio = audio_streams[randi() % audio_streams.size()]
+		# --- SETTINGS CHANGE ---
+		$Audio/CorrectSound.pitch_scale = Settings.audio_speed
+		# ------------------------
 		$Audio/CorrectSound.stream = random_audio
 		$Audio/CorrectSound.play()
 		print("Playing feedback audio: ", category)
@@ -251,7 +268,7 @@ func play_feedback_audio(category):
 func _on_play_button_pressed():
 	play_word_audio(current_word)
 
-func _handle_block_input(block, viewport, event, shape_idx):
+func _handle_block_input(block, _viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if is_word_used(block):
@@ -309,12 +326,18 @@ func check_word_match(block):
 
 func correct_match(block, word):
 	add_block_to_tower(word)
-	score += 10
-	$UI/AudioPanel/ScoreLabel.text = "Score: " + str(score)
+	
+	# --- ANALYTICS CHANGE ---
+	Analytics.add_score(10)
+	Analytics.increment_correct_answers()
+	# ------------------------
+
+	# Update the label with the score from the Analytics singleton
+	$UI/AudioPanel/ScoreLabel.text = "Score: " + str(Analytics.score) 
+	
 	used_words.append(word)
 	hide_word_block(block)
 	
-	# Play correct feedback audio
 	play_feedback_audio("correct")
 	
 	show_feedback("Perfect! Great building!", false)
@@ -322,6 +345,10 @@ func correct_match(block, word):
 	next_word()
 
 func wrong_match(block):
+	# --- ANALYTICS CHANGE ---
+	Analytics.increment_incorrect_answers()
+	# ------------------------
+
 	# Play wrong feedback audio
 	play_feedback_audio("wrong")
 	
@@ -335,7 +362,7 @@ func add_block_to_tower(word):
 	var tower_container = $TowerArea/TowerBlocks
 	
 	# Calculate position to stack blocks properly on top of each other
-	var final_block_scale = 0.5
+	var _final_block_scale = 0.5
 	var estimated_block_height = 60
 	var gap_between_blocks = 5
 	
@@ -404,7 +431,7 @@ func return_to_start(block):
 	var tween = create_tween()
 	tween.tween_property(block, "global_position", original_pos, 0.5)
 
-func show_feedback(message, is_error):
+func show_feedback(message, _is_error):
 	update_instruction_text(message)
 
 func update_instruction_text(text):
@@ -424,7 +451,7 @@ func complete_game():
 	$UI/NavButtons/NextButton.disabled = false
 	$UI/NavButtons/NextButton.text = "Amazing! Next →"
 
-func _process(delta):
+func _process(_delta):
 	if is_dragging and dragged_block:
 		dragged_block.global_position = get_global_mouse_position()
 
@@ -438,16 +465,28 @@ func _notification(what):
 	if what == NOTIFICATION_WM_SIZE_CHANGED:
 		call_deferred("setup_responsive_layout")
 
-func _on_tower_drop_zone_entered(body):
+	# --- ANALYTICS CHANGE ---
+	# This notification is sent when the user tries to close the game window.
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		print("Game is closing, saving analytics data...")
+		Analytics.save_data()
+		# The get_tree().quit() call will proceed to close the game naturally.
+	# ------------------------
+
+func _on_tower_drop_zone_entered(_body):
 	$TowerArea/TowerDropZone.modulate = Color(0.5, 1.0, 0.5, 0.5)
 
-func _on_tower_drop_zone_exited(body):
+func _on_tower_drop_zone_exited(_body):
 	$TowerArea/TowerDropZone.modulate = Color.WHITE
 
 func _on_back_button_pressed():
+	# Save the data before changing scenes.
+	Analytics.save_data()
 	get_tree().change_scene_to_file("res://Levels/Main Menu/Scenes/Scene1_Welcome.tscn")
 
 func _on_next_button_pressed():
+	# Save the data before changing scenes.
+	Analytics.save_data()
 	get_tree().change_scene_to_file("res://Levels/Main Menu/Scenes/Scene3_ToolMatch.tscn")
 
 func reset_game():

@@ -1,0 +1,154 @@
+[gd_scene load_steps=12 format=3 uid="uid://ccr13wa7ns4sp"]
+
+[ext_resource type="Texture2D" uid="uid://o0ypip0f0ke2" path="res://Assets/Images/Background.png" id="1_yvivq"]
+[ext_resource type="FontFile" uid="uid://vyxse7d6l7px" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Chewy/Chewy-Regular.ttf" id="2_ov8iy"]
+[ext_resource type="Texture2D" uid="uid://ccr24b7obsgkq" path="res://Assets/Images/solarsystem.png" id="3_bysyl"]
+[ext_resource type="Texture2D" uid="uid://edtprvwgcdfe" path="res://Assets/Images/spaceword.png" id="4_qk8bi"]
+[ext_resource type="Texture2D" uid="uid://obbt4au8ey7q" path="res://Assets/Images/jumbledwords.png" id="5_ktr47"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yvivq"]
+texture = ExtResource("1_yvivq")
+modulate_color = Color(0.400698, 0.400698, 0.400698, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qw7ht"]
+texture = ExtResource("3_bysyl")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r7kdj"]
+bg_color = Color(0.707967, 0.707967, 0.707966, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jea3"]
+bg_color = Color(0.0366739, 0.642748, 0.922039, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.240578, 0.812148, 0, 1)
+corner_radius_top_left = 17
+corner_radius_top_right = 17
+corner_radius_bottom_right = 17
+corner_radius_bottom_left = 17
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ufcof"]
+texture = ExtResource("4_qk8bi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ah1yd"]
+texture = ExtResource("5_ktr47")
+
+[node name="GameSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_yvivq")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 253.0
+offset_top = 4.0
+offset_right = 907.0
+offset_bottom = 121.0
+theme_override_fonts/font = ExtResource("2_ov8iy")
+theme_override_font_sizes/font_size = 80
+text = "Game Selection Menu"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 144.0
+offset_right = 351.0
+offset_bottom = 625.0
+
+[node name="Panel" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qw7ht")
+
+[node name="MainMenuButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_r7kdj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8jea3")
+text = "The Solar System"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Game Instructions"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 431.0
+offset_top = 144.0
+offset_right = 714.0
+offset_bottom = 625.0
+
+[node name="Panel" type="Panel" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ufcof")
+
+[node name="MainMenuButton" type="Button" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(160, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_r7kdj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8jea3")
+text = "Word Sorting"
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Game Instructions"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 793.0
+offset_top = 144.0
+offset_right = 1072.0
+offset_bottom = 625.0
+
+[node name="Panel" type="Panel" parent="VBoxContainer3"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ah1yd")
+
+[node name="MainMenuButton" type="Button" parent="VBoxContainer3"]
+custom_minimum_size = Vector2(180, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_r7kdj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8jea3")
+text = "Word Destroyer"
+
+[node name="Label" type="Label" parent="VBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Game Instructions"
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="VBoxContainer3"]
+custom_minimum_size = Vector2(0, 190)
+layout_mode = 2
