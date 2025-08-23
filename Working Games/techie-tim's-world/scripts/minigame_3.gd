@@ -40,7 +40,7 @@ var password_database = [
 	# Level 1 - Easy 3-letter words
 	{
 		"correct": "CAT",
-		"options": ["CAT", "DOG", "BAT"],
+		"wrong_options": ["DOG", "BAT", "PIG", "HAT", "SUN"],
 		"encrypted": "★ ● ■",
 		"length": 3,
 		"audio_clue": "🔊 AUDIO: Makes 'meow' sound",
@@ -50,7 +50,7 @@ var password_database = [
 	},
 	{
 		"correct": "DOG",
-		"options": ["CAT", "DOG", "PIG"],
+		"wrong_options": ["CAT", "PIG", "BAT", "HAT", "COW"],
 		"encrypted": "◆ ○ ◇",
 		"length": 3,
 		"audio_clue": "🔊 AUDIO: Makes 'woof' sound",
@@ -60,7 +60,7 @@ var password_database = [
 	},
 	{
 		"correct": "SUN",
-		"options": ["SUN", "MOON", "STAR"],
+		"wrong_options": ["MOON", "STAR", "SKY", "FIRE", "LAMP"],
 		"encrypted": "☼ ◐ ☽",
 		"length": 3,
 		"audio_clue": "🔊 AUDIO: Makes everything bright and warm",
@@ -71,7 +71,7 @@ var password_database = [
 	# Level 2 - Medium 3-letter words
 	{
 		"correct": "BIG",
-		"options": ["BIG", "SMALL", "TINY"],
+		"wrong_options": ["SMALL", "TINY", "HUGE", "WIDE", "TALL"],
 		"encrypted": "◊ ▲ ♦",
 		"length": 3,
 		"audio_clue": "🔊 AUDIO: Opposite of 'small'",
@@ -81,7 +81,7 @@ var password_database = [
 	},
 	{
 		"correct": "RED",
-		"options": ["RED", "BLUE", "GREEN"],
+		"wrong_options": ["BLUE", "GREEN", "PINK", "GOLD", "GRAY"],
 		"encrypted": "◈ ◉ ◈",
 		"length": 3,
 		"audio_clue": "🔊 AUDIO: Color of fire and roses",
@@ -92,7 +92,7 @@ var password_database = [
 	# Level 3 - Harder 3-letter words
 	{
 		"correct": "RUN",
-		"options": ["RUN", "WALK", "JUMP"],
+		"wrong_options": ["WALK", "JUMP", "SKIP", "CRAWL", "FLY"],
 		"encrypted": "※ ◈ ◐",
 		"length": 3,
 		"audio_clue": "🔊 AUDIO: Moving very fast on feet",
@@ -102,7 +102,7 @@ var password_database = [
 	},
 	{
 		"correct": "HAT",
-		"options": ["HAT", "CAP", "WIG"],
+		"wrong_options": ["CAP", "WIG", "BOW", "MASK", "BAND"],
 		"encrypted": "▽ ◈ △",
 		"length": 3,
 		"audio_clue": "🔊 AUDIO: Something you wear on your head",
@@ -113,7 +113,7 @@ var password_database = [
 	# Level 4 - Advanced 3-letter words
 	{
 		"correct": "BED",
-		"options": ["BED", "CHAIR", "TABLE"],
+		"wrong_options": ["CHAIR", "TABLE", "DESK", "COUCH", "BENCH"],
 		"encrypted": "◈ ◉ ▲",
 		"length": 3,
 		"audio_clue": "🔊 AUDIO: Where you sleep at night",
@@ -123,7 +123,7 @@ var password_database = [
 	},
 	{
 		"correct": "CAN",
-		"options": ["CAN", "BOX", "JAR"],
+		"wrong_options": ["BOX", "JAR", "BAG", "CUP", "BOWL"],
 		"encrypted": "◎ ◈ ◐",
 		"length": 3,
 		"audio_clue": "🔊 AUDIO: Metal container for food",
@@ -134,7 +134,7 @@ var password_database = [
 	# Level 5 - Expert 3-letter words
 	{
 		"correct": "TOP",
-		"options": ["TOP", "BOTTOM", "MIDDLE"],
+		"wrong_options": ["BOTTOM", "MIDDLE", "SIDE", "EDGE", "END"],
 		"encrypted": "▲ ◈ ◐",
 		"length": 3,
 		"audio_clue": "🔊 AUDIO: Highest part or best",
@@ -146,11 +146,17 @@ var password_database = [
 
 var password_buttons = []
 var current_password_data
+var randomized_options = []  # This will store the shuffled options
+var correct_answer_index = -1  # Track where the correct answer is positioned
 var locked_screen_style
 var unlocked_screen_style
 
 func _ready():
 	print("🔐 Tim's Password Decoder - Starting!")
+	
+	# Initialize random seed with time-based seed for better randomization
+	var rng = RandomNumberGenerator.new()
+	rng.seed = Time.get_unix_time_from_system()
 	
 	# Debug: Check if nodes are properly loaded
 	print("Password buttons found: ", password1_button != null, password2_button != null, password3_button != null)
@@ -236,6 +242,46 @@ func connect_signals():
 	if game_select_button:
 		game_select_button.pressed.connect(_on_game_select_pressed)
 
+func generate_randomized_options(password_data: Dictionary) -> Array:
+	var rng = RandomNumberGenerator.new()
+	rng.seed = Time.get_unix_time_from_system() + current_level * 1000  # Different seed per level
+	
+	var options = []
+	
+	# Add the correct answer
+	options.append(password_data.correct)
+	
+	# Randomly select 2 wrong options from the available wrong options
+	var wrong_options = password_data.wrong_options.duplicate()
+	
+	# Use custom shuffle with better randomization
+	for i in range(wrong_options.size() - 1, 0, -1):
+		var j = rng.randi() % (i + 1)
+		var temp = wrong_options[i]
+		wrong_options[i] = wrong_options[j]
+		wrong_options[j] = temp
+	
+	# Take the first 2 wrong options
+	for i in range(min(2, wrong_options.size())):
+		options.append(wrong_options[i])
+	
+	# Custom shuffle for final options with multiple iterations for better randomization
+	for iteration in range(5):  # Multiple shuffle passes
+		for i in range(options.size() - 1, 0, -1):
+			var j = rng.randi() % (i + 1)
+			var temp = options[i]
+			options[i] = options[j]
+			options[j] = temp
+	
+	# Find where the correct answer ended up
+	correct_answer_index = options.find(password_data.correct)
+	
+	print("Generated options: ", options)
+	print("Correct answer '", password_data.correct, "' is at index: ", correct_answer_index)
+	print("Random seed used: ", rng.seed)
+	
+	return options
+
 func load_current_password():
 	if current_level > password_database.size():
 		show_completion()
@@ -246,6 +292,9 @@ func load_current_password():
 	hints_used = 0
 	system_unlocked = false
 	
+	# Generate randomized options for this level
+	randomized_options = generate_randomized_options(current_password_data)
+	
 	# Update encrypted display
 	encrypted_password.text = current_password_data.encrypted
 	password_length.text = "PASSWORD LENGTH: " + str(current_password_data.length) + " CHARACTERS"
@@ -255,10 +304,10 @@ func load_current_password():
 	visual_clue.text = current_password_data.visual_clue
 	letter_clue.text = current_password_data.letter_clue
 	
-	# Update password buttons with current options
+	# Update password buttons with randomized options
 	for i in range(password_buttons.size()):
-		if i < current_password_data.options.size():
-			var option = current_password_data.options[i]
+		if i < randomized_options.size():
+			var option = randomized_options[i]
 			password_buttons[i].text = get_emoji_for_word(option) + " " + option
 			password_buttons[i].visible = true
 			password_buttons[i].disabled = false
@@ -303,6 +352,31 @@ func get_emoji_for_word(word: String) -> String:
 		"TOP": return "🔝"
 		"BOTTOM": return "⬇️"
 		"MIDDLE": return "🎯"
+		"SKIP": return "⏭️"
+		"CRAWL": return "🐛"
+		"FLY": return "🪰"
+		"COW": return "🐄"
+		"SKY": return "🌌"
+		"FIRE": return "🔥"
+		"LAMP": return "💡"
+		"HUGE": return "🦣"
+		"WIDE": return "↔️"
+		"TALL": return "📏"
+		"PINK": return "🌸"
+		"GOLD": return "🥇"
+		"GRAY": return "🌫️"
+		"DESK": return "🖥️"
+		"COUCH": return "🛋️"
+		"BENCH": return "🪑"
+		"BAG": return "👜"
+		"CUP": return "☕"
+		"BOWL": return "🍜"
+		"SIDE": return "↔️"
+		"EDGE": return "🔪"
+		"END": return "🏁"
+		"BOW": return "🎀"
+		"MASK": return "🎭"
+		"BAND": return "🎵"
 		_: return "❓"
 
 func _on_password_selected(option_index: int):
@@ -317,11 +391,13 @@ func _on_password_selected(option_index: int):
 		return
 	
 	current_attempts += 1
-	var selected_word = current_password_data.options[option_index]
+	var selected_word = randomized_options[option_index]
 	
 	print("Selected word: ", selected_word, " | Correct: ", current_password_data.correct)
+	print("Selected index: ", option_index, " | Correct index: ", correct_answer_index)
 	
-	if selected_word == current_password_data.correct:
+	# Check if the selected option is the correct answer
+	if option_index == correct_answer_index:
 		unlock_system()
 	else:
 		show_wrong_password(option_index)
@@ -345,11 +421,13 @@ func unlock_system():
 	
 	status_label.text = "🎉 PASSWORD DECODED! System unlocked! 🎉"
 	
-	# Disable password buttons
-	for button in password_buttons:
-		button.disabled = true
-		if button.text.contains(current_password_data.correct):
-			button.modulate = Color(0.3, 1, 0.3, 1)  # Highlight correct answer
+	# Disable password buttons and highlight correct answer
+	for i in range(password_buttons.size()):
+		password_buttons[i].disabled = true
+		if i == correct_answer_index:
+			password_buttons[i].modulate = Color(0.3, 1, 0.3, 1)  # Highlight correct answer
+		else:
+			password_buttons[i].modulate = Color(0.7, 0.7, 0.7, 1)  # Dim wrong answers
 	
 	# Auto-advance after 3 seconds
 	await get_tree().create_timer(3.0).timeout
@@ -372,10 +450,13 @@ func show_wrong_password(wrong_index: int):
 	else:
 		status_label.text = "🚫 LOCKOUT! Maximum attempts reached. Reset to try again."
 		
-		# Disable all buttons
-		for button in password_buttons:
-			button.disabled = true
-			button.modulate = Color(0.5, 0.5, 0.5, 1)
+		# Disable all buttons and highlight the correct answer
+		for i in range(password_buttons.size()):
+			password_buttons[i].disabled = true
+			if i == correct_answer_index:
+				password_buttons[i].modulate = Color(0.3, 1, 0.3, 1)  # Show correct answer
+			else:
+				password_buttons[i].modulate = Color(0.5, 0.5, 0.5, 1)  # Dim others
 	
 	update_ui()
 
@@ -412,10 +493,14 @@ func _on_reset_pressed():
 	hints_used = 0
 	system_unlocked = false
 	
-	# Re-enable all password buttons
-	for button in password_buttons:
-		button.disabled = false
-		button.modulate = Color(1, 1, 1, 1)
+	# DON'T regenerate options - keep the same randomized positions
+	# Just re-enable the existing buttons with the same options
+	for i in range(password_buttons.size()):
+		if i < randomized_options.size():
+			password_buttons[i].disabled = false
+			password_buttons[i].modulate = Color(1, 1, 1, 1)
+		else:
+			password_buttons[i].visible = false
 	
 	# Reset screen to locked
 	computer_screen.add_theme_stylebox_override("panel", locked_screen_style)
@@ -428,7 +513,7 @@ func _on_reset_pressed():
 	letter_clue.modulate = Color(0.4, 0.8, 1, 1)
 	
 	update_ui()
-	status_label.text = "System reset! Try decoding the password again."
+	status_label.text = "System reset! Same passwords, try again."
 
 func show_completion():
 	status_label.text = "🏆 ALL SYSTEMS UNLOCKED! Master decoder! 🏆"
