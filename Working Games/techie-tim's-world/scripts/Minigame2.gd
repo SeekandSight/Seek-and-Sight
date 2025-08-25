@@ -134,7 +134,7 @@ func load_current_word():
 	# Reset robot to broken state - keeping original robot emoji
 	robot_face.text = "🤖"
 	robot_face.modulate = Color(1, 0.3, 0.3, 1)
-	error_message.text = "The robot's letters are jumbled! Can you help fix them?"
+	error_message.text = "The robot is mixed up! Can you help?"
 	error_message.modulate = Color(1, 0.4, 0.4, 1)
 	
 	# Reset drop zones with clearer visual cues
@@ -473,12 +473,36 @@ func show_helpful_hint(hint_type: String):
 					break
 
 func _on_next_word_pressed():
+	# Check if this is "PLAY AGAIN" from completion screen
+	if next_button.text == "🔄 PLAY AGAIN":
+		restart_game()
+		return
+	
 	if not robot_fixed:
 		status_label.text = "Help fix this robot first! You can do it!"
 		return
 	
 	current_word_index += 1
 	load_current_word()
+
+func restart_game():
+	# Reset all game variables to starting state
+	current_word_index = 0
+	robots_fixed = 0
+	attempt_count = 0
+	correct_positions = [false, false, false]
+	celebration_count = 0
+	
+	# Reset button texts back to normal
+	next_button.text = "➡️ NEXT ROBOT"
+	main_menu_button.text = "Next Game"
+	game_select_button.text = "🎮 GAME SELECT"
+	reset_button.visible = true
+	
+	# Load first word
+	load_current_word()
+	
+	status_label.text = "Game restarted! Ready to help robots from the beginning."
 
 func _on_reset_pressed():
 	player_sequence = ["", "", ""]
@@ -525,6 +549,15 @@ func show_completion():
 	error_message.modulate = Color.GOLD
 	scrambled_display.text = "YOU WIN!"
 	scrambled_display.modulate = Color.GOLD
+	
+	# Change control buttons to completion options
+	next_button.text = "🔄 PLAY AGAIN"
+	next_button.visible = true
+	main_menu_button.text = "🏠 MAIN MENU"
+	main_menu_button.visible = true
+	game_select_button.text = "🎮 GAME SELECT"
+	game_select_button.visible = true
+	reset_button.visible = false  # Hide reset button at completion to prevent crash
 
 func update_ui():
 	score_label.text = "ROBOTS HELPED: " + str(robots_fixed)
