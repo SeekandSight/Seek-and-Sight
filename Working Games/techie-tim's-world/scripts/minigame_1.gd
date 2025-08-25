@@ -10,6 +10,7 @@ extends Control
 # Game variables
 var current_level = 1
 var max_level = 5
+var highest_unlocked_level = 1  # NEW: Track highest unlocked level
 var grid_size = Vector2(8, 8)
 var cell_size = 48
 var tim_position = Vector2(0, 0)
@@ -21,6 +22,9 @@ var moves_count = 0
 var game_won = false
 var start_time = 0.0
 var timer_running = false
+
+# Level buttons - store references for enabling/disabling
+var level_buttons = []
 
 # Maze layouts
 var maze_layouts = {
@@ -93,6 +97,56 @@ func _ready():
 	# Wait a moment for all nodes to be ready, then connect buttons
 	await get_tree().process_frame
 	connect_buttons_simple()
+	setup_level_buttons()  # NEW: Setup level button references and states
+
+# NEW: Setup level button references and update their states
+func setup_level_buttons():
+	print("🔧 Setting up level buttons...")
+	
+	var level_container = get_node_or_null("MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer")
+	
+	if not level_container:
+		print("❌ Level buttons container not found!")
+		return
+	
+	# Store references to level buttons
+	level_buttons.clear()
+	for i in range(1, max_level + 1):
+		var button = level_container.get_node_or_null("Level" + str(i) + "Button")
+		if button:
+			level_buttons.append(button)
+			print("Found level button: ", i)
+		else:
+			print("❌ Level button ", i, " not found!")
+			level_buttons.append(null)
+	
+	update_level_buttons()
+
+# NEW: Update level button states based on progression
+func update_level_buttons():
+	print("🔄 Updating level button states...")
+	print("Highest unlocked level: ", highest_unlocked_level)
+	
+	for i in range(level_buttons.size()):
+		var button = level_buttons[i]
+		if button == null:
+			continue
+			
+		var level_num = i + 1
+		
+		if level_num <= highest_unlocked_level:
+			# Level is unlocked
+			button.disabled = false
+			button.modulate = Color(1, 1, 1, 1)  # Normal color
+			if level_num == current_level:
+				button.text = str(level_num) # Mark current level
+			else:
+				button.text = str(level_num)
+		else:
+			# Level is locked
+			button.disabled = true
+			button.modulate = Color(0.5, 0.5, 0.5, 0.7)  # Grayed out
+			button.text = str(level_num) + " 🔒"
 
 func connect_buttons_simple():
 	print("🔧 Connecting buttons manually...")
@@ -132,6 +186,7 @@ func load_level(level_num: int):
 	maze_grid = maze_layouts[current_level].duplicate(true)
 	setup_maze()
 	setup_tim()
+	update_level_buttons()  # NEW: Update button states when level changes
 
 func setup_maze():
 	# Clear existing maze
@@ -196,6 +251,12 @@ func start_game():
 
 func _on_level_selected(level_num: int):
 	print("Level selected: ", level_num)
+	
+	# NEW: Check if level is unlocked
+	if level_num > highest_unlocked_level:
+		show_status("🔒 Level " + str(level_num) + " is locked! Complete previous levels first.")
+		return
+	
 	if level_num != current_level:
 		load_level(level_num)
 		start_game()
@@ -271,6 +332,12 @@ func win_game():
 	game_won = true
 	timer_running = false
 	
+	# NEW: Unlock next level when current level is completed
+	if current_level == highest_unlocked_level and current_level < max_level:
+		highest_unlocked_level = current_level + 1
+		print("🔓 Unlocked level: ", highest_unlocked_level)
+		update_level_buttons()
+	
 	show_status("🎉 Level " + str(current_level) + " Complete! 🎉")
 	maze_cells[end_position.y][end_position.x].color = Color.GOLD
 	
@@ -280,13 +347,16 @@ func win_game():
 	tween.tween_property(tim_sprite, "scale", Vector2(0.2, 0.2), 0.2)
 	tween.tween_property(tim_sprite, "scale", Vector2(0.15, 0.15), 0.2)
 	
-	# Auto-advance after 2 seconds
+	# Auto-advance after 2 seconds, but only if next level is unlocked
 	await get_tree().create_timer(2.0).timeout
-	if current_level < max_level:
+	if current_level < max_level and current_level + 1 <= highest_unlocked_level:
 		load_level(current_level + 1)
 		start_game()
 	else:
-		show_status("🏆 All levels complete!")
+		if current_level == max_level:
+			show_status("🏆 All levels complete!")
+		else:
+			show_status("🎉 Level complete! Select another level to play.")
 
 func _on_reset_pressed():
 	print("🔥 RESET BUTTON CLICKED!")
