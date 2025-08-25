@@ -400,7 +400,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_style")
-text = "🏠 MAIN TERMINAL"
+text = "Next Game"
 
 [node name="GameSelectButton" type="Button" parent="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons"]
 custom_minimum_size = Vector2(200, 50)

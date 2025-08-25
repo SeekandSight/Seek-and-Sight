@@ -152,7 +152,7 @@ size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_maze_container")
 
 [node name="RightPanel" type="VBoxContainer" parent="MainContainer/GameContent"]
-custom_minimum_size = Vector2(380, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
 [node name="StatsPanel" type="Panel" parent="MainContainer/GameContent/RightPanel"]
@@ -207,9 +207,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 11.0
+offset_left = -13.0
 offset_top = 12.0
-offset_right = -19.0
+offset_right = 5.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -287,7 +287,7 @@ size_flags_horizontal = 4
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.8, 0.4, 1)
 theme_override_fonts/font = ExtResource("2_font")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 text = "🔧 SYSTEM LEVELS"
 horizontal_alignment = 1
 
@@ -348,12 +348,12 @@ text = "5"
 [node name="HSeparator2" type="HSeparator" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer"]
 layout_mode = 2
 
-[node name="GameButtons" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer"]
+[node name="GameButtons" type="HBoxContainer" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="ResetButton" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons"]
-custom_minimum_size = Vector2(150, 40)
+custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -363,8 +363,8 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
 text = "🔄 SYSTEM RESET"
 
-[node name="MainMenuButton" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons"]
-custom_minimum_size = Vector2(150, 40)
+[node name="NextGameButton" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons"]
+custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -372,10 +372,10 @@ theme_override_font_sizes/font_size = 16
 theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
 theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
-text = "🏠 MAIN TERMINAL"
+text = "➡️ NEXT GAME"
 
 [node name="GameSelectButton" type="Button" parent="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons"]
-custom_minimum_size = Vector2(150, 40)
+custom_minimum_size = Vector2(80, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -399,10 +399,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -640.0
-offset_top = -196.0
-offset_right = -15.0
-offset_bottom = 64.0
+offset_left = -6.0
+offset_top = -146.0
+offset_right = -7.0
+offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -462,5 +462,5 @@ horizontal_alignment = 1
 [connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer/Level4Button" to="." method="_on_level_selected" binds= [4]]
 [connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/LevelButtons/LevelButtonsContainer/Level5Button" to="." method="_on_level_selected" binds= [5]]
 [connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons/ResetButton" to="." method="_on_reset_pressed"]
-[connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons/MainMenuButton" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons/NextGameButton" to="." method="_on_next_game_pressed"]
 [connection signal="pressed" from="MainContainer/GameContent/RightPanel/ControlsPanel/ControlsContainer/GameButtons/GameSelectButton" to="." method="_on_game_select_pressed"]

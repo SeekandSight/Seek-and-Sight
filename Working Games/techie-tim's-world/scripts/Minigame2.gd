@@ -483,7 +483,7 @@ func update_ui():
 			status_label.text = "Continue filling slots... " + str(3 - filled_slots) + " more needed!"
 
 func _on_main_menu_pressed():
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/minigame_3.tscn")
 
 func _on_game_select_pressed():
 	get_tree().change_scene_to_file("res://Scenes/game_selection.tscn")

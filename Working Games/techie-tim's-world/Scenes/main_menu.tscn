@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5kryqmti2g0y"]
+[gd_scene load_steps=10 format=3 uid="uid://c5kryqmti2g0y"]
 
 [ext_resource type="Texture2D" uid="uid://ccfdqtdbife83" path="res://Assests/images/Background.png" id="1_1ehe0"]
+[ext_resource type="Script" uid="uid://d26syc6dh4qrv" path="res://scripts/main_menu.gd" id="1_ce3w2"]
 [ext_resource type="FontFile" uid="uid://de5txl2j3vn6u" path="res://Assests/Fonts/Chewy,Orbitron,Rubik_Distressed/Orbitron/Orbitron-VariableFont_wght.ttf" id="2_1ehe0"]
 [ext_resource type="Texture2D" uid="uid://df14yhxr24t6s" path="res://Assests/images/TimGesture-removebg-preview.png" id="3_1ehe0"]
 
@@ -36,6 +37,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ce3w2")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -75,8 +77,8 @@ texture = ExtResource("3_1ehe0")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
-offset_left = 378.0
-offset_top = 224.0
+offset_left = 460.0
+offset_top = 384.0
 offset_right = 755.0
 offset_bottom = 590.0
 
@@ -98,6 +100,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_yhxw7")
 text = "Start Game"
 
 [node name="InstructionButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(220, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -110,6 +113,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_yhxw7")
 text = "Instructions"
 
 [node name="Settings" type="Button" parent="Panel/VBoxContainer2/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(180, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -122,6 +126,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_yhxw7")
 text = "Settings"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="Panel"]
+visible = false
 layout_mode = 0
 offset_left = 765.0
 offset_top = 206.0

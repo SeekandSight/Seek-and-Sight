@@ -1,17 +1,61 @@
-[gd_scene load_steps=4 format=3 uid="uid://cg7hcl4domx30"]
+[gd_scene load_steps=10 format=3 uid="uid://cg7hcl4domx30"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0lr14"]
-modulate_color = Color(0.552956, 0.552956, 0.552956, 1)
+[ext_resource type="Script" uid="uid://cud5fs23alspd" path="res://scripts/game_selection.gd" id="1_0lr14"]
+[ext_resource type="Texture2D" uid="uid://ccfdqtdbife83" path="res://Assests/images/Background.png" id="1_bg"]
+[ext_resource type="FontFile" uid="uid://de5txl2j3vn6u" path="res://Assests/Fonts/Chewy,Orbitron,Rubik_Distressed/Orbitron/Orbitron-VariableFont_wght.ttf" id="2_font"]
+[ext_resource type="Texture2D" uid="uid://bicn10bxicj18" path="res://Assests/images/TimWave.png" id="3_0qblp"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bysyl"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bg"]
+texture = ExtResource("1_bg")
+modulate_color = Color(0.4, 0.4, 0.5, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktr47"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.239216, 0.47451, 0.862745, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_game_card"]
+bg_color = Color(0.05, 0.05, 0.15, 0.92)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.2, 0.8, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.2, 0.8, 1, 0.3)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.3, 0.7, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5, 0.9, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0.3, 0.7, 1, 0.4)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
+bg_color = Color(0.1, 0.4, 0.8, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.2, 0.5, 0.9, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_normal"]
+bg_color = Color(0.2, 0.6, 1, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.4, 0.8, 1, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
@@ -19,130 +63,272 @@ corner_radius_bottom_left = 15
 
 [node name="GameSelection" type="Control"]
 layout_mode = 3
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0lr14")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="BackgroundPanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_0lr14")
+theme_override_styles/panel = SubResource("StyleBoxTexture_bg")
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="MainContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 302.0
-offset_top = 28.0
-offset_right = 868.0
-offset_bottom = 145.0
-theme_override_font_sizes/font_size = 80
-text = "Games"
+offset_right = 1918.0
+offset_bottom = 1068.0
+scale = Vector2(0.6, 0.6)
+
+[node name="Header" type="VBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="MainContainer/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 64
+text = "🎮 TECHIE TIM'S GAME CENTER 🎮"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="Panel"]
-layout_mode = 0
-offset_left = 302.0
+[node name="SubtitleLabel" type="Label" parent="MainContainer/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Choose Your Programming Adventure!"
+horizontal_alignment = 1
+
+[node name="ContentContainer" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftSide" type="VBoxContainer" parent="MainContainer/ContentContainer"]
+custom_minimum_size = Vector2(500, 350)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TimCharacter" type="VBoxContainer" parent="MainContainer/ContentContainer/LeftSide"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="TimSprite" type="TextureRect" parent="MainContainer/ContentContainer/LeftSide/TimCharacter"]
+custom_minimum_size = Vector2(500, 850)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("3_0qblp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TimSpeech" type="Label" parent="MainContainer/ContentContainer/LeftSide/TimCharacter"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.4, 1)
+theme_override_font_sizes/font_size = 28
+text = "👋 Hey there! I'm Techie Tim!
+Pick a game and let's start coding!"
+horizontal_alignment = 1
+
+[node name="GamesGrid" type="VBoxContainer" parent="MainContainer/ContentContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Game1Container" type="Panel" parent="MainContainer/ContentContainer/GamesGrid"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_game_card")
+
+[node name="Game1Content" type="HBoxContainer" parent="MainContainer/ContentContainer/GamesGrid/Game1Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
 offset_top = 2.0
-offset_right = 437.0
-offset_bottom = 152.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_bysyl")
+offset_right = -471.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
 
-[node name="GridContainer" type="GridContainer" parent="Panel"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 161.0
-offset_right = 1154.0
-offset_bottom = 649.0
-columns = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/GridContainer"]
-custom_minimum_size = Vector2(380, 470)
+[node name="Game1Info" type="VBoxContainer" parent="MainContainer/ContentContainer/GamesGrid/Game1Container/Game1Content"]
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
+[node name="Game1Title" type="Label" parent="MainContainer/ContentContainer/GamesGrid/Game1Container/Game1Content/Game1Info"]
 layout_mode = 2
-expand_mode = 1
+theme_override_colors/font_color = Color(0.4, 1, 0.8, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+text = "🧩 TECHIE TIM'S PROGRAMMING MAZE"
+autowrap_mode = 3
 
-[node name="CodeMazeButton" type="Button" parent="Panel/GridContainer/VBoxContainer"]
-custom_minimum_size = Vector2(180, 40)
+[node name="Game1Description" type="Label" parent="MainContainer/ContentContainer/GamesGrid/Game1Container/Game1Content/Game1Info"]
 layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_ktr47")
-text = "Code Maze"
+theme_override_colors/font_color = Color(0.8, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Navigate Tim through digital circuits and programming challenges. Perfect for learning basic movement and logic!"
+autowrap_mode = 3
 
-[node name="Label" type="Label" parent="Panel/GridContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Instructions"
-horizontal_alignment = 1
-
-[node name="Panel" type="Panel" parent="Panel/GridContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 170)
-layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/GridContainer"]
-custom_minimum_size = Vector2(380, 450)
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-expand_mode = 1
-
-[node name="PuzzleButton" type="Button" parent="Panel/GridContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(330, 40)
+[node name="Game1Button" type="Button" parent="MainContainer/ContentContainer/GamesGrid/Game1Container/Game1Content"]
+custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_ktr47")
-text = "Complete the Puzzle"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+text = "🚀 PLAY
+MAZE"
 
-[node name="Label" type="Label" parent="Panel/GridContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Instructions"
-horizontal_alignment = 1
-
-[node name="Panel" type="Panel" parent="Panel/GridContainer/VBoxContainer2"]
-custom_minimum_size = Vector2(0, 170)
+[node name="Spacer1" type="Control" parent="MainContainer/ContentContainer/GamesGrid"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/GridContainer"]
-custom_minimum_size = Vector2(380, 450)
+[node name="Game2Container" type="Panel" parent="MainContainer/ContentContainer/GamesGrid"]
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_game_card")
 
-[node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/VBoxContainer3"]
-custom_minimum_size = Vector2(0, 200)
+[node name="Game2Content" type="HBoxContainer" parent="MainContainer/ContentContainer/GamesGrid/Game2Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -476.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+
+[node name="Game2Info" type="VBoxContainer" parent="MainContainer/ContentContainer/GamesGrid/Game2Container/Game2Content"]
 layout_mode = 2
-expand_mode = 1
+size_flags_horizontal = 3
 
-[node name="AudioButton" type="Button" parent="Panel/GridContainer/VBoxContainer3"]
-custom_minimum_size = Vector2(250, 40)
+[node name="Game2Title" type="Label" parent="MainContainer/ContentContainer/GamesGrid/Game2Container/Game2Content/Game2Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+text = "🤖 DEBUG THE WORD BOT 🤖"
+autowrap_mode = 2
+
+[node name="Game2Description" type="Label" parent="MainContainer/ContentContainer/GamesGrid/Game2Container/Game2Content/Game2Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Help Tim debug broken code and fix syntax errors. Learn programming concepts while solving word puzzles!"
+autowrap_mode = 2
+
+[node name="Game2Button" type="Button" parent="MainContainer/ContentContainer/GamesGrid/Game2Container/Game2Content"]
+custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_ktr47")
-text = "Audio Prompt"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+text = "🔧 START
+DEBUGGING"
 
-[node name="Label" type="Label" parent="Panel/GridContainer/VBoxContainer3"]
+[node name="Spacer2" type="Control" parent="MainContainer/ContentContainer/GamesGrid"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+
+[node name="Game3Container" type="Panel" parent="MainContainer/ContentContainer/GamesGrid"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_game_card")
+
+[node name="Game3Content" type="HBoxContainer" parent="MainContainer/ContentContainer/GamesGrid/Game3Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -474.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+
+[node name="Game3Info" type="VBoxContainer" parent="MainContainer/ContentContainer/GamesGrid/Game3Container/Game3Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Game3Title" type="Label" parent="MainContainer/ContentContainer/GamesGrid/Game3Container/Game3Content/Game3Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.4, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 24
+text = "🔐 TIM'S PASSWORD DECODER 🔐"
+autowrap_mode = 2
+
+[node name="Game3Description" type="Label" parent="MainContainer/ContentContainer/GamesGrid/Game3Container/Game3Content/Game3Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Crack secret codes and solve encryption puzzles with Tim. Master pattern recognition and logical thinking!"
+autowrap_mode = 2
+
+[node name="Game3Button" type="Button" parent="MainContainer/ContentContainer/GamesGrid/Game3Container/Game3Content"]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+text = "🔓 DECODE
+SECRETS"
+
+[node name="BottomContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 959.0
+offset_top = 568.0
+offset_right = 1122.0
+offset_bottom = 618.0
+
+[node name="BackButton" type="Button" parent="BottomContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 20
-text = "Instructions"
-horizontal_alignment = 1
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+text = "MAIN MENU"
 
-[node name="Panel" type="Panel" parent="Panel/GridContainer/VBoxContainer3"]
-custom_minimum_size = Vector2(0, 170)
+[node name="Spacer" type="Control" parent="BottomContainer"]
+visible = false
 layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="MainContainer/ContentContainer/GamesGrid/Game1Container/Game1Content/Game1Button" to="." method="_on_game1_pressed"]
+[connection signal="pressed" from="MainContainer/ContentContainer/GamesGrid/Game2Container/Game2Content/Game2Button" to="." method="_on_game2_pressed"]
+[connection signal="pressed" from="MainContainer/ContentContainer/GamesGrid/Game3Container/Game3Content/Game3Button" to="." method="_on_game3_pressed"]
+[connection signal="pressed" from="BottomContainer/BackButton" to="." method="_on_back_pressed"]
