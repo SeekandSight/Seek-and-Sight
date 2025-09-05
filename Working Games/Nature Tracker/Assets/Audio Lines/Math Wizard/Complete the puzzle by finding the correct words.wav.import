@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://sovuxm5ka3ki"
+path="res://.godot/imported/Complete the puzzle by finding the correct words.wav-2711885be475c81f2e854b012f82b757.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Math Wizard/Complete the puzzle by finding the correct words.wav"
+dest_files=["res://.godot/imported/Complete the puzzle by finding the correct words.wav-2711885be475c81f2e854b012f82b757.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

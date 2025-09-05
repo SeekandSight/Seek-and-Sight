@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ckrsmjedw14fk"
+path="res://.godot/imported/1 Pre K Master.mp3-5508d7149e28ae91db6989dbdf871a96.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Pre K Words/1 Pre K Master.mp3"
+dest_files=["res://.godot/imported/1 Pre K Master.mp3-5508d7149e28ae91db6989dbdf871a96.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

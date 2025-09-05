@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dbkgbvhdeaqgt"
+path="res://.godot/imported/Lets spell some words with these potions.wav-84f718a2fe6eb24a7d1f6f975db36a3c.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Eco/Lets spell some words with these potions.wav"
+dest_files=["res://.godot/imported/Lets spell some words with these potions.wav-84f718a2fe6eb24a7d1f6f975db36a3c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

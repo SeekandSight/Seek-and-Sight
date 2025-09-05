@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://32ryajyhueun"
+path="res://.godot/imported/Use the sight words to move Tim out of the maze.wav-33bfadc649a332fe2d0040a27c3e574e.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Eco/Use the sight words to move Tim out of the maze.wav"
+dest_files=["res://.godot/imported/Use the sight words to move Tim out of the maze.wav-33bfadc649a332fe2d0040a27c3e574e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

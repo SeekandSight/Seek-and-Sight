@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dyxtmu6foev17"
+path="res://.godot/imported/SnS 5.wav-32f2408b931fefc8653d243da4b1c13a.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Numbers 1-20/SnS 5.wav"
+dest_files=["res://.godot/imported/SnS 5.wav-32f2408b931fefc8653d243da4b1c13a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

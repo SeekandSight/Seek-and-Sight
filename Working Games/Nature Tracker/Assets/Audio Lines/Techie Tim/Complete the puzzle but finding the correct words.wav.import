@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmvy5y858l6dt"
+path="res://.godot/imported/Complete the puzzle but finding the correct words.wav-d6fd90095c908a6d65278e7567a05e64.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Techie Tim/Complete the puzzle but finding the correct words.wav"
+dest_files=["res://.godot/imported/Complete the puzzle but finding the correct words.wav-d6fd90095c908a6d65278e7567a05e64.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

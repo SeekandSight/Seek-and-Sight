@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqvfo46w8f5l1"
-path="res://.godot/imported/wordsort.png-d6238f43ddd87716f89ae0f5b8c7ebb9.ctex"
+path="res://.godot/imported/wordsort.png-12187936a4e52ca8def941c3a5e09f74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/wordsort.png"
-dest_files=["res://.godot/imported/wordsort.png-d6238f43ddd87716f89ae0f5b8c7ebb9.ctex"]
+source_file="res://Assets/Images/wordsort.png"
+dest_files=["res://.godot/imported/wordsort.png-12187936a4e52ca8def941c3a5e09f74.ctex"]
 
 [params]
 

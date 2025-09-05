@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cuntus57yvfbh"
+path="res://.godot/imported/THEN.wav-e4281f9032523cdf98b123b93fed02aa.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/First Grade Words/THEN.wav"
+dest_files=["res://.godot/imported/THEN.wav-e4281f9032523cdf98b123b93fed02aa.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b3xatjdtwgwmh"
+path="res://.godot/imported/GREAT JOB.wav-8f0fb0db7cdc3e069213144712a5b61e.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Feedback/GREAT JOB.wav"
+dest_files=["res://.godot/imported/GREAT JOB.wav-8f0fb0db7cdc3e069213144712a5b61e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

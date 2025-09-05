@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://s3buuij8kc26"
+path="res://.godot/imported/PIG.wav-1f4de6c0b4004eda27548e1d079b936e.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Animals/PIG.wav"
+dest_files=["res://.godot/imported/PIG.wav-1f4de6c0b4004eda27548e1d079b936e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

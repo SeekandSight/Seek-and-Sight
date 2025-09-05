@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c4a3icwfnabb8"
+path="res://.godot/imported/ELEVEN.wav-3730b0c07a52bd3ff5ec9b18b25aae29.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Numbers/ELEVEN.wav"
+dest_files=["res://.godot/imported/ELEVEN.wav-3730b0c07a52bd3ff5ec9b18b25aae29.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

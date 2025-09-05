@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://daen7khun6ops"
+path="res://.godot/imported/Help win the race by quickly choosing the correct words.wav-a534c16a1f8ccd64a1595409fe7735a7.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Eco/Help win the race by quickly choosing the correct words.wav"
+dest_files=["res://.godot/imported/Help win the race by quickly choosing the correct words.wav-a534c16a1f8ccd64a1595409fe7735a7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

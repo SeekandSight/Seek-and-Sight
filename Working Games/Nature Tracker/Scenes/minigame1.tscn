@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://de3gukwxkoe53"]
+[gd_scene load_steps=8 format=3 uid="uid://de3gukwxkoe53"]
 
-[ext_resource type="Texture2D" uid="uid://dhhdjhddaalyc" path="res://Images/background.png" id="1_yid40"]
-[ext_resource type="Texture2D" uid="uid://twngccyb2cy" path="res://Images/EchoWave.png" id="2_sciyd"]
-[ext_resource type="FontFile" uid="uid://clstqc52sg603" path="res://Assets/Fonts/Chewy-Regular.ttf" id="3_r65eu"]
+[ext_resource type="Texture2D" uid="uid://dhhdjhddaalyc" path="res://Assets/Images/background.png" id="1_yid40"]
+[ext_resource type="Texture2D" uid="uid://twngccyb2cy" path="res://Assets/Images/EchoWave.png" id="2_sciyd"]
+[ext_resource type="FontFile" uid="uid://bnjitkr10fgd4" path="res://Assets/Fonts/Chewy-Regular.ttf" id="3_r65eu"]
+[ext_resource type="Script" uid="uid://bmv8lxi3w5qa7" path="res://scripts/minigame1.gd" id="4_script"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bysyl"]
 texture = ExtResource("1_yid40")
@@ -31,6 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_script")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -63,7 +65,7 @@ text = "Animal Match"
 layout_mode = 0
 offset_left = 7.0
 offset_top = 156.0
-offset_right = 424.0
+offset_right = 427.0
 offset_bottom = 647.0
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer"]
@@ -79,9 +81,9 @@ layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
-offset_left = 442.0
-offset_top = 155.0
-offset_right = 827.0
+offset_left = 433.0
+offset_top = 157.0
+offset_right = 865.0
 offset_bottom = 646.0
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer2"]
@@ -97,10 +99,10 @@ layout_mode = 2
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
-offset_left = 843.0
-offset_top = 156.0
-offset_right = 1145.0
-offset_bottom = 647.0
+offset_left = 866.0
+offset_top = 115.0
+offset_right = 1142.0
+offset_bottom = 624.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer3"]
 layout_mode = 2
@@ -122,6 +124,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ktr47")
 text = "Game Selection"
 
 [node name="SettingButton" type="Button" parent="Panel/VBoxContainer3/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(190, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)

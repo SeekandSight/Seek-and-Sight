@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d2f6dup6ikhfa"
+path="res://.godot/imported/Match the sight words to complete the tower-2.wav-0488e2d21fe9baf89ba00126aaae5a4f.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Math Wizard/Match the sight words to complete the tower-2.wav"
+dest_files=["res://.godot/imported/Match the sight words to complete the tower-2.wav-0488e2d21fe9baf89ba00126aaae5a4f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

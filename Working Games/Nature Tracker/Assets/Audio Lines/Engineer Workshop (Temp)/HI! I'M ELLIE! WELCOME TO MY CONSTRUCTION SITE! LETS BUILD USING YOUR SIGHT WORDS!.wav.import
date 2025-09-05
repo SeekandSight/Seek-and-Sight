@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://j4slg8bjm0pc"
+path="res://.godot/imported/HI! I'M ELLIE! WELCOME TO MY CONSTRUCTION SITE! LETS BUILD USING YOUR SIGHT WORDS!.wav-a11d7a5567c07c9cb109ee202ca562c8.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Engineer Workshop (Temp)/HI! I'M ELLIE! WELCOME TO MY CONSTRUCTION SITE! LETS BUILD USING YOUR SIGHT WORDS!.wav"
+dest_files=["res://.godot/imported/HI! I'M ELLIE! WELCOME TO MY CONSTRUCTION SITE! LETS BUILD USING YOUR SIGHT WORDS!.wav-a11d7a5567c07c9cb109ee202ca562c8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

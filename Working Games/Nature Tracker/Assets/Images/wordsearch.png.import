@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ch0qovwgyfmt6"
-path="res://.godot/imported/wordsearch.png-e542297af09874c93a0f5ad38a655372.ctex"
+path="res://.godot/imported/wordsearch.png-e0cbbc1557873e65f2c8c39392a2deac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/wordsearch.png"
-dest_files=["res://.godot/imported/wordsearch.png-e542297af09874c93a0f5ad38a655372.ctex"]
+source_file="res://Assets/Images/wordsearch.png"
+dest_files=["res://.godot/imported/wordsearch.png-e0cbbc1557873e65f2c8c39392a2deac.ctex"]
 
 [params]
 

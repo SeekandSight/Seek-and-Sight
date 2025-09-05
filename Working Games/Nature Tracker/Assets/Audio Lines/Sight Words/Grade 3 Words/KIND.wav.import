@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cebl2tj433108"
+path="res://.godot/imported/KIND.wav-11eb7dd0d24e6a135c185ab54393c498.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Grade 3 Words/KIND.wav"
+dest_files=["res://.godot/imported/KIND.wav-11eb7dd0d24e6a135c185ab54393c498.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

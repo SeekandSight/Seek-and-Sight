@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://chiex68yq6l0v"
+path="res://.godot/imported/DIAMOND.wav-046bcdbbd2e993c6f3e4a037330eb718.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Shapes/DIAMOND.wav"
+dest_files=["res://.godot/imported/DIAMOND.wav-046bcdbbd2e993c6f3e4a037330eb718.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

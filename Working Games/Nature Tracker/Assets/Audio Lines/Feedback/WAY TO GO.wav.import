@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d2dvyb1y67bvi"
+path="res://.godot/imported/WAY TO GO.wav-dd66f8292dad0fb64094dcd8ed5514ab.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Feedback/WAY TO GO.wav"
+dest_files=["res://.godot/imported/WAY TO GO.wav-dd66f8292dad0fb64094dcd8ed5514ab.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

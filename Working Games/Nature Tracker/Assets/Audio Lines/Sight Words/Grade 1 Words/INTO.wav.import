@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bgo3jsh60ie33"
+path="res://.godot/imported/INTO.wav-17496285ad0b5b52103f951f04ad64ac.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Grade 1 Words/INTO.wav"
+dest_files=["res://.godot/imported/INTO.wav-17496285ad0b5b52103f951f04ad64ac.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

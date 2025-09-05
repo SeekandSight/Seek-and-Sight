@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://btusokid4gn46"
+path="res://.godot/imported/BEFORE.wav-de40911d6f03222ae9c1dca9745d896e.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Grade 1 Words/BEFORE.wav"
+dest_files=["res://.godot/imported/BEFORE.wav-de40911d6f03222ae9c1dca9745d896e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
