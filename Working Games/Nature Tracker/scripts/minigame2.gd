@@ -176,23 +176,28 @@ func select_words_for_level():
 	
 	match current_level:
 		1:
-			# Level 1: Easy 2-3 letter words
-			var easy_words = kindergarten_words["easy"]
+			# Level 1: Easy 2-3 letter words - REDUCED TO 3 WORDS
+			var easy_words = kindergarten_words["easy"].filter(func(w): return w.length() <= 3)
 			easy_words.shuffle()
-			for i in range(min(5, easy_words.size())):
-				if easy_words[i].length() <= 3:
-					current_words.append(easy_words[i])
+			for i in range(min(3, easy_words.size())):
+				current_words.append(easy_words[i])
 		2:
-			# Level 2: Medium words
+			# Level 2: Easy 4-5 letter words - REDUCED TO 3 WORDS  
+			var easy_medium = kindergarten_words["easy"].filter(func(w): return w.length() >= 4)
+			easy_medium.shuffle()
+			for i in range(min(3, easy_medium.size())):
+				current_words.append(easy_medium[i])
+		3:
+			# Level 3: Medium words - REDUCED TO 4 WORDS
 			var medium_words = kindergarten_words["medium"]
 			medium_words.shuffle()
-			for i in range(min(5, medium_words.size())):
+			for i in range(min(4, medium_words.size())):
 				current_words.append(medium_words[i])
 		_:
-			# Level 3+: Hard words
+			# Level 4+: Hard words - REDUCED TO 3 WORDS
 			var hard_words = kindergarten_words["hard"]
 			hard_words.shuffle()
-			for i in range(min(4, hard_words.size())):
+			for i in range(min(3, hard_words.size())):
 				current_words.append(hard_words[i])
 	
 	total_words = current_words.size()
@@ -225,7 +230,7 @@ func place_words_in_grid():
 		var placed = false
 		var attempts = 0
 		
-		while not placed and attempts < 50:
+		while not placed and attempts < 100:  # Increased attempts
 			var direction = randi() % 8  # 8 directions
 			var start_row = randi() % grid_size
 			var start_col = randi() % grid_size
@@ -238,6 +243,19 @@ func place_words_in_grid():
 		
 		if not placed:
 			print("Could not place word: ", word)
+			# Try simpler placement - horizontal only
+			placed = try_simple_placement(word)
+			if not placed:
+				print("Failed to place word even with simple placement: ", word)
+
+func try_simple_placement(word: String) -> bool:
+	# Try horizontal placement only
+	for row in range(grid_size):
+		for col in range(grid_size - word.length() + 1):
+			if can_place_word(word, row, col, 0):  # Direction 0 = horizontal right
+				place_word(word, row, col, 0)
+				return true
+	return false
 
 func can_place_word(word: String, start_row: int, start_col: int, direction: int) -> bool:
 	var directions = [
@@ -283,6 +301,7 @@ func place_word(word: String, start_row: int, start_col: int, direction: int):
 		positions.append(Vector2(row, col))
 	
 	word_positions[word.to_upper()] = positions
+	print("Placed word: ", word_upper, " at positions: ", positions)
 
 func fill_random_letters():
 	var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -345,7 +364,6 @@ func create_word_list():
 	
 	# Create word list container
 	var words_container = VBoxContainer.new()
-	#words_container.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	words_container.add_theme_constant_override("separation", 8)
 	words_container.position = Vector2(10, 10)
 	words_panel.add_child(words_container)
@@ -495,13 +513,18 @@ func check_word_selection():
 func word_found(word: String):
 	found_words.append(word)
 	print("Found word: ", word)
+	print("Found words so far: ", found_words)
+	print("Total words needed: ", total_words)
 	
-	# Highlight the word in the grid
-	for cell in selected_cells:
-		if cell.x >= 0 and cell.x < grid_size and cell.y >= 0 and cell.y < grid_size:
-			var button = grid_buttons[int(cell.x)][int(cell.y)]
-			button.modulate = Color.GREEN
-			button.set_meta("found", true)
+	# FIXED: Only highlight the actual word positions, not the selection
+	var word_upper = word.to_upper()
+	if word_upper in word_positions:
+		var word_cells = word_positions[word_upper]
+		for cell in word_cells:
+			if cell.x >= 0 and cell.x < grid_size and cell.y >= 0 and cell.y < grid_size:
+				var button = grid_buttons[int(cell.x)][int(cell.y)]
+				button.modulate = Color.GREEN
+				button.set_meta("found", true)
 	
 	# Update word list to show found word
 	update_word_list_display()
@@ -534,7 +557,19 @@ func update_word_list_display():
 
 func level_complete():
 	game_active = false
-	print("Level ", current_level, " complete!")
+	print("🎉 Level ", current_level, " complete! 🎉")
+	
+	# Show completion message
+	var completion_popup = AcceptDialog.new()
+	completion_popup.dialog_text = "Congratulations! You completed Level " + str(current_level) + "!\n\nWords found: " + str(found_words)
+	completion_popup.title = "Level Complete!"
+	add_child(completion_popup)
+	completion_popup.popup_centered()
+	
+	# Auto-close popup after 3 seconds
+	await get_tree().create_timer(3.0).timeout
+	if completion_popup:
+		completion_popup.queue_free()
 	
 	# Celebration effect
 	var tween = create_tween()
@@ -544,8 +579,21 @@ func level_complete():
 	# Update start button for next level
 	current_level += 1
 	var start_button = $Panel/VBoxContainer3/VBoxContainer/StartGameButton
-	start_button.text = "Next Level"
-	start_button.disabled = false
+	
+	# Add win condition after level 5
+	if current_level > 5:
+		start_button.text = "PLAY AGAIN"
+		start_button.disabled = false
+		
+		# Show final win message
+		var win_popup = AcceptDialog.new()
+		win_popup.dialog_text = "🎉 CONGRATULATIONS! 🎉\n\nYou've completed all 5 levels!\nYou're a Word Search Master!"
+		win_popup.title = "GAME COMPLETE!"
+		add_child(win_popup)
+		win_popup.popup_centered()
+	else:
+		start_button.text = "Level " + str(current_level)
+		start_button.disabled = false
 
 func play_word_audio(word: String):
 	if word in word_audio_paths:

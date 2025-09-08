@@ -23,6 +23,8 @@ var settings_btn: Button
 # Drag variables
 var dragging_item = null
 var drag_offset = Vector2()
+var original_parent = null
+var original_position = Vector2()
 
 # Word categories for sorting
 var word_categories = {
@@ -211,9 +213,6 @@ func connect_navigation_buttons():
 	
 	print("=======================================")
 
-
-
-
 func start_game():
 	if game_active:
 		return
@@ -254,7 +253,6 @@ func create_sorting_interface(level_data):
 	
 	# Left side - Categories
 	var left_container = VBoxContainer.new()
-	#left_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	left_container.size_flags_stretch_ratio = 1.5  # Takes up more space
 	left_container.add_theme_constant_override("separation", 10)
 	main_horizontal.add_child(left_container)
@@ -270,7 +268,6 @@ func create_sorting_interface(level_data):
 	# Categories container
 	var categories_container = HBoxContainer.new()
 	categories_container.add_theme_constant_override("separation", 10)
-	#categories_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	left_container.add_child(categories_container)
 	
 	drop_zones.clear()
@@ -305,7 +302,7 @@ func create_sorting_interface(level_data):
 	right_container.add_child(scroll_container)
 	
 	var words_grid = GridContainer.new()
-	words_grid.columns = 4  # Two columns for better fit
+	words_grid.columns = 3  # Four columns for better fit
 	words_grid.add_theme_constant_override("h_separation", 8)
 	words_grid.add_theme_constant_override("v_separation", 8)
 	scroll_container.add_child(words_grid)
@@ -318,8 +315,8 @@ func create_sorting_interface(level_data):
 
 func create_category_panel(category_name: String) -> Panel:
 	var panel = Panel.new()
-	panel.custom_minimum_size = Vector2(250, 350)  # Reduced height to fit better
-	#panel.size_flags_horizontal = Control.SIZE_EXPAND
+	# FIXED: Made category panels larger to prevent unnecessary scrolling
+	panel.custom_minimum_size = Vector2(280, 420)  # Increased from 250x350 to 280x420
 	panel.set_meta("category_name", category_name)
 	
 	# Style the panel
@@ -347,17 +344,12 @@ func create_category_panel(category_name: String) -> Panel:
 	title_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	panel.add_child(title_label)
 	
-	# Scrollable container for dropped words
-	var scroll_container = ScrollContainer.new()
-	scroll_container.position = Vector2(5, 45)
-	scroll_container.size = Vector2(panel.custom_minimum_size.x - 10, panel.custom_minimum_size.y - 50)
-	panel.add_child(scroll_container)
-	
-	# Container for dropped words
+	# Container for dropped words - FIXED: No scroll container, just direct VBoxContainer
 	var words_container = VBoxContainer.new()
-	words_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	words_container.add_theme_constant_override("separation", 3)
-	scroll_container.add_child(words_container)
+	words_container.position = Vector2(10, 45)
+	words_container.size = Vector2(panel.custom_minimum_size.x - 20, panel.custom_minimum_size.y - 55)
+	words_container.add_theme_constant_override("separation", 5)
+	panel.add_child(words_container)
 	
 	return panel
 
@@ -367,7 +359,6 @@ func create_word_button(word: String) -> Button:
 	button.custom_minimum_size = Vector2(80, 35)  # Made slightly bigger for better visibility
 	button.add_theme_font_size_override("font_size", 13)
 	button.set_meta("word", word)
-	button.set_meta("original_parent", null)
 	
 	# Style the word button
 	var button_style = StyleBoxFlat.new()
@@ -478,9 +469,15 @@ func start_drag(button: Button, mouse_pos: Vector2):
 	dragging_item = button
 	drag_offset = button.global_position - mouse_pos
 	
-	# Store original position
-	button.set_meta("original_parent", button.get_parent())
-	button.set_meta("original_position", button.position)
+	# FIXED: Store original position data safely
+	original_parent = button.get_parent()
+	original_position = button.position
+	
+	print("=== DRAG START DEBUG ===")
+	print("Button: ", button.text)
+	print("Original parent: ", original_parent.name if original_parent else "null")
+	print("Original position: ", original_position)
+	print("=======================")
 	
 	# Visual feedback - Changed transparency from 0.8 to 0.9 for better visibility
 	button.z_index = 100
@@ -490,6 +487,9 @@ func stop_drag():
 	if not dragging_item:
 		return
 	
+	print("=== DRAG STOP DEBUG ===")
+	print("Dragging item: ", dragging_item.text if dragging_item else "null")
+	
 	var mouse_pos = get_global_mouse_position()
 	var dropped_in_category = false
 	
@@ -498,109 +498,227 @@ func stop_drag():
 		if drop_zone and is_instance_valid(drop_zone):
 			var zone_rect = Rect2(drop_zone.global_position, drop_zone.size)
 			if zone_rect.has_point(mouse_pos):
+				print("Dropped in category: ", drop_zone.get_meta("category_name"))
 				handle_word_drop(drop_zone)
 				dropped_in_category = true
 				break
 	
 	if not dropped_in_category:
+		print("Not dropped in category, returning to original position")
 		return_to_original_position()
 	
 	# Reset dragging state
 	if dragging_item:
 		dragging_item.z_index = 0
 		dragging_item.modulate = Color.WHITE
+	
+	print("=======================")
 	dragging_item = null
 
 func handle_word_drop(drop_zone: Panel):
 	var word = dragging_item.get_meta("word")
 	var category = drop_zone.get_meta("category_name")
 	
+	print("=== WORD DROP DEBUG ===")
+	print("Word: ", word)
+	print("Category: ", category)
+	
 	# Check if word belongs in this category
 	var level_data = word_categories["level_" + str(current_level)]
 	var correct_words = level_data["categories"][category]
 	
+	print("Correct words for category: ", correct_words)
+	print("Word in correct list: ", word in correct_words)
+	
 	if word in correct_words:
 		# Correct placement
+		print("✓ Correct placement!")
 		place_word_in_category(drop_zone, word)
 		score += 10
 		check_level_completion()
 	else:
 		# Incorrect placement
+		print("✗ Incorrect placement")
 		show_incorrect_feedback()
 		return_to_original_position()
+	
+	print("=======================")
 
 func place_word_in_category(drop_zone: Panel, word: String):
 	# TEST AUDIO - Play the word when it's correctly placed
 	print("=== TESTING AUDIO ON CORRECT PLACEMENT ===")
 	play_word_audio(word)
 	
-	# Find the words container in the drop zone (it's inside a ScrollContainer now)
+	# DEBUG: Check what children are actually in the drop zone
+	print("=== DROP ZONE DEBUG ===")
+	print("Drop zone children count: ", drop_zone.get_child_count())
+	for i in range(drop_zone.get_child_count()):
+		var child = drop_zone.get_child(i)
+		print("Child ", i, ": ", child.get_class(), " - ", child.name)
+	
+	# FIXED: Find the words container directly (now it's a GridContainer with 3 columns)
 	var words_container = null
 	for child in drop_zone.get_children():
-		if child is ScrollContainer:
-			for grandchild in child.get_children():
-				if grandchild is VBoxContainer:
-					words_container = grandchild
-					break
+		print("Checking child: ", child.get_class())
+		if child is GridContainer:
+			words_container = child
+			print("✓ Found GridContainer!")
 			break
 	
 	if words_container:
+		print("✓ Found words container (GridContainer)")
+		
 		# Remove from original parent
-		var original_parent = dragging_item.get_parent()
-		if original_parent:
+		if original_parent and is_instance_valid(original_parent):
+			print("✓ Removing from original parent: ", original_parent.name)
 			original_parent.remove_child(dragging_item)
 		
-		# Create a new label for the sorted word
-		var word_label = Label.new()
-		word_label.text = word
-		word_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		word_label.add_theme_font_size_override("font_size", 11)
-		word_label.add_theme_color_override("font_color", Color.GREEN)
+		# FIXED: Create a styled button instead of a label for better visibility
+		var word_button = Button.new()
+		word_button.text = word
+		word_button.custom_minimum_size = Vector2(75, 30)  # Slightly smaller to fit 3 columns
+		word_button.add_theme_font_size_override("font_size", 11)
+		word_button.disabled = true  # Make it non-clickable
 		
-		# Add to category
-		words_container.add_child(word_label)
+		# Style the placed word button
+		var placed_style = StyleBoxFlat.new()
+		placed_style.bg_color = Color.GREEN
+		placed_style.corner_radius_top_left = 6
+		placed_style.corner_radius_top_right = 6
+		placed_style.corner_radius_bottom_left = 6
+		placed_style.corner_radius_bottom_right = 6
+		placed_style.border_width_left = 1
+		placed_style.border_width_right = 1
+		placed_style.border_width_top = 1
+		placed_style.border_width_bottom = 1
+		placed_style.border_color = Color.DARK_GREEN
+		
+		word_button.add_theme_stylebox_override("normal", placed_style)
+		word_button.add_theme_stylebox_override("disabled", placed_style)  # Same style when disabled
+		word_button.add_theme_color_override("font_color", Color.BLACK)
+		word_button.add_theme_color_override("font_disabled_color", Color.BLACK)
+		
+		# Add to category grid
+		words_container.add_child(word_button)
+		print("✓ Added word button to category grid")
 		
 		# Track sorted word
 		sorted_words[word] = true
 		
 		print("Correctly placed: ", word)
+	else:
+		print("✗ Could not find words container (GridContainer) in drop zone")
+		print("=== FALLBACK: Creating GridContainer ===")
+		# Fallback: Create the GridContainer if it doesn't exist
+		var new_container = GridContainer.new()
+		new_container.columns = 3
+		new_container.position = Vector2(10, 45)
+		new_container.size = Vector2(260, 375)
+		new_container.add_theme_constant_override("h_separation", 3)
+		new_container.add_theme_constant_override("v_separation", 3)
+		drop_zone.add_child(new_container)
+		
+		# Now add the word to the new container
+		var word_button = Button.new()
+		word_button.text = word
+		word_button.custom_minimum_size = Vector2(75, 30)
+		word_button.add_theme_font_size_override("font_size", 11)
+		word_button.disabled = true
+		
+		var placed_style = StyleBoxFlat.new()
+		placed_style.bg_color = Color.GREEN
+		placed_style.corner_radius_top_left = 6
+		placed_style.corner_radius_top_right = 6
+		placed_style.corner_radius_bottom_left = 6
+		placed_style.corner_radius_bottom_right = 6
+		placed_style.border_width_left = 1
+		placed_style.border_width_right = 1
+		placed_style.border_width_top = 1
+		placed_style.border_width_bottom = 1
+		placed_style.border_color = Color.DARK_GREEN
+		
+		word_button.add_theme_stylebox_override("normal", placed_style)
+		word_button.add_theme_stylebox_override("disabled", placed_style)
+		word_button.add_theme_color_override("font_color", Color.BLACK)
+		word_button.add_theme_color_override("font_disabled_color", Color.BLACK)
+		
+		new_container.add_child(word_button)
+		sorted_words[word] = true
+		print("✓ Created new GridContainer and added word")
+	
+	print("=========================")
 
 func show_incorrect_feedback():
 	# Visual feedback for wrong placement
 	if dragging_item:
 		var tween = create_tween()
 		tween.tween_property(dragging_item, "modulate", Color.RED, 0.2)
-		tween.tween_callback(func(): dragging_item.modulate = Color.WHITE)
+		tween.tween_callback(func(): 
+			if dragging_item:
+				dragging_item.modulate = Color.BLACK
+		)
 
 func return_to_original_position():
 	if not dragging_item:
+		print("✗ No dragging item to return")
 		return
 	
-	var original_parent = dragging_item.get_meta("original_parent")
-	var original_pos = dragging_item.get_meta("original_position")
-	var original_global_pos = dragging_item.get_meta("original_global_position")
+	print("=== RETURN TO POSITION DEBUG ===")
+	print("Dragging item: ", dragging_item.text)
+	print("Original parent: ", original_parent.name if original_parent else "null")
+	print("Original position: ", original_position)
 	
+	# FIXED: Improved error handling and validation
 	if original_parent and is_instance_valid(original_parent):
-		# Remove from current parent (likely the scene root)
-		if dragging_item.get_parent():
-			dragging_item.get_parent().remove_child(dragging_item)
+		print("✓ Original parent is valid")
+		
+		# Remove from current parent if it has one
+		var current_parent = dragging_item.get_parent()
+		if current_parent and current_parent != original_parent:
+			print("✓ Removing from current parent: ", current_parent.name)
+			current_parent.remove_child(dragging_item)
 		
 		# Add back to original parent
-		original_parent.add_child(dragging_item)
+		if not dragging_item.get_parent():
+			print("✓ Adding back to original parent")
+			original_parent.add_child(dragging_item)
 		
 		# Restore position
-		if original_pos:
-			dragging_item.position = original_pos
-		elif original_global_pos:
-			dragging_item.global_position = original_global_pos
+		dragging_item.position = original_position
+		print("✓ Position restored")
+	else:
+		print("✗ Original parent is invalid or null")
+		# Fallback: just reset the visual state
+		if dragging_item:
+			dragging_item.z_index = 0
+			dragging_item.modulate = Color.WHITE
+	
+	print("================================")
 
 func check_level_completion():
+	print("=== LEVEL COMPLETION CHECK ===")
+	print("Sorted words: ", sorted_words.size())
+	print("Total words: ", current_words.size())
+	print("==============================")
+	
 	if sorted_words.size() >= current_words.size():
 		level_complete()
 
 func level_complete():
 	game_active = false
 	print("Level ", current_level, " complete! Score: ", score)
+	
+	# Show completion popup
+	var completion_popup = AcceptDialog.new()
+	completion_popup.dialog_text = "Congratulations! You completed Level " + str(current_level) + "!\n\nScore: " + str(score) + " points"
+	completion_popup.title = "Level Complete!"
+	add_child(completion_popup)
+	completion_popup.popup_centered()
+	
+	# Auto-close popup after 3 seconds
+	await get_tree().create_timer(3.0).timeout
+	if completion_popup:
+		completion_popup.queue_free()
 	
 	# Celebration effect
 	var tween = create_tween()
@@ -613,12 +731,24 @@ func level_complete():
 	
 	if start_button:
 		if current_level <= 3:
-			start_button.text = "Next Level"
+			start_button.text = "Level " + str(current_level)
+			start_button.disabled = false
 		else:
+			# Game complete - show play again option
+			var win_popup = AcceptDialog.new()
+			win_popup.dialog_text = "🎉 CONGRATULATIONS! 🎉\n\nYou've completed all 3 levels!\nYou're a Word Sort Master!"
+			win_popup.title = "GAME COMPLETE!"
+			add_child(win_popup)
+			win_popup.popup_centered()
+			
+			# Auto-close popup after 3 seconds
+			await get_tree().create_timer(3.0).timeout
+			if win_popup:
+				win_popup.queue_free()
+			
 			start_button.text = "Play Again"
-			current_level = 1
-		
-		start_button.disabled = false
+			start_button.disabled = false
+			current_level = 1  # Reset for play again
 	else:
 		print("Start button not found for level completion")
 
