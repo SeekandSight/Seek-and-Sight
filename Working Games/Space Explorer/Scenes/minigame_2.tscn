@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://54f41rg5unew"]
+[gd_scene load_steps=7 format=3 uid="uid://54f41rg5unew"]
 
 [ext_resource type="Texture2D" uid="uid://o0ypip0f0ke2" path="res://Assets/Images/Background.png" id="1_psbsm"]
-[ext_resource type="FontFile" uid="uid://vyxse7d6l7px" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Chewy/Chewy-Regular.ttf" id="2_he4ew"]
 [ext_resource type="Texture2D" uid="uid://bhh42li0nhhe7" path="res://Assets/Images/NovaWave.png" id="3_l4g8r"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_psbsm"]
@@ -44,15 +43,16 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_psbsm")
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_left = 379.0
 offset_top = 10.0
 offset_right = 789.0
 offset_bottom = 127.0
-theme_override_fonts/font = ExtResource("2_he4ew")
 theme_override_font_sizes/font_size = 80
 text = "Word Sorting"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 885.0
 offset_top = 173.0
 offset_right = 1134.0
@@ -115,6 +115,7 @@ custom_minimum_size = Vector2(0, 450)
 layout_mode = 2
 
 [node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
 offset_left = 942.0
 offset_top = 26.0
 offset_right = 1078.0

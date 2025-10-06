@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1y5m1na488oy"]
+[gd_scene load_steps=7 format=3 uid="uid://d1y5m1na488oy"]
 
 [ext_resource type="Texture2D" uid="uid://o0ypip0f0ke2" path="res://Assets/Images/Background.png" id="1_28flt"]
-[ext_resource type="FontFile" uid="uid://vyxse7d6l7px" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Chewy/Chewy-Regular.ttf" id="2_48xlc"]
 [ext_resource type="Texture2D" uid="uid://cippvfbxr13tm" path="res://Assets/Images/NovaNeutral.png" id="3_1ehe0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_48xlc"]
@@ -49,7 +48,6 @@ offset_left = 294.0
 offset_top = 57.0
 offset_right = 879.0
 offset_bottom = 186.0
-theme_override_fonts/font = ExtResource("2_48xlc")
 theme_override_font_sizes/font_size = 100
 text = "Space Explorer"
 

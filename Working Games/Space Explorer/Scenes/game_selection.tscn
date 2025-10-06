@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://ccr13wa7ns4sp"]
+[gd_scene load_steps=11 format=3 uid="uid://ccr13wa7ns4sp"]
 
 [ext_resource type="Texture2D" uid="uid://o0ypip0f0ke2" path="res://Assets/Images/Background.png" id="1_yvivq"]
-[ext_resource type="FontFile" uid="uid://vyxse7d6l7px" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Chewy/Chewy-Regular.ttf" id="2_ov8iy"]
 [ext_resource type="Texture2D" uid="uid://ccr24b7obsgkq" path="res://Assets/Images/solarsystem.png" id="3_bysyl"]
 [ext_resource type="Texture2D" uid="uid://edtprvwgcdfe" path="res://Assets/Images/spaceword.png" id="4_qk8bi"]
 [ext_resource type="Texture2D" uid="uid://obbt4au8ey7q" path="res://Assets/Images/jumbledwords.png" id="5_ktr47"]
@@ -52,11 +51,11 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_yvivq")
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_left = 253.0
 offset_top = 4.0
 offset_right = 907.0
 offset_bottom = 121.0
-theme_override_fonts/font = ExtResource("2_ov8iy")
 theme_override_font_sizes/font_size = 80
 text = "Game Selection Menu"
 

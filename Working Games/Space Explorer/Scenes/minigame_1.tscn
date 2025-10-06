@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bdkpf2r14icv3"]
 
 [ext_resource type="Texture2D" uid="uid://o0ypip0f0ke2" path="res://Assets/Images/Background.png" id="1_enoba"]
-[ext_resource type="FontFile" uid="uid://vyxse7d6l7px" path="res://Assets/Fonts/Bangers,Chewy,Orbitron,Rubik_Distressed/Chewy/Chewy-Regular.ttf" id="2_11mgy"]
+[ext_resource type="Script" uid="uid://c4m3neaw4gfnc" path="res://scripts/minigame_1.gd" id="1_f6tb2"]
 [ext_resource type="Texture2D" uid="uid://bhh42li0nhhe7" path="res://Assets/Images/NovaWave.png" id="3_f6tb2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_enoba"]
@@ -33,6 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_f6tb2")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -45,20 +46,19 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_enoba")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 322.0
-offset_top = 7.0
-offset_right = 847.0
-offset_bottom = 124.0
-theme_override_fonts/font = ExtResource("2_11mgy")
+offset_left = 94.0
+offset_top = 15.0
+offset_right = 754.0
+offset_bottom = 132.0
 theme_override_font_sizes/font_size = 80
 text = "The Solar System"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 885.0
-offset_top = 173.0
+offset_top = 33.0
 offset_right = 1134.0
-offset_bottom = 628.0
+offset_bottom = 635.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
 layout_mode = 2
@@ -83,6 +83,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_o6yob")
 text = "Game Selection"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer2/VBoxContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
@@ -97,7 +98,7 @@ text = "Game Instructions"
 horizontal_alignment = 1
 
 [node name="Panel" type="Panel" parent="VBoxContainer2"]
-custom_minimum_size = Vector2(0, 240)
+custom_minimum_size = Vector2(0, 450)
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -134,8 +135,8 @@ layout_mode = 2
 
 [node name="Panel2" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 942.0
-offset_top = 26.0
-offset_right = 1078.0
-offset_bottom = 179.0
+offset_left = 749.0
+offset_top = 12.0
+offset_right = 885.0
+offset_bottom = 165.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_o6yob")
