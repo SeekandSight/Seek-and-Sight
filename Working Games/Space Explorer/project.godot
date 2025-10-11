@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Space_Explorer_2"
+run/main_scene="uid://d1y5m1na488oy"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
