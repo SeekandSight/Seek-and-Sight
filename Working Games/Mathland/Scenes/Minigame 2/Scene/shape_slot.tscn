@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dcqf7g0e2pi0m" path="res://Scenes/Minigame 2/Script/shape_slot.gd" id="1_352sl"]
 
-[node name="ShapeSlot" type="Panel"]
+[node name="ShapeSlot" type="Control"]
 custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_352sl")

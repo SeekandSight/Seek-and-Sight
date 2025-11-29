@@ -56,8 +56,14 @@ func _ready():
 	if game3_button:
 		game3_button.pressed.connect(_on_game_selected.bind(3))
 
-	# Default to game 1
-	_on_game_selected(1)
+	# Check if a specific game was selected from a minigame
+	var default_game = 1
+	if GameData and GameData.current_game_settings.has("selected_game"):
+		default_game = GameData.current_game_settings["selected_game"]
+		print("Returning to game: ", default_game)
+		GameData.current_game_settings.erase("selected_game")
+
+	_on_game_selected(default_game)
 
 	print("=== Level Select Ready ===")
 

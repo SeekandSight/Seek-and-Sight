@@ -1,4 +1,4 @@
-extends Panel
+extends Control
 
 signal match_made(is_correct: bool)
 signal shape_removed
@@ -74,7 +74,7 @@ func _get_drag_data(_at_position):
 	}
 
 	# Create preview
-	var preview = Panel.new()
+	var preview = Control.new()
 	preview.custom_minimum_size = custom_minimum_size
 	var preview_sprite = Sprite2D.new()
 	preview.add_child(preview_sprite)

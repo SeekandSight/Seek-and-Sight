@@ -280,6 +280,7 @@ func _on_match_made(is_correct: bool):
 
 		if questions_this_level >= total_matches_needed:
 			print("Level ", current_level, " complete!")
+			print("Questions this level: ", questions_this_level, " / ", total_matches_needed)
 
 			disable_all_draggables()
 			game_active = false
@@ -288,15 +289,17 @@ func _on_match_made(is_correct: bool):
 
 			if GameData:
 				GameData.update_level_progress(current_level)
+				print("GameData level progress updated")
 
 			var settings = difficulty_settings[current_grade]
 			if current_level >= settings["max_level"]:
-				print("Max level reached!")
+				print("Max level reached! Showing game complete popup")
 				show_game_complete_popup()
 			else:
 				if current_level % 5 == 0:
 					print("Milestone Level ", current_level, " complete!")
 
+				print("Showing level complete popup...")
 				show_level_complete_popup()
 
 	else:
@@ -309,16 +312,21 @@ func _on_match_made(is_correct: bool):
 			incorrect_sound.play()
 
 func show_level_complete_popup():
+	print("=== Creating level complete popup ===")
 	popup_instance = CompletionPopup.instantiate()
+	print("Popup instantiated:", popup_instance)
 	add_child(popup_instance)
+	print("Popup added to scene tree")
 
 	var settings = difficulty_settings[current_grade]
 	var has_next = current_level < settings["max_level"]
 
+	print("Calling show_level_complete with:", current_level, questions_this_level, total_matches_needed, elapsed_time, has_next)
 	popup_instance.show_level_complete(current_level, questions_this_level, total_matches_needed, elapsed_time, has_next)
 	popup_instance.level_select_pressed.connect(_on_popup_level_select)
 	popup_instance.main_menu_pressed.connect(_on_popup_main_menu)
 	popup_instance.next_level_pressed.connect(_on_popup_next_level)
+	print("=== Popup setup complete ===")
 
 func show_game_complete_popup():
 	popup_instance = CompletionPopup.instantiate()
@@ -330,6 +338,8 @@ func show_game_complete_popup():
 
 func _on_popup_level_select():
 	save_incomplete_progress()
+	if GameData:
+		GameData.current_game_settings["selected_game"] = 2
 	get_tree().change_scene_to_file("res://Scenes/LevelSelect/Scenes/level_select.tscn")
 
 func _on_popup_main_menu():
@@ -354,6 +364,8 @@ func _on_levels_button_pressed():
 		pause_game()
 
 	save_incomplete_progress()
+	if GameData:
+		GameData.current_game_settings["selected_game"] = 2
 	get_tree().change_scene_to_file("res://Scenes/LevelSelect/Scenes/level_select.tscn")
 
 func _on_menu_button_pressed():

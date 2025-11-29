@@ -405,7 +405,9 @@ func show_game_complete_popup():
 
 func _on_popup_level_select():
 	save_incomplete_progress()
-	get_tree().change_scene_to_file("res://Scenes/LevelSelect/Scene/level_select.tscn")
+	if GameData:
+		GameData.current_game_settings["selected_game"] = 1
+	get_tree().change_scene_to_file("res://Scenes/LevelSelect/Scenes/level_select.tscn")
 
 func _on_popup_main_menu():
 	save_incomplete_progress()
@@ -424,11 +426,13 @@ func _on_popup_next_level():
 
 func _on_levels_button_pressed():
 	print("Levels button pressed")
-	
+
 	if game_active:
 		pause_game()
-	
+
 	save_incomplete_progress()
+	if GameData:
+		GameData.current_game_settings["selected_game"] = 1
 	get_tree().change_scene_to_file("res://Scenes/LevelSelect/Scenes/level_select.tscn")
 
 func _on_menu_button_pressed():
