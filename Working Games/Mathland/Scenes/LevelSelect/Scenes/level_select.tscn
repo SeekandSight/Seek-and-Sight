@@ -25,22 +25,68 @@ text = "Select Your Level"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="GameSelectPanel" type="Panel" parent="UI"]
+offset_left = 200.0
+offset_top = 140.0
+offset_right = 1720.0
+offset_bottom = 260.0
+
+[node name="GameLabel" type="Label" parent="UI/GameSelectPanel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 320.0
+offset_bottom = 110.0
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 32
+text = "Game:"
+vertical_alignment = 1
+
+[node name="Game1Button" type="Button" parent="UI/GameSelectPanel"]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 20.0
+offset_right = 640.0
+offset_bottom = 100.0
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 28
+text = "Number Match"
+
+[node name="Game2Button" type="Button" parent="UI/GameSelectPanel"]
+layout_mode = 0
+offset_left = 660.0
+offset_top = 20.0
+offset_right = 960.0
+offset_bottom = 100.0
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 28
+text = "Shape Match"
+
+[node name="Game3Button" type="Button" parent="UI/GameSelectPanel"]
+layout_mode = 0
+offset_left = 980.0
+offset_top = 20.0
+offset_right = 1280.0
+offset_bottom = 100.0
+theme_override_fonts/font = ExtResource("3")
+theme_override_font_sizes/font_size = 28
+text = "Counting"
+
 [node name="LevelsPanel" type="Panel" parent="UI"]
 offset_left = 200.0
-offset_top = 172.0
-offset_right = 1823.0
-offset_bottom = 928.0
+offset_top = 280.0
+offset_right = 1720.0
+offset_bottom = 880.0
 
 [node name="LevelsGrid" type="GridContainer" parent="UI/LevelsPanel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.041
-anchor_right = 1.669
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = -8.083
-offset_right = -1107.79
-offset_bottom = -17.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 30
@@ -49,18 +95,18 @@ columns = 5
 
 [node name="BackButton" type="Button" parent="UI"]
 offset_left = 203.0
-offset_top = 952.0
+offset_top = 900.0
 offset_right = 503.0
-offset_bottom = 1032.0
+offset_bottom = 980.0
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 32
 text = "Back to Menu"
 
 [node name="ResetButton" type="Button" parent="UI"]
-offset_left = 1520.0
-offset_top = 950.0
-offset_right = 1820.0
-offset_bottom = 1030.0
+offset_left = 1420.0
+offset_top = 900.0
+offset_right = 1720.0
+offset_bottom = 980.0
 theme_override_fonts/font = ExtResource("3")
 theme_override_font_sizes/font_size = 32
 text = "Reset Progress"

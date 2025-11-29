@@ -1,89 +1,111 @@
-extends Control
+extends Panel
 
-@export var correct_name: String = ""
-@onready var correct_sound_player = $CorrectSound
-@onready var incorrect_sound_player = $IncorrectSound
-@onready var tween := create_tween()
+signal match_made(is_correct: bool)
+signal shape_removed
 
-
-var correct_sounds = [
-	preload("res://Audio/Mathwizard Positive.wav"),
-	preload("res://Audio/Mathwizard 100%.wav")
-]
-
-var incorrect_sounds = [
-	preload("res://Audio/Mathwizard Almost.wav"),
-	preload("res://Audio/Mathwizard Try Again.wav")
-]
+var shape_name: String = ""
+var correct_name: String = ""
+var dragging = false
+var drag_enabled = false
+var stored_position = Vector2.ZERO
+var matched = false
 
 var shape_map = {
-"circle":"res://Images/Circle.png",
-"diamond":"res://Images/Diamond.png",
-"heart":"res://Images/Heart.png",
-"square":"res://Images/Square.png",
-"star":"res://Images/Star.png",
-"triangle":"res://Images/Triangle.png"
+	"circle": "res://Images/Circle.png",
+	"diamond": "res://Images/Diamond.png",
+	"heart": "res://Images/Heart.png",
+	"square": "res://Images/Square.png",
+	"star": "res://Images/Star.png",
+	"triangle": "res://Images/Triangle.png",
+	"pentagon": "res://Images/Pentagon.png",
+	"hexagon": "res://Images/Hexagon.png",
+	"oval": "res://Images/Oval.png",
+	"rectangle": "res://Images/Rectangle.png"
 }
 
+@onready var shape_sprite: Sprite2D = null
 
 func _ready():
-	var shape_texture_path = shape_map.get(correct_name, "")
-	if shape_texture_path != "":
+	custom_minimum_size = Vector2(100, 100)
+
+	# Create the shape sprite
+	shape_sprite = Sprite2D.new()
+	add_child(shape_sprite)
+	shape_sprite.position = size / 2
+
+	await get_tree().process_frame
+	update_stored_position()
+
+func set_shape(shape: String):
+	shape_name = shape
+	correct_name = shape
+
+	var shape_texture_path = shape_map.get(shape, "")
+	if shape_texture_path != "" and FileAccess.file_exists(shape_texture_path):
 		var tex = load(shape_texture_path)
-		$Shape.texture = tex
-		connect("mouse_entered", Callable(self, "_on_mouse_entered"))
-		connect("mouse_exited", Callable(self, "_on_mouse_exited"))
-		
-		# SCALE DOWN based on original size
-		var target_size = Vector2(110, 110)  # adjust to fit your design
-		var original_size = tex.get_size()
-		var scale = target_size / original_size
-		$Shape.scale = scale
+		if shape_sprite:
+			shape_sprite.texture = tex
+			# Scale down to fit
+			var target_size = Vector2(80, 80)
+			var original_size = tex.get_size()
+			var scale_factor = target_size / original_size
+			shape_sprite.scale = scale_factor
 
-func _on_mouse_entered():
-	tween.kill()
-	tween = create_tween()
-	tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.1)
+func enable_dragging():
+	drag_enabled = true
+	mouse_filter = Control.MOUSE_FILTER_STOP
 
-func _on_mouse_exited():
-	tween.kill()
-	tween = create_tween()
-	tween.tween_property(self, "scale", Vector2(1, 1), 0.1)
+func disable_dragging():
+	drag_enabled = false
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
 
+func update_stored_position():
+	await get_tree().process_frame
+	stored_position = global_position
 
-func play_correct_sound():
-	var sound = correct_sounds[randi() % correct_sounds.size()]
-	correct_sound_player.stream = sound
-	correct_sound_player.play()
+func _get_drag_data(_at_position):
+	if not drag_enabled or matched:
+		return null
 
-func play_incorrect_sound():
-	var sound = incorrect_sounds[randi() % incorrect_sounds.size()]
-	incorrect_sound_player.stream = sound
-	incorrect_sound_player.play()
+	dragging = true
+	var data = {
+		"shape_name": shape_name,
+		"source": self
+	}
 
+	# Create preview
+	var preview = Panel.new()
+	preview.custom_minimum_size = custom_minimum_size
+	var preview_sprite = Sprite2D.new()
+	preview.add_child(preview_sprite)
+	preview_sprite.position = custom_minimum_size / 2
+	if shape_sprite and shape_sprite.texture:
+		preview_sprite.texture = shape_sprite.texture
+		preview_sprite.scale = shape_sprite.scale
+	preview.modulate = Color(1, 1, 1, 0.7)
+	set_drag_preview(preview)
 
-func _can_drop_data(_position: Vector2, data: Variant) -> bool:
-	return typeof(data) == TYPE_DICTIONARY and data.has("value")
+	# Hide original while dragging
+	modulate.a = 0.3
 
-var correct := false
+	return data
 
-func _drop_data(_position: Vector2, data: Variant) -> void:
-	if data["value"] == correct_name:
-		modulate = Color.GREEN
-		play_correct_sound()
-		get_parent().get_parent()._on_word_solved()
-		var slot = data["source"]
-		slot.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		slot.position = global_position + Vector2(500, 500)
-		correct = true
-	else:
-		if !correct:
-			modulate = Color.RED
-			play_incorrect_sound()
-			await get_tree().create_timer(1.0).timeout
-			modulate = Color.WHITE
-		else:
-			modulate = Color.RED
-			play_incorrect_sound()
-			await get_tree().create_timer(1.0).timeout
-			modulate = Color.GREEN
+func _notification(what):
+	if what == NOTIFICATION_DRAG_END:
+		dragging = false
+		if not matched:
+			modulate.a = 1.0
+
+func mark_matched():
+	matched = true
+	drag_enabled = false
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	modulate = Color.GREEN
+
+	# Fade out and remove
+	var tween = create_tween()
+	tween.tween_property(self, "modulate:a", 0.0, 0.5).set_delay(0.3)
+	tween.tween_callback(func():
+		shape_removed.emit()
+		queue_free()
+	)
