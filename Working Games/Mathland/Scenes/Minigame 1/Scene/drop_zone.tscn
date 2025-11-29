@@ -1,0 +1,159 @@
+[gd_scene load_steps=3 format=3 uid="uid://def3b52bqu3xn"]
+
+[ext_resource type="Script" uid="uid://cmuc2ubsyecik" path="res://Scenes/Minigame 1/Script/drop_zone.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://8dw2ln34u4q6" path="res://Orbitron/static/Orbitron-Bold.ttf" id="2"]
+
+[node name="DropZone" type="Control"]
+custom_minimum_size = Vector2(100, 90)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 90.0
+script = ExtResource("1")
+
+[node name="OuterGlow" type="ColorRect" parent="."]
+z_index = -3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.6, 0.3, 1, 0.3)
+
+[node name="Shadow" type="ColorRect" parent="."]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.08, 0.12, 0.25, 0.95)
+
+[node name="NeonBorder" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.6, 0.3, 1, 1)
+
+[node name="InnerArea" type="ColorRect" parent="NeonBorder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.08, 0.12, 0.25, 1)
+
+[node name="WordLabel" type="Label" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8, 0.6, 1, 1)
+theme_override_colors/font_outline_color = Color(0.6, 0.3, 1, 0.8)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2")
+theme_override_font_sizes/font_size = 38
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompletedIndicator" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CompletedGlow" type="ColorRect" parent="CompletedIndicator"]
+z_index = -3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.3, 1, 0.4, 0.6)
+
+[node name="GreenBorder" type="ColorRect" parent="CompletedIndicator"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.3, 1, 0.4, 1)
+
+[node name="GreenInner" type="ColorRect" parent="CompletedIndicator/GreenBorder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.1, 0.3, 0.15, 1)
+
+[node name="CheckLabel" type="Label" parent="CompletedIndicator"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5, 1, 0.6, 1)
+theme_override_colors/font_outline_color = Color(0.3, 1, 0.4, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2")
+theme_override_font_sizes/font_size = 52
+text = "✓"
+horizontal_alignment = 1
+vertical_alignment = 1

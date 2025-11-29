@@ -11,35 +11,21 @@ config_version=5
 [application]
 
 config/name="Mathland"
-run/main_scene="uid://b6qkisn7ajsu3"
+run/main_scene="uid://cg76rlfireiwi"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/show_image=false
 
+[autoload]
+
+GameData="*res://Scripts/game_data.gd"
+
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
-
-[file_customization]
-
-folder_colors={
-"res://Scenes/Cutscene 1/Audio/": "pink",
-"res://Scenes/Cutscene 1/Scene/": "purple",
-"res://Scenes/Cutscene 1/Script/": "green",
-"res://Scenes/Cutscene 2/Audio/": "pink",
-"res://Scenes/Cutscene 2/Scene/": "purple",
-"res://Scenes/Cutscene 2/Script/": "green",
-"res://Scenes/Cutscene 3/Audio/": "pink",
-"res://Scenes/Cutscene 3/Scene/": "purple",
-"res://Scenes/Cutscene 3/Script/": "green",
-"res://Scenes/MainMenu/Scene/": "purple",
-"res://Scenes/MainMenu/Script/": "green",
-"res://Scenes/Minigame 1/Scene/": "purple",
-"res://Scenes/Minigame 1/Script/": "green",
-"res://Scenes/Minigame 2/Scene/": "purple",
-"res://Scenes/Minigame 2/Script/": "green"
-}
 
 [rendering]
 
