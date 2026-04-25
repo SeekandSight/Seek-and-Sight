@@ -87,7 +87,7 @@ var celebration_count = 0
 func _ready():
 	print("Debug the Word Bot - Accessible Version Starting!")
 	
-	fix_label.text = "CLICK LETTERS TO FIX THE ROBOT:"
+	fix_label.text = "Click letters to fix the robot:"
 	
 	drop_zones = [drop_zone1, drop_zone2, drop_zone3]
 	drop_labels = [drop_label1, drop_label2, drop_label3]
@@ -128,7 +128,7 @@ func load_current_word():
 	correct_positions = [false, false, false]
 	
 	# Update UI with bigger, clearer text
-	word_label.text = "HELP THE ROBOT SAY: " + word_info.target
+	word_label.text = "Help the robot say: " + word_info.target
 	scrambled_display.text = word_info.scrambled
 	
 	# Reset robot to broken state - keeping original robot emoji
@@ -403,16 +403,16 @@ func fix_robot():
 	
 	# Celebration with variety based on how many they've completed
 	var celebration_messages = [
-		"AMAZING! You fixed the robot! You're so smart!",
-		"WONDERFUL! The robot is happy now thanks to you!",
-		"FANTASTIC! You're getting really good at this!",
-		"INCREDIBLE! You're a robot helper superstar!"
+		"Amazing! You fixed the robot! You're so smart!",
+		"Wonderful! The robot is happy now thanks to you!",
+		"Fantastic! You're getting really good at this!",
+		"Incredible! You're a robot helper superstar!"
 	]
 	
 	if celebration_count <= 3:
 		status_label.text = celebration_messages[min(celebration_count - 1, celebration_messages.size() - 1)]
 	else:
-		status_label.text = "WOW! You've helped " + str(celebration_count) + " robots! You're amazing!"
+		status_label.text = "Wow! You've helped " + str(celebration_count) + " robots! You're amazing!"
 	
 	# Gentle celebration animation
 	var tween = create_tween()
@@ -542,25 +542,25 @@ func _on_reset_pressed():
 	status_label.text = "Fresh start! Click a letter to begin helping again."
 
 func show_completion():
-	status_label.text = "YOU DID IT! You helped ALL the robots! You're a SUPERSTAR!"
-	robot_face.text = "CHAMPION"
+	status_label.text = "You did it! You helped ALL the robots! You're a SUPERSTAR!"
+	robot_face.text = "Champion"
 	robot_face.modulate = Color.GOLD
-	error_message.text = "CONGRATULATIONS! You are amazing at helping!"
+	error_message.text = "Congratulations! You are amazing at helping!"
 	error_message.modulate = Color.GOLD
-	scrambled_display.text = "YOU WIN!"
+	scrambled_display.text = "You win!"
 	scrambled_display.modulate = Color.GOLD
 	
 	# Change control buttons to completion options
-	next_button.text = "🔄 PLAY AGAIN"
+	next_button.text = "🔄 Play Again"
 	next_button.visible = true
-	main_menu_button.text = "🏠 MAIN MENU"
+	main_menu_button.text = "🏠 Main Menu"
 	main_menu_button.visible = true
-	game_select_button.text = "🎮 GAME SELECT"
+	game_select_button.text = "🎮 Game Select"
 	game_select_button.visible = true
 	reset_button.visible = false  # Hide reset button at completion to prevent crash
 
 func update_ui():
-	score_label.text = "ROBOTS HELPED: " + str(robots_fixed)
+	score_label.text = "Robots helped: " + str(robots_fixed)
 	
 	if robot_fixed:
 		status_label.text = "Robot is happy! Ready for the next one?"

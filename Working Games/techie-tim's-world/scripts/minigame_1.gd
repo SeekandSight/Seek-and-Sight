@@ -315,14 +315,14 @@ func update_tim_position():
 
 func update_ui():
 	if moves_label:
-		moves_label.text = "MOVES: " + str(moves_count)
+		moves_label.text = "Moves: " + str(moves_count)
 	
 	if timer_label and timer_running:
 		var current_time = Time.get_time_dict_from_system()["second"]
 		var elapsed = current_time - start_time
 		var minutes = int(elapsed) / 60
 		var seconds = int(elapsed) % 60
-		timer_label.text = "TIME: %02d:%02d" % [minutes, seconds]
+		timer_label.text = "Time: %02d:%02d" % [minutes, seconds]
 
 func show_status(message: String):
 	if status_label:

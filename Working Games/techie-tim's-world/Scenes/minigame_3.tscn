@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ylfet47lfewu"]
+[gd_scene format=3 uid="uid://ylfet47lfewu"]
 
 [ext_resource type="Texture2D" uid="uid://ccfdqtdbife83" path="res://Assests/images/Background.png" id="1_bg"]
 [ext_resource type="Script" uid="uid://carg30gk6gs8m" path="res://scripts/minigame_3.gd" id="1_ihkhm"]
-[ext_resource type="FontFile" uid="uid://de5txl2j3vn6u" path="res://Assests/Fonts/Chewy,Orbitron,Rubik_Distressed/Orbitron/Orbitron-VariableFont_wght.ttf" id="2_font"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bg"]
 texture = ExtResource("1_bg")
@@ -34,6 +33,18 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_password_button"]
+bg_color = Color(0.15, 0.4, 0.8, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.3, 0.6, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_password_hover"]
 bg_color = Color(0.25, 0.5, 1, 1)
 border_width_left = 3
@@ -48,19 +59,7 @@ corner_radius_bottom_left = 12
 shadow_color = Color(0.25, 0.5, 1, 0.3)
 shadow_size = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_password_button"]
-bg_color = Color(0.15, 0.4, 0.8, 0.9)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.3, 0.6, 1, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[node name="Minigame5" type="Control"]
+[node name="Minigame5" type="Control" unique_id=685864641]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,7 +68,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ihkhm")
 
-[node name="BackgroundPanel" type="Panel" parent="."]
+[node name="BackgroundPanel" type="Panel" parent="." unique_id=1546677776]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,7 +77,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_bg")
 
-[node name="MainContainer" type="VBoxContainer" parent="."]
+[node name="MainContainer" type="VBoxContainer" parent="." unique_id=1772669372]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,42 +85,41 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Header" type="VBoxContainer" parent="MainContainer"]
+[node name="Header" type="VBoxContainer" parent="MainContainer" unique_id=842614423]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="TitleLabel" type="Label" parent="MainContainer/Header"]
+[node name="TitleLabel" type="Label" parent="MainContainer/Header" unique_id=1025928915]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.9, 1, 1)
-theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 46
-text = "🔐 TIM'S PASSWORD DECODER 🔐"
+text = "🔐 Tim's Password Decoder 🔐"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SubtitleLabel" type="Label" parent="MainContainer/Header"]
+[node name="SubtitleLabel" type="Label" parent="MainContainer/Header" unique_id=1911013824]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6, 0.9, 1, 1)
 theme_override_font_sizes/font_size = 18
 text = "Help Tim decode encrypted sight word passwords!"
 horizontal_alignment = 1
 
-[node name="GameContent" type="HBoxContainer" parent="MainContainer"]
+[node name="GameContent" type="HBoxContainer" parent="MainContainer" unique_id=685326626]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LeftPanel" type="VBoxContainer" parent="MainContainer/GameContent"]
+[node name="LeftPanel" type="VBoxContainer" parent="MainContainer/GameContent" unique_id=730274292]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ComputerScreen" type="Panel" parent="MainContainer/GameContent/LeftPanel"]
+[node name="ComputerScreen" type="Panel" parent="MainContainer/GameContent/LeftPanel" unique_id=518812269]
 custom_minimum_size = Vector2(500, 350)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_locked_screen")
 
-[node name="ScreenContent" type="VBoxContainer" parent="MainContainer/GameContent/LeftPanel/ComputerScreen"]
+[node name="ScreenContent" type="VBoxContainer" parent="MainContainer/GameContent/LeftPanel/ComputerScreen" unique_id=143321905]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,82 +131,79 @@ offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SystemStatus" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent"]
+[node name="SystemStatus" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent" unique_id=851872376]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
-theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 24
-text = "🔒 SYSTEM LOCKED"
+text = "🔒 System Locked"
 horizontal_alignment = 1
 
-[node name="EncryptedPassword" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent"]
+[node name="EncryptedPassword" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent" unique_id=1475780268]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
-theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 48
 text = "★ ● ■"
 horizontal_alignment = 1
 
-[node name="PasswordLength" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent"]
+[node name="PasswordLength" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent" unique_id=1397689057]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8, 0.8, 1, 1)
 theme_override_font_sizes/font_size = 16
-text = "PASSWORD LENGTH: 3 CHARACTERS"
+text = "Password length: 3 characters"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent"]
+[node name="HSeparator" type="HSeparator" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent" unique_id=612391285]
 layout_mode = 2
 
-[node name="CluesContainer" type="VBoxContainer" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent"]
+[node name="CluesContainer" type="VBoxContainer" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent" unique_id=1468983643]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="CluesTitle" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent/CluesContainer"]
+[node name="CluesTitle" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent/CluesContainer" unique_id=1530934962]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 1, 0.8, 1)
-theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 18
-text = "📡 DECRYPTION CLUES:"
+text = "📡 Decryption clues:"
 horizontal_alignment = 1
 
-[node name="AudioClue" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent/CluesContainer"]
+[node name="AudioClue" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent/CluesContainer" unique_id=1920520825]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.8, 0.4, 1)
 theme_override_font_sizes/font_size = 16
-text = "🔊 AUDIO: Makes 'meow' sound"
+text = "🔊 Audio: Makes 'meow' sound"
 horizontal_alignment = 1
 
-[node name="VisualClue" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent/CluesContainer"]
+[node name="VisualClue" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent/CluesContainer" unique_id=690969377]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8, 1, 0.4, 1)
 theme_override_font_sizes/font_size = 16
-text = "👁️ VISUAL: Small furry pet with whiskers"
+text = "👁️ Visual: Small furry pet with whiskers"
 horizontal_alignment = 1
 
-[node name="LetterClue" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent/CluesContainer"]
+[node name="LetterClue" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent/CluesContainer" unique_id=769320029]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
 theme_override_font_sizes/font_size = 16
-text = "🔤 PATTERN: Starts with 'C', rhymes with 'bat'"
+text = "🔤 Pattern: Starts with 'C', rhymes with 'bat'"
 horizontal_alignment = 1
 
-[node name="AttemptCounter" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent"]
+[node name="AttemptCounter" type="Label" parent="MainContainer/GameContent/LeftPanel/ComputerScreen/ScreenContent" unique_id=653878730]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0.4, 1)
 theme_override_font_sizes/font_size = 14
-text = "DECRYPTION ATTEMPTS: 0/3"
+text = "Decryption attempts: 0/3"
 horizontal_alignment = 1
 
-[node name="RightPanel" type="VBoxContainer" parent="MainContainer/GameContent"]
+[node name="RightPanel" type="VBoxContainer" parent="MainContainer/GameContent" unique_id=1248286826]
 custom_minimum_size = Vector2(380, 0)
 layout_mode = 2
 
-[node name="StatsPanel" type="Panel" parent="MainContainer/GameContent/RightPanel"]
+[node name="StatsPanel" type="Panel" parent="MainContainer/GameContent/RightPanel" unique_id=391984925]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="StatsContainer" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/StatsPanel"]
+[node name="StatsContainer" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/StatsPanel" unique_id=562636742]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -220,23 +215,21 @@ offset_bottom = 553.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LevelLabel" type="Label" parent="MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer"]
+[node name="LevelLabel" type="Label" parent="MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer" unique_id=197850085]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.4, 1, 0.8, 1)
-theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 20
-text = "SECURITY LEVEL: 1"
+text = "Security Level: 1"
 horizontal_alignment = 1
 
-[node name="ScoreLabel" type="Label" parent="MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer"]
+[node name="ScoreLabel" type="Label" parent="MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer" unique_id=1123046617]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.8, 0.4, 1)
-theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 18
-text = "SYSTEMS UNLOCKED: 0"
+text = "Systems Unlocked: 0"
 horizontal_alignment = 1
 
-[node name="StatusLabel" type="Label" parent="MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer"]
+[node name="StatusLabel" type="Label" parent="MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer" unique_id=2004328825]
 custom_minimum_size = Vector2(350, 60)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8, 0.8, 1, 1)
@@ -245,12 +238,12 @@ text = "🔍 Analyze the clues and select the correct password!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="PasswordPanel" type="Panel" parent="MainContainer/GameContent/RightPanel"]
+[node name="PasswordPanel" type="Panel" parent="MainContainer/GameContent/RightPanel" unique_id=1053790153]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
-[node name="PasswordContainer" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/PasswordPanel"]
+[node name="PasswordContainer" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/PasswordPanel" unique_id=1006854177]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -262,108 +255,104 @@ offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PasswordLabel" type="Label" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer"]
+[node name="PasswordLabel" type="Label" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer" unique_id=620225010]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.9, 1, 1)
-theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 18
-text = "🔓 SELECT PASSWORD:"
+text = "🔓 Select Password:"
 horizontal_alignment = 1
 
-[node name="PasswordOptions" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer"]
+[node name="PasswordOptions" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer" unique_id=598413495]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Password1" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/PasswordOptions"]
+[node name="Password1" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/PasswordOptions" unique_id=356853818]
 custom_minimum_size = Vector2(250, 55)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
 theme_override_styles/normal = SubResource("StyleBoxFlat_password_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
 text = "🐱 CAT"
 
-[node name="Password2" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/PasswordOptions"]
+[node name="Password2" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/PasswordOptions" unique_id=1770609828]
 custom_minimum_size = Vector2(250, 55)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
 theme_override_styles/normal = SubResource("StyleBoxFlat_password_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
 text = "🐶 DOG"
 
-[node name="Password3" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/PasswordOptions"]
+[node name="Password3" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/PasswordOptions" unique_id=967188803]
 custom_minimum_size = Vector2(250, 55)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
 theme_override_styles/normal = SubResource("StyleBoxFlat_password_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
 text = "🦇 BAT"
 
-[node name="HSeparator2" type="HSeparator" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer" unique_id=1345679651]
 layout_mode = 2
 
-[node name="HintButton" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer"]
+[node name="HintButton" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer" unique_id=1337546203]
 visible = false
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
-theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
 theme_override_styles/normal = SubResource("StyleBoxFlat_password_button")
+theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
 text = "💡 GET EXTRA HINT"
 
-[node name="ControlButtons" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer"]
+[node name="ControlButtons" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer" unique_id=276545374]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="NextPasswordButton" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/ControlButtons"]
+[node name="NextPasswordButton" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/ControlButtons" unique_id=1329128460]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
-theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
 theme_override_styles/normal = SubResource("StyleBoxFlat_password_button")
-text = "⏭️ NEXT PASSWORD"
+theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
+text = "⏭️ Next Password"
 
-[node name="ResetButton" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/ControlButtons"]
+[node name="ResetButton" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/ControlButtons" unique_id=322646885]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
-theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
 theme_override_styles/normal = SubResource("StyleBoxFlat_password_button")
-text = "🔄 RESET SYSTEM"
+theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
+text = "🔄 Reset System"
 
-[node name="MainMenuButton" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/ControlButtons"]
+[node name="MainMenuButton" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/ControlButtons" unique_id=400234359]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
-theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
 theme_override_styles/normal = SubResource("StyleBoxFlat_password_button")
-text = "🏠 MAIN TERMINAL"
+theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
+text = "🏠 Main Terminal"
 
-[node name="GameSelectButton" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/ControlButtons"]
+[node name="GameSelectButton" type="Button" parent="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/ControlButtons" unique_id=1619489912]
 custom_minimum_size = Vector2(250, 45)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
-theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
 theme_override_styles/normal = SubResource("StyleBoxFlat_password_button")
-text = "🎮 GAME SELECT"
+theme_override_styles/hover = SubResource("StyleBoxFlat_password_hover")
+text = "🎮 Game Select"
 
 [connection signal="pressed" from="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/HintButton" to="." method="_on_hint_button_pressed"]
 [connection signal="pressed" from="MainContainer/GameContent/RightPanel/PasswordPanel/PasswordContainer/ControlButtons/NextPasswordButton" to="." method="_on_next_password_pressed"]

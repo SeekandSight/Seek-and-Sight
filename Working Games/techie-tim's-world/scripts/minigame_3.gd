@@ -226,7 +226,7 @@ func load_current_password():
 	randomized_options = generate_randomized_options(current_password_data)
 	
 	encrypted_password.text = current_password_data.encrypted
-	password_length.text = "PASSWORD LENGTH: " + str(current_password_data.length) + " CHARACTERS"
+	password_length.text = "Password length: " + str(current_password_data.length) + " characters"
 	
 	audio_clue.text = current_password_data.audio_clue
 	visual_clue.text = current_password_data.visual_clue
@@ -243,7 +243,7 @@ func load_current_password():
 			password_buttons[i].visible = false
 	
 	computer_screen.add_theme_stylebox_override("panel", locked_screen_style)
-	system_status.text = "🔒 SYSTEM LOCKED"
+	system_status.text = "🔒 System Locked"
 	system_status.modulate = Color(1, 0.3, 0.3, 1)
 	
 	update_ui()
@@ -321,7 +321,7 @@ func unlock_system():
 	systems_unlocked += 1
 	
 	computer_screen.add_theme_stylebox_override("panel", unlocked_screen_style)
-	system_status.text = "🔓 ACCESS GRANTED"
+	system_status.text = "🔓 Access Granted"
 	system_status.modulate = Color(0.3, 1, 0.3, 1)
 	encrypted_password.text = current_password_data.correct
 	encrypted_password.modulate = Color(0.3, 1, 0.3, 1)
@@ -331,7 +331,7 @@ func unlock_system():
 	tween.tween_property(system_status, "scale", Vector2(1.1, 1.1), 0.3)
 	tween.tween_property(system_status, "scale", Vector2(1.0, 1.0), 0.3)
 	
-	status_label.text = "🎉 PASSWORD DECODED! System unlocked! Click 'NEXT PASSWORD' to continue. 🎉"
+	status_label.text = "🎉 Password decoded! System unlocked! Click 'Next Password' to continue. 🎉"
 	
 	for i in range(password_buttons.size()):
 		password_buttons[i].disabled = true
@@ -350,7 +350,7 @@ func show_wrong_password(wrong_index: int):
 		await get_tree().create_timer(1.0).timeout
 		password_buttons[wrong_index].modulate = Color(1, 1, 1, 1)
 	else:
-		status_label.text = "🚫 LOCKOUT! Maximum attempts reached. Reset to try again."
+		status_label.text = "🚫 Lockout! Maximum attempts reached. Reset to try again."
 		
 		for i in range(password_buttons.size()):
 			password_buttons[i].disabled = true
@@ -440,7 +440,7 @@ func _on_reset_pressed():
 			password_buttons[i].visible = false
 	
 	computer_screen.add_theme_stylebox_override("panel", locked_screen_style)
-	system_status.text = "🔒 SYSTEM LOCKED"
+	system_status.text = "🔒 System Locked"
 	system_status.modulate = Color(1, 0.3, 0.3, 1)
 	encrypted_password.text = current_password_data.encrypted
 	encrypted_password.modulate = Color(0.9, 0.9, 0.9, 1)
@@ -455,10 +455,10 @@ func _on_reset_pressed():
 		status_label.text = "System reset! Same passwords, try again."
 
 func show_completion():
-	status_label.text = "🏆 ALL SYSTEMS UNLOCKED! Master decoder! 🏆"
-	system_status.text = "🏆 MISSION COMPLETE"
+	status_label.text = "🏆 All systems unlocked! Master decoder! 🏆"
+	system_status.text = "🏆 Mission Complete"
 	system_status.modulate = Color.GOLD
-	encrypted_password.text = "MASTER HACKER!"
+	encrypted_password.text = "Master Hacker!"
 	encrypted_password.modulate = Color.GOLD
 	
 	# Hide password buttons
@@ -466,21 +466,21 @@ func show_completion():
 		button.visible = false
 	
 	# Change control buttons to completion options
-	next_button.text = "🔄 PLAY AGAIN"
+	next_button.text = "🔄 Play Again"
 	next_button.visible = true
-	main_menu_button.text = "🏠 MAIN MENU"
+	main_menu_button.text = "🏠 Main Menu"
 	main_menu_button.visible = true
-	game_select_button.text = "🎮 GAME SELECT"
+	game_select_button.text = "🎮 Game Select"
 	game_select_button.visible = true
 	reset_button.visible = false  # Hide reset button at completion
 
 func update_ui():
-	level_label.text = "SECURITY LEVEL: " + str(current_level)
-	score_label.text = "SYSTEMS UNLOCKED: " + str(systems_unlocked)
-	attempt_counter.text = "DECRYPTION ATTEMPTS: " + str(current_attempts) + "/" + str(max_attempts)
+	level_label.text = "Security Level: " + str(current_level)
+	score_label.text = "Systems Unlocked: " + str(systems_unlocked)
+	attempt_counter.text = "Decryption Attempts: " + str(current_attempts) + "/" + str(max_attempts)
 	
 	if system_unlocked:
-		status_label.text = "✅ System unlocked! Click 'NEXT PASSWORD' to continue."
+		status_label.text = "✅ System unlocked! Click 'Next Password' to continue."
 	elif current_attempts >= max_attempts:
 		status_label.text = "🚫 Locked out! Reset to try again."
 	else:
