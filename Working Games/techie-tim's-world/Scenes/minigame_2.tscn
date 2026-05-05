@@ -1,0 +1,401 @@
+[gd_scene format=3 uid="uid://021hsoocbgk3"]
+
+[ext_resource type="Texture2D" uid="uid://ccfdqtdbife83" path="res://Assests/images/Background.png" id="1_bg"]
+[ext_resource type="Script" uid="uid://cglo161wcsv1v" path="res://scripts/Minigame2.gd" id="4_script"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bg"]
+texture = ExtResource("1_bg")
+modulate_color = Color(0.3, 0.3, 0.4, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_robot_container"]
+bg_color = Color(0.05, 0.05, 0.15, 0.95)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.2, 0.2, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(1, 0.2, 0.2, 0.3)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dropzone"]
+bg_color = Color(0.1, 0.1, 0.3, 0.8)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5, 0.8, 1, 0.8)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.08, 0.08, 0.2, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.8, 1, 0.7)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_letter_normal"]
+bg_color = Color(0.2, 0.2, 0.8, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.4, 0.4, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_letter_hover"]
+bg_color = Color(0.3, 0.3, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5, 0.5, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0.3, 0.3, 1, 0.4)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_style"]
+bg_color = Color(0.2, 0.6, 1, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.4, 0.8, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="Minigame4" type="Control" unique_id=649312558]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_script")
+
+[node name="BackgroundPanel" type="Panel" parent="." unique_id=1056898623]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bg")
+
+[node name="MainContainer" type="VBoxContainer" parent="." unique_id=1965070938]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="VBoxContainer" parent="MainContainer" unique_id=1266177686]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TitleLabel" type="Label" parent="MainContainer/Header" unique_id=20856598]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "🤖 Debug the Word Bot 🤖"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="MainContainer/Header" unique_id=268595369]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Tim's robots are glitching! Fix their letter circuits!"
+horizontal_alignment = 1
+
+[node name="GameContent" type="HBoxContainer" parent="MainContainer" unique_id=1112921041]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftPanel" type="VBoxContainer" parent="MainContainer/GameContent" unique_id=2108448994]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RobotContainer" type="Panel" parent="MainContainer/GameContent/LeftPanel" unique_id=1545689669]
+custom_minimum_size = Vector2(500, 250)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_robot_container")
+
+[node name="RobotContent" type="VBoxContainer" parent="MainContainer/GameContent/LeftPanel/RobotContainer" unique_id=1554290493]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 13.0
+offset_right = -13.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RobotFace" type="Label" parent="MainContainer/GameContent/LeftPanel/RobotContainer/RobotContent" unique_id=1017059431]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 80
+text = "🤖"
+horizontal_alignment = 1
+
+[node name="ErrorMessage" type="Label" parent="MainContainer/GameContent/LeftPanel/RobotContainer/RobotContent" unique_id=1897536871]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 16
+text = "Error: Word circuits scrambled!"
+horizontal_alignment = 1
+
+[node name="ScrambledDisplay" type="Label" parent="MainContainer/GameContent/LeftPanel/RobotContainer/RobotContent" unique_id=829962359]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 48
+text = "Tac"
+horizontal_alignment = 1
+
+[node name="FixZone" type="VBoxContainer" parent="MainContainer/GameContent/LeftPanel" unique_id=1338799925]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FixLabel" type="Label" parent="MainContainer/GameContent/LeftPanel/FixZone" unique_id=32817792]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "🔧 Drag letters to fix the robot:"
+horizontal_alignment = 1
+
+[node name="DropZoneContainer" type="HBoxContainer" parent="MainContainer/GameContent/LeftPanel/FixZone" unique_id=790479414]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="DropZone1" type="Panel" parent="MainContainer/GameContent/LeftPanel/FixZone/DropZoneContainer" unique_id=423736770]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dropzone")
+
+[node name="DropLabel1" type="Label" parent="MainContainer/GameContent/LeftPanel/FixZone/DropZoneContainer/DropZone1" unique_id=1560937224]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DropZone2" type="Panel" parent="MainContainer/GameContent/LeftPanel/FixZone/DropZoneContainer" unique_id=1519182026]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dropzone")
+
+[node name="DropLabel2" type="Label" parent="MainContainer/GameContent/LeftPanel/FixZone/DropZoneContainer/DropZone2" unique_id=933988538]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DropZone3" type="Panel" parent="MainContainer/GameContent/LeftPanel/FixZone/DropZoneContainer" unique_id=755530359]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dropzone")
+
+[node name="DropLabel3" type="Label" parent="MainContainer/GameContent/LeftPanel/FixZone/DropZoneContainer/DropZone3" unique_id=716169597]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightPanel" type="VBoxContainer" parent="MainContainer/GameContent" unique_id=1037702826]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+
+[node name="StatsPanel" type="Panel" parent="MainContainer/GameContent/RightPanel" unique_id=831518993]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="StatsContainer" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/StatsPanel" unique_id=1566350336]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -52.0
+offset_right = -15.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WordLabel" type="Label" parent="MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer" unique_id=521223006]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 1, 0.8, 1)
+theme_override_font_sizes/font_size = 20
+text = "Target Word: Cat"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer" unique_id=1871235091]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.4, 1)
+theme_override_font_sizes/font_size = 18
+text = "Robots Fixed: 0"
+horizontal_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="MainContainer/GameContent/RightPanel/StatsPanel/StatsContainer" unique_id=828157919]
+custom_minimum_size = Vector2(320, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "🔧 Drag letters from the toolbox below!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="LetterToolbox" type="Panel" parent="MainContainer/GameContent/RightPanel" unique_id=466033553]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="ToolboxContainer" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/LetterToolbox" unique_id=634959356]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = -211.0
+offset_right = -15.0
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ToolboxLabel" type="Label" parent="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer" unique_id=1893782971]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "🔧 Letter Circuits"
+horizontal_alignment = 1
+
+[node name="LetterGrid" type="GridContainer" parent="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer" unique_id=970416405]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 3
+
+[node name="LetterC" type="Button" parent="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/LetterGrid" unique_id=393926650]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_letter_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_letter_hover")
+text = "C"
+
+[node name="LetterA" type="Button" parent="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/LetterGrid" unique_id=618424037]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_letter_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_letter_hover")
+text = "A"
+
+[node name="LetterT" type="Button" parent="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/LetterGrid" unique_id=20482936]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_letter_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_letter_hover")
+text = "T"
+
+[node name="ControlButtons" type="VBoxContainer" parent="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer" unique_id=799527527]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TestRobotButton" type="Button" parent="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons" unique_id=2017603158]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_style")
+text = "🔬 Test Robot"
+
+[node name="NextWordButton" type="Button" parent="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons" unique_id=608201625]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_style")
+text = "➡️ Next Robot"
+
+[node name="ResetButton" type="Button" parent="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons" unique_id=2006996742]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_style")
+text = "🔄 Reset Robot"
+
+[node name="MainMenuButton" type="Button" parent="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons" unique_id=1621662100]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_style")
+text = "Next Game"
+
+[node name="GameSelectButton" type="Button" parent="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons" unique_id=248959150]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_style")
+text = "🎮 Game Select"
+
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons/TestRobotButton" to="." method="_on_test_robot_pressed"]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons/NextWordButton" to="." method="_on_next_word_pressed"]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons/ResetButton" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons/MainMenuButton" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="MainContainer/GameContent/RightPanel/LetterToolbox/ToolboxContainer/ControlButtons/GameSelectButton" to="." method="_on_game_select_pressed"]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bixcgbcxwm8r5"
+path="res://.godot/imported/Mathwizard Try Again.wav-d42d5a28114910b0b983eaafc1dc77cb.sample"
+
+[deps]
+
+source_file="res://Audio/Mathwizard Try Again.wav"
+dest_files=["res://.godot/imported/Mathwizard Try Again.wav-d42d5a28114910b0b983eaafc1dc77cb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

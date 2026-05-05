@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1v5ctwfbp7q2"]
+
+[ext_resource type="Texture2D" uid="uid://cyd5b7gkpgyay" path="res://Images/pngwing.com.png" id="1_fofid"]
+[ext_resource type="FontFile" uid="uid://8dw2ln34u4q6" path="res://Orbitron/static/Orbitron-Bold.ttf" id="2_m0ty2"]
+
+[node name="Pngwing_com" type="Button"]
+offset_left = 425.0
+offset_top = 202.0
+offset_right = 758.0
+offset_bottom = 421.0
+flat = true
+icon_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(165, 106)
+scale = Vector2(0.636719, 0.636719)
+texture = ExtResource("1_fofid")
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -205.742
+offset_top = -43.9755
+offset_right = 135.258
+offset_bottom = 47.0245
+theme_override_fonts/font = ExtResource("2_m0ty2")
+theme_override_font_sizes/font_size = 32
+text = "Cutscene Skip
+(Demo)"
+horizontal_alignment = 1
+vertical_alignment = 1

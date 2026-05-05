@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b67j4p4a86p0v"
+path="res://.godot/imported/SnS 3.wav-e7121bbf18440921fd6fad690abb5687.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Numbers 1-20/SnS 3.wav"
+dest_files=["res://.godot/imported/SnS 3.wav-e7121bbf18440921fd6fad690abb5687.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

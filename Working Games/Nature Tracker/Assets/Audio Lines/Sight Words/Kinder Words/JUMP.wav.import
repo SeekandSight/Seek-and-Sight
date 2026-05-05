@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://buk2tohkmi7ou"
+path="res://.godot/imported/JUMP.wav-4959d88fa29ef451e8af9ffc8ae2986c.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Kinder Words/JUMP.wav"
+dest_files=["res://.godot/imported/JUMP.wav-4959d88fa29ef451e8af9ffc8ae2986c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://hih30xiaxxfg"
+path="res://.godot/imported/FAST.wav-aca804e1e0e88d85bdd5407e71f32de6.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Grade 2 Words/FAST.wav"
+dest_files=["res://.godot/imported/FAST.wav-aca804e1e0e88d85bdd5407e71f32de6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

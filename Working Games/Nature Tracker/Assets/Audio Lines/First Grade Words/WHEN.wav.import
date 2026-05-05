@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://di7fxpksbnqv2"
+path="res://.godot/imported/WHEN.wav-b5610efbf2bd53db6414d8d57deee35c.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/First Grade Words/WHEN.wav"
+dest_files=["res://.godot/imported/WHEN.wav-b5610efbf2bd53db6414d8d57deee35c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

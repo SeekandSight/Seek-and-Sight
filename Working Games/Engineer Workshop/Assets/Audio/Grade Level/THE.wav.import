@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dknjtbx5lmj08"
+path="res://.godot/imported/THE.wav-2e704d0f6bf2e4a13b0497bb43f20dbc.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Grade Level/THE.wav"
+dest_files=["res://.godot/imported/THE.wav-2e704d0f6bf2e4a13b0497bb43f20dbc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

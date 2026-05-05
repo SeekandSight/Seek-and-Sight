@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://c70doqklcpe1l"]
+
+[ext_resource type="Script" uid="uid://ngqgud44b28t" path="res://Scenes/LevelSelect/script/level_button.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://bt1ct53es0jkj" path="res://Orbitron/static/Orbitron-ExtraBold.ttf" id="2"]
+
+[node name="LevelButton" type="Control"]
+custom_minimum_size = Vector2(200, 140)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1")
+
+[node name="Shadow" type="ColorRect" parent="."]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="Border" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.3, 0.6, 1, 1)
+
+[node name="InnerArea" type="ColorRect" parent="Border"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.08, 0.12, 0.25, 1)
+
+[node name="LevelLabel" type="Label" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2")
+theme_override_font_sizes/font_size = 64
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="."]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2")
+theme_override_font_sizes/font_size = 24
+text = "LOCKED"
+horizontal_alignment = 1
+vertical_alignment = 1

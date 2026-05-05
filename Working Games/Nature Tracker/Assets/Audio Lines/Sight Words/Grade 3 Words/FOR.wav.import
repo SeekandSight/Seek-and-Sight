@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://byg60sroqy0vq"
+path="res://.godot/imported/FOR.wav-f9def705129c974e0f6aadeeefaa1c63.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Grade 3 Words/FOR.wav"
+dest_files=["res://.godot/imported/FOR.wav-f9def705129c974e0f6aadeeefaa1c63.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4q4yg2l7qxea"]
+
+[ext_resource type="Script" uid="uid://60f1dpj15d6u" path="res://Scenes/Minigame 2/Script/name_slot.gd" id="1_63ru0"]
+
+[node name="NameSlot" type="Panel"]
+custom_minimum_size = Vector2(120, 80)
+script = ExtResource("1_63ru0")

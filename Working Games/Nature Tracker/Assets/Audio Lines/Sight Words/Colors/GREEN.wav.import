@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://5ensmkp0va74"
+path="res://.godot/imported/GREEN.wav-4e8d0a10ad41a24b159b5bdf632c6928.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Colors/GREEN.wav"
+dest_files=["res://.godot/imported/GREEN.wav-4e8d0a10ad41a24b159b5bdf632c6928.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

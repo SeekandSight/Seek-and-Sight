@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dbpxfk60mgkek"
+path="res://.godot/imported/ALSO.wav-77814505b17f2503e06610b483bcb98d.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Grade 1 Words/ALSO.wav"
+dest_files=["res://.godot/imported/ALSO.wav-77814505b17f2503e06610b483bcb98d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

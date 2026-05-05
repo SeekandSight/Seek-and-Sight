@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c2dehdh4j0bl2"
+path="res://.godot/imported/HER.wav-7673af3249bf24d943d8dac21fe9c97d.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/First Grade Words/HER.wav"
+dest_files=["res://.godot/imported/HER.wav-7673af3249bf24d943d8dac21fe9c97d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

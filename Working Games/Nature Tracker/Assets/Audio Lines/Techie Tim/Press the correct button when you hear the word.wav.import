@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://fjmf0vrkdxvh"
+path="res://.godot/imported/Press the correct button when you hear the word.wav-ea4c543fbda2205c377407e0c18b8d10.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Techie Tim/Press the correct button when you hear the word.wav"
+dest_files=["res://.godot/imported/Press the correct button when you hear the word.wav-ea4c543fbda2205c377407e0c18b8d10.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

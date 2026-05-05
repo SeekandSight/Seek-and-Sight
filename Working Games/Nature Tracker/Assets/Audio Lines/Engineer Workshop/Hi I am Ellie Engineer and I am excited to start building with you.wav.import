@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dnt2poy0f153y"
+path="res://.godot/imported/Hi I am Ellie Engineer and I am excited to start building with you.wav-78cc30615d838260aeed1d8f4d724661.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Engineer Workshop/Hi I am Ellie Engineer and I am excited to start building with you.wav"
+dest_files=["res://.godot/imported/Hi I am Ellie Engineer and I am excited to start building with you.wav-78cc30615d838260aeed1d8f4d724661.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

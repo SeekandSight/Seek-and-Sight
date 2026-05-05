@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://c5kryqmti2g0y"]
+
+[ext_resource type="Texture2D" uid="uid://ccfdqtdbife83" path="res://Assests/images/Background.png" id="1_1ehe0"]
+[ext_resource type="Script" uid="uid://d26syc6dh4qrv" path="res://scripts/main_menu.gd" id="1_ce3w2"]
+[ext_resource type="Texture2D" uid="uid://df14yhxr24t6s" path="res://Assests/images/TimGesture-removebg-preview.png" id="3_1ehe0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_opfnp"]
+texture = ExtResource("1_1ehe0")
+modulate_color = Color(0.779291, 0.779291, 0.779291, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yhxw7"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.92549, 0.858824, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce3w2"]
+bg_color = Color(0.783523, 0.783523, 0.783523, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n45e2"]
+bg_color = Color(0.74978, 0.74978, 0.74978, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opfnp"]
+bg_color = Color(0.662452, 0.662452, 0.662452, 1)
+
+[node name="Main Menu" type="Control" unique_id=419645869]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ce3w2")
+
+[node name="Panel" type="Panel" parent="." unique_id=1766475716]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_opfnp")
+
+[node name="Label" type="Label" parent="Panel" unique_id=1038866171]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -281.0
+offset_top = 39.0
+offset_right = 296.0
+offset_bottom = 156.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 90
+text = "Tech Coder"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=169835424]
+layout_mode = 0
+offset_top = 157.0
+offset_right = 377.0
+offset_bottom = 647.0
+
+[node name="Panel" type="Sprite2D" parent="Panel/VBoxContainer" unique_id=881143141]
+position = Vector2(241, 236)
+scale = Vector2(0.86, 0.924)
+texture = ExtResource("3_1ehe0")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel" unique_id=68349927]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 384.0
+offset_right = 755.0
+offset_bottom = 590.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer2" unique_id=619171240]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="StartButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=55467512]
+custom_minimum_size = Vector2(210, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_yhxw7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ce3w2")
+text = "Start Game"
+
+[node name="InstructionButton" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=1381805892]
+visible = false
+custom_minimum_size = Vector2(220, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_yhxw7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_n45e2")
+text = "Instructions"
+
+[node name="Settings" type="Button" parent="Panel/VBoxContainer2/VBoxContainer" unique_id=1039286445]
+visible = false
+custom_minimum_size = Vector2(180, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_yhxw7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_opfnp")
+text = "Settings"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel" unique_id=682986471]
+visible = false
+layout_mode = 0
+offset_left = 765.0
+offset_top = 206.0
+offset_right = 1142.0
+offset_bottom = 647.0
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer3" unique_id=149633016]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Game Instructions"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer3" unique_id=576325969]
+custom_minimum_size = Vector2(0, 370)
+layout_mode = 2

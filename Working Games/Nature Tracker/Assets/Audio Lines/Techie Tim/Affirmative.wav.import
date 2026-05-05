@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cem8wkqd24y1r"
+path="res://.godot/imported/Affirmative.wav-7e579b573ebb1c10608d2d510ad19898.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Techie Tim/Affirmative.wav"
+dest_files=["res://.godot/imported/Affirmative.wav-7e579b573ebb1c10608d2d510ad19898.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cfnqggvwwup0k"
+path="res://.godot/imported/THIS.wav-2068c001f46a940a6068e78bf7f6f8e2.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/First Grade Words/THIS.wav"
+dest_files=["res://.godot/imported/THIS.wav-2068c001f46a940a6068e78bf7f6f8e2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

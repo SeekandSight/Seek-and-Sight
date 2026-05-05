@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dgbq42lnxfacb"
+path="res://.godot/imported/OVAL.wav-280c2926455be8b9d0e23a15f6c1edba.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Shapes/OVAL.wav"
+dest_files=["res://.godot/imported/OVAL.wav-280c2926455be8b9d0e23a15f6c1edba.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

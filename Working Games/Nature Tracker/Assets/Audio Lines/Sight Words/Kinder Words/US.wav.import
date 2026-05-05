@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://uyl10s2mnw0g"
+path="res://.godot/imported/US.wav-84e3a2fb4164223cb0889f7087ad74e4.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Kinder Words/US.wav"
+dest_files=["res://.godot/imported/US.wav-84e3a2fb4164223cb0889f7087ad74e4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

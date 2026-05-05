@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://krjks0p7pe5a"
+path="res://.godot/imported/FIRST.wav-9ef32440c72f2f11dc07ca6a82fce595.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Grade 2 Words/FIRST.wav"
+dest_files=["res://.godot/imported/FIRST.wav-9ef32440c72f2f11dc07ca6a82fce595.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

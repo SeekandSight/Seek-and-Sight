@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dmwv7tjwo22x1"
+path="res://.godot/imported/Can you help label the parts of a plant.wav-8aef4e0aa1db9c440428cb75d68df4ab.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Eco/Can you help label the parts of a plant.wav"
+dest_files=["res://.godot/imported/Can you help label the parts of a plant.wav-8aef4e0aa1db9c440428cb75d68df4ab.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

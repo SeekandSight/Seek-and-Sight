@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://srem1a632gkc"
+path="res://.godot/imported/WHAT.wav-a39909de74647fd37736a6343bb57e43.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/First Grade Words/WHAT.wav"
+dest_files=["res://.godot/imported/WHAT.wav-a39909de74647fd37736a6343bb57e43.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

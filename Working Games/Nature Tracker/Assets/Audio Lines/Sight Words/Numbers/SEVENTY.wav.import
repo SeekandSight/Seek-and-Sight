@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://8tusn4pf2gtq"
+path="res://.godot/imported/SEVENTY.wav-55147c33b544044b8d8710d7fa70ef7c.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Numbers/SEVENTY.wav"
+dest_files=["res://.godot/imported/SEVENTY.wav-55147c33b544044b8d8710d7fa70ef7c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

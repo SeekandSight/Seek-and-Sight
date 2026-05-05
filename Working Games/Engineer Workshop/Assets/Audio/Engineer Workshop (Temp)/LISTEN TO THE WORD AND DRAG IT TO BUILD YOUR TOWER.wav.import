@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bxwiu3vc5exln"
+path="res://.godot/imported/LISTEN TO THE WORD AND DRAG IT TO BUILD YOUR TOWER.wav-10f37576f71f0351f41ba5058bf3fcc7.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Engineer Workshop (Temp)/LISTEN TO THE WORD AND DRAG IT TO BUILD YOUR TOWER.wav"
+dest_files=["res://.godot/imported/LISTEN TO THE WORD AND DRAG IT TO BUILD YOUR TOWER.wav-10f37576f71f0351f41ba5058bf3fcc7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

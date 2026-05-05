@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://rpahwafeajyh"
+path="res://.godot/imported/Triangle.wav-1624467ba03b831cb4c9b863a081a723.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Shapes/Triangle.wav"
+dest_files=["res://.godot/imported/Triangle.wav-1624467ba03b831cb4c9b863a081a723.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

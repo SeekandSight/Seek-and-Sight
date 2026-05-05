@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bspw5xagmw7ly"
+path="res://.godot/imported/SAW.wav-0683ebd4fa1e6ef00e9bf6ab9bd7d244.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Engineer Workshop (Temp)/SAW.wav"
+dest_files=["res://.godot/imported/SAW.wav-0683ebd4fa1e6ef00e9bf6ab9bd7d244.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

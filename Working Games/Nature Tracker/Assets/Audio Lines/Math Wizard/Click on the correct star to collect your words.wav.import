@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cjfq5kpie0u32"
+path="res://.godot/imported/Click on the correct star to collect your words.wav-3eb9f8c9cfaf1663ca2d15e49caeb980.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Math Wizard/Click on the correct star to collect your words.wav"
+dest_files=["res://.godot/imported/Click on the correct star to collect your words.wav-3eb9f8c9cfaf1663ca2d15e49caeb980.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

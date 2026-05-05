@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dg53jrcabvkwh"
+path="res://.godot/imported/WENT.wav-0c3f12a4ec41d7b120a23beb8113a078.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Grade Level/WENT.wav"
+dest_files=["res://.godot/imported/WENT.wav-0c3f12a4ec41d7b120a23beb8113a078.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

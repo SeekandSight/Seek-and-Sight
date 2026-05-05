@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bs5pif68w25dn"
+path="res://.godot/imported/Are you ready to help Nova with a cosmic adventure.wav-a269b86c769a033cd5115933e17817a3.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Eco/Are you ready to help Nova with a cosmic adventure.wav"
+dest_files=["res://.godot/imported/Are you ready to help Nova with a cosmic adventure.wav-a269b86c769a033cd5115933e17817a3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

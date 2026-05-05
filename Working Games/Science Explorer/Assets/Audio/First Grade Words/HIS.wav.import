@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://81ld5w3b551d"
+path="res://.godot/imported/HIS.wav-ae94c03cd68ae2706fd1e13d1b47da95.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/First Grade Words/HIS.wav"
+dest_files=["res://.godot/imported/HIS.wav-ae94c03cd68ae2706fd1e13d1b47da95.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

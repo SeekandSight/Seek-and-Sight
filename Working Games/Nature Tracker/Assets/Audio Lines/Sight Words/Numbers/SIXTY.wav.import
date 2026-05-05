@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://blja4bwl6ailr"
+path="res://.godot/imported/SIXTY.wav-c13dcf2962cfd1b99696e20981b5983e.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Numbers/SIXTY.wav"
+dest_files=["res://.godot/imported/SIXTY.wav-c13dcf2962cfd1b99696e20981b5983e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

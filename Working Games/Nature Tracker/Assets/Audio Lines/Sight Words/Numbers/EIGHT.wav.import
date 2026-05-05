@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://lwxter5pj5vf"
+path="res://.godot/imported/EIGHT.wav-77518b89de9a63f9007798f64607c93d.sample"
+
+[deps]
+
+source_file="res://Assets/Audio Lines/Sight Words/Numbers/EIGHT.wav"
+dest_files=["res://.godot/imported/EIGHT.wav-77518b89de9a63f9007798f64607c93d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
